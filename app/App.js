@@ -12,7 +12,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Container>
+      <Container style={{ marginTop: "20px" }}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/user_management" element={<UserManagement />} />
