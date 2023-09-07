@@ -3,17 +3,19 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function Header() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="primary" data-bs-theme="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="#home">TM</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="./">Home</Nav.Link>
-            <Nav.Link href="./user_management">About</Nav.Link>
+            <Nav.Link href="./user_management">Manage Users</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -25,6 +27,21 @@ export default function Header() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Username"
+                className="me-2"
+                aria-label="username"
+              />
+              <Form.Control
+                type="search"
+                placeholder="Password"
+                className="me-2"
+                aria-label="password"
+              />
+              <Button variant="outline-success">Login</Button>
+            </Form>
           </Nav>
         </Navbar.Collapse>
       </Container>
