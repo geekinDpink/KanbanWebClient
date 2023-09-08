@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, option } from "formik";
 
 export default function UserDetailForm() {
+  const [usergroups, setUsergroups] = useState([]);
+
+  // get usergroups for usergroup dropdown list
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/usergroups")
+      .then((res) => {
+        setUsergroups(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <Formik
@@ -51,7 +63,20 @@ export default function UserDetailForm() {
                 <label htmlFor="usergroup">User Group</label>
               </Col>
               <Col xs md={4}>
-                <Field id="usergroup" name="usergroup" as="select" />
+                <Field id="usergroup" name="usergroup" component="select">
+                  {usergroups.length ? (
+                    usergroups.map((usergroup) => {
+                      console.log(usergroup);
+                      return (
+                        <option value={usergroup.usergroup}>
+                          {usergroup.usergroup.toUpperCase()}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option value="">No usergroup</option>
+                  )}
+                </Field>
               </Col>
             </Row>
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
