@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,19 +8,26 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // get usergroups for usergroup dropdown list
-  const submitHandler = (event) => {
+  const submitLoginHandler = async (event) => {
     event.preventDefault(); // prevent form from resetting on submit
-    axios
-      .post("http://localhost:8080/login", {
+    try {
+      const res = await axios.post("http://localhost:8080/login", {
         username: event.target[0].value,
         password: event.target[1].value,
-      })
-      .then((res) => {
-        // console.log(res);
-        localStorage.setItem("token", res.data.token);
-      })
-      .catch((err) => console.log(err));
+      });
+      localStorage.setItem("token", res.data.token);
+      setIsLoggedIn(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const submitLogoutHandler = (event) => {
+    event.preventDefault(); // prevent form from resetting on submit
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
   };
 
   return (
@@ -32,36 +39,39 @@ export default function Header() {
           <Nav className="me-auto">
             <Nav.Link href="./">Home</Nav.Link>
             <Nav.Link href="./user_management">Manage Users</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Form className="d-flex" onSubmit={(event) => submitHandler(event)}>
-              <Form.Control
-                type="search"
-                ide="username"
-                placeholder="Username"
-                className="me-2"
-                aria-label="username"
-              />
-              <Form.Control
-                type="search"
-                ide="password"
-                placeholder="Password"
-                className="me-2"
-                aria-label="password"
-              />
-              <Button variant="outline-success" type="submit">
-                Login
-              </Button>
-            </Form>
+            {!isLoggedIn ? (
+              <Form
+                className="d-flex"
+                onSubmit={(event) => submitLoginHandler(event)}
+              >
+                <Form.Control
+                  type="search"
+                  ide="username"
+                  placeholder="Username"
+                  className="me-2"
+                  aria-label="username"
+                />
+                <Form.Control
+                  type="search"
+                  ide="password"
+                  placeholder="Password"
+                  className="me-2"
+                  aria-label="password"
+                />
+                <Button variant="outline-success" type="submit">
+                  Login
+                </Button>
+              </Form>
+            ) : (
+              <Form
+                className="d-flex"
+                onSubmit={(event) => submitLogoutHandler(event)}
+              >
+                <Button variant="outline-success" type="submit">
+                  Logout
+                </Button>
+              </Form>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
