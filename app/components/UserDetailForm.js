@@ -66,7 +66,6 @@ export default function UserDetailForm() {
                 <Field id="usergroup" name="usergroup" component="select">
                   {usergroups.length ? (
                     usergroups.map((usergroup) => {
-                      console.log(usergroup);
                       return (
                         <option value={usergroup.usergroup}>
                           {usergroup.usergroup.toUpperCase()}

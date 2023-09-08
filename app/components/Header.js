@@ -3,10 +3,26 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function Header() {
+  // get usergroups for usergroup dropdown list
+  const submitHandler = (event) => {
+    event.preventDefault(); // prevent form from resetting on submit
+    axios
+      .post("http://localhost:8080/login", {
+        username: event.target[0].value,
+        password: event.target[1].value,
+      })
+      .then((res) => {
+        // console.log(res);
+        localStorage.setItem("token", res.data.token);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Navbar bg="primary" data-bs-theme="dark" expand="lg">
       <Container>
@@ -27,20 +43,24 @@ export default function Header() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={(event) => submitHandler(event)}>
               <Form.Control
                 type="search"
+                ide="username"
                 placeholder="Username"
                 className="me-2"
                 aria-label="username"
               />
               <Form.Control
                 type="search"
+                ide="password"
                 placeholder="Password"
                 className="me-2"
                 aria-label="password"
               />
-              <Button variant="outline-success">Login</Button>
+              <Button variant="outline-success" type="submit">
+                Login
+              </Button>
             </Form>
           </Nav>
         </Navbar.Collapse>
