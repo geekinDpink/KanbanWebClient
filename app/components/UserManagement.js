@@ -14,12 +14,10 @@ export default function UserManagement() {
         myusergroup: "admin",
       })
       .then((res) => {
-        console.log(JSON.stringify(res));
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log("users", users);
 
   return (
     <>
