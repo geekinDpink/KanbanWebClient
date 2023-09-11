@@ -7,8 +7,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+export default function Header({ isLoggedIn, setIsLoggedIn }) {
   // get usergroups for usergroup dropdown list
   const submitLoginHandler = async (event) => {
     event.preventDefault(); // prevent form from resetting on submit
