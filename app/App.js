@@ -11,6 +11,7 @@ import Home from "./components/Home";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   return (
     <BrowserRouter>
@@ -19,7 +20,17 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={isLoggedIn ? <UserManagement /> : <Home />}
+            element={
+              isLoggedIn ? (
+                isAdmin ? (
+                  <UserManagement />
+                ) : (
+                  <UserDetailForm />
+                )
+              ) : (
+                <Home />
+              )
+            }
           />
           <Route path="/user_management" element={<UserManagement />} />
         </Routes>
