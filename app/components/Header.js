@@ -115,6 +115,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                 className="d-flex"
                 onSubmit={(event) => submitLogoutHandler(event)}
               >
+                <Nav.Link href="./my_profile">My Profile</Nav.Link>
                 <Button variant="secondary" type="submit">
                   Logout
                 </Button>

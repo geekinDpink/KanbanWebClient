@@ -9,6 +9,7 @@ import UserDetailForm from "./components/UserDetailForm";
 import Home from "./components/Home";
 import KanbanBoard from "./components/KanbanBoard";
 import CreateUserPage from "./components/CreateUserPage";
+import MyProfilePage from "./components/MyProfilePage";
 
 // import "bootstrap/dist/css/bootstrap.css";
 
@@ -37,6 +38,7 @@ export default function App() {
           />
           <Route path="/user_management" element={<UserManagement />} />
           <Route path="/create_user" element={<CreateUserPage />} />
+          <Route path="/my_profile" element={<MyProfilePage />} />
         </Routes>
       </Container>
 
