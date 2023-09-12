@@ -6,7 +6,7 @@ import axios from "axios";
 
 import { Formik, Field, Form, option } from "formik";
 
-export default function UserDetailForm() {
+export default function UserDetailForm({ onSubmitHandler }) {
   const [usergroups, setUsergroups] = useState([]);
 
   // get usergroups for usergroup dropdown list
@@ -23,13 +23,19 @@ export default function UserDetailForm() {
     <>
       <Formik
         initialValues={{
-          firstName: "",
-          lastName: "",
+          username: "",
+          password: "",
           email: "",
+          usergroup: "admin",
         }}
-        onSubmit={async (values) => {
-          await new Promise((r) => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
+        // onSubmit={(values, { setSubmitting }) => {
+        //   setTimeout(() => {
+        //     alert(JSON.stringify(values, null, 2));
+        //     setSubmitting(false);
+        //   }, 500);
+        // }}
+        onSubmit={(values) => {
+          onSubmitHandler(values);
         }}
       >
         <Form>

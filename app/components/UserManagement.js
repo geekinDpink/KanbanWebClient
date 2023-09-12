@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
@@ -7,6 +9,8 @@ import axios from "axios";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -26,7 +30,9 @@ export default function UserManagement() {
           <h3>User Management</h3>
         </Col>
         <Col>
-          <Button>Create New User</Button>
+          <Button onClick={() => navigate("/create_user")}>
+            Create New User
+          </Button>
         </Col>
       </Row>
       <Row>
