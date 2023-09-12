@@ -7,11 +7,13 @@ import Footer from "./components/Footer";
 import UserManagement from "./components/UserManagement";
 import UserDetailForm from "./components/UserDetailForm";
 import Home from "./components/Home";
+import KanbanBoard from "./components/KanbanBoard";
+
 // import "bootstrap/dist/css/bootstrap.css";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <BrowserRouter>
@@ -25,7 +27,7 @@ export default function App() {
                 isAdmin ? (
                   <UserManagement />
                 ) : (
-                  <UserDetailForm />
+                  <KanbanBoard />
                 )
               ) : (
                 <Home />

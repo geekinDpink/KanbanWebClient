@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function Header({ isLoggedIn, setIsLoggedIn }) {
-  // get usergroups for usergroup dropdown list
+  // Login: Correct - get token and store to local storage and Wrong - snack bar
   const submitLoginHandler = async (event) => {
     event.preventDefault(); // prevent form from resetting on submit
     try {
@@ -16,13 +16,19 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         username: event.target[0].value,
         password: event.target[1].value,
       });
-      localStorage.setItem("token", res.data.token);
-      setIsLoggedIn(true);
+      if (res.data.token) {
+        // console.log("token", res.data);
+        localStorage.setItem("token", res.data.token);
+        setIsLoggedIn(true);
+      } else {
+        // console.log("no token", res.data);
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
+  // Logout: delete token from local storage
   const submitLogoutHandler = (event) => {
     event.preventDefault(); // prevent form from resetting on submit
     localStorage.removeItem("token");
