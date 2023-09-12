@@ -13,10 +13,12 @@ export default function CreateUserPage() {
       email: email,
       usergroup: usergroup,
     };
-    console.log("values", values);
+    const token = localStorage.getItem("token");
 
     axios
-      .post("http://localhost:8080/register", params)
+      .post("http://localhost:8080/register", params, {
+        headers: { Authorization: `Basic ${token}` },
+      })
       .then((res) => {
         console.log(res);
       })

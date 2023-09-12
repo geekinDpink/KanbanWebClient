@@ -13,10 +13,15 @@ export default function UserManagement() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
-      .post("http://localhost:8080/users", {
-        myusergroup: "admin",
-      })
+      .post(
+        "http://localhost:8080/users",
+        {
+          usergroup: "admin",
+        },
+        { headers: { Authorization: `Basic ${token}` } }
+      )
       .then((res) => {
         setUsers(res.data);
       })

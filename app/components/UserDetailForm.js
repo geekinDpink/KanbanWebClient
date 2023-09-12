@@ -24,8 +24,12 @@ export default function UserDetailForm({ onSubmitHandler }) {
 
   // get usergroups for usergroup dropdown list
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     axios
-      .get("http://localhost:8080/usergroups")
+      .get("http://localhost:8080/usergroups", {
+        headers: { Authorization: `Basic ${token}` },
+      })
       .then((res) => {
         setUsergroups(res.data);
       })
