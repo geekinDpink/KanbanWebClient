@@ -97,7 +97,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                   aria-label="username"
                 />
                 <Form.Control
-                  type="search"
+                  type="password"
                   id="password"
                   placeholder="Password"
                   className="me-2"
