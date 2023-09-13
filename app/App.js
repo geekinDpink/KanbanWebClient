@@ -16,12 +16,10 @@ import StateContext from "../Context/StateContext";
 // import "bootstrap/dist/css/bootstrap.css";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    Boolean(localStorage.getItem("token"))
-  );
-
-  // Todo API
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(
+  //   Boolean(localStorage.getItem("token"))
+  // );
+  // const [isAdmin, setIsAdmin] = useState(false);
 
   const initialState = {
     isLoggedIn: Boolean(localStorage.getItem("token")),
