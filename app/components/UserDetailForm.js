@@ -6,10 +6,24 @@ import axios from "axios";
 
 import { Formik, Field, Form, option } from "formik";
 import * as Yup from "yup";
+import CreatableSelect from "react-select/creatable";
 
 export default function UserDetailForm({ onSubmitHandler, username, mode }) {
   const [usergroups, setUsergroups] = useState([]);
   const [user, setUser] = useState();
+
+  const colourOptions = [
+    { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+    { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
+    { value: "purple", label: "Purple", color: "#5243AA" },
+    { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+    { value: "orange", label: "Orange", color: "#FF8B00" },
+    { value: "yellow", label: "Yellow", color: "#FFC400" },
+    { value: "green", label: "Green", color: "#36B37E" },
+    { value: "forest", label: "Forest", color: "#00875A" },
+    { value: "slate", label: "Slate", color: "#253858" },
+    { value: "silver", label: "Silver", color: "#666666" },
+  ];
 
   const UserSchema = Yup.object().shape({
     username: Yup.string()
@@ -140,22 +154,15 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <label htmlFor="usergroup">User Group</label>
                 </Col>
                 <Col xs md={4}>
-                  <Field id="usergroup" name="usergroup" component="select">
-                    {usergroups.length ? (
-                      usergroups.map((usergroup) => {
-                        return (
-                          <option
-                            value={usergroup.usergroup}
-                            key={usergroup.usergroup}
-                          >
-                            {usergroup.usergroup.toUpperCase()}
-                          </option>
-                        );
-                      })
-                    ) : (
-                      <option value="">No usergroup</option>
-                    )}
-                  </Field>
+                  <Field
+                    id="usergroup"
+                    name="usergroup"
+                    component={() => {
+                      return (
+                        <CreatableSelect isMulti options={colourOptions} />
+                      );
+                    }}
+                  />
                 </Col>
               </Row>
               <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
@@ -167,4 +174,35 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
       </Formik>
     </>
   );
+}
+
+{
+  /* <Field id="usergroup" name="usergroup" component="select">
+{usergroups.length ? (
+  usergroups.map((usergroup) => {
+    return (
+      <option
+        value={usergroup.usergroup}
+        key={usergroup.usergroup}
+      >
+        {usergroup.usergroup.toUpperCase()}
+      </option>
+    );
+  })
+) : (
+  <option value="">No usergroup</option>
+)}
+</Field> */
+}
+
+{
+  /* <Field
+id="usergroup"
+name="usergroup"
+component={() => {
+  return (
+    <CreatableSelect isMulti options={colourOptions} />
+  );
+}}
+/> */
 }
