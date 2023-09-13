@@ -12,6 +12,7 @@ export default function MyProfile() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
+    // Get my user detail based on username in token
     axios
       .get("http://localhost:8080/user", {
         headers: { Authorization: `Basic ${token}` },
@@ -53,7 +54,16 @@ export default function MyProfile() {
                 </tr>
                 <tr>
                   <td colSpan={2}>
-                    <Button onClick={() => navigate("/edit_user")}>Edit</Button>
+                    <Button
+                      onClick={() =>
+                        // Route to edit user page and pass username to edit user details form
+                        navigate("/edit_user", {
+                          state: { username: user.username },
+                        })
+                      }
+                    >
+                      Edit
+                    </Button>
                   </td>
                 </tr>
               </tbody>

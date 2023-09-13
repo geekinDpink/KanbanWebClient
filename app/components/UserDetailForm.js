@@ -7,8 +7,9 @@ import axios from "axios";
 import { Formik, Field, Form, option } from "formik";
 import * as Yup from "yup";
 
-export default function UserDetailForm({ onSubmitHandler }) {
+export default function UserDetailForm({ onSubmitHandler, username, mode }) {
   const [usergroups, setUsergroups] = useState([]);
+  const [user, setUser] = useState();
 
   const UserSchema = Yup.object().shape({
     username: Yup.string()
@@ -36,14 +37,53 @@ export default function UserDetailForm({ onSubmitHandler }) {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    console.log("WOWOW");
+    if (mode === "editMyProfile") {
+      // Get my user detail based on username in token
+      axios
+        .get("http://localhost:8080/user", {
+          headers: { Authorization: `Basic ${token}` },
+        })
+        .then((res) => {
+          console.log("my user detail", res.data);
+          setUser(res.data[0]);
+        })
+        .catch((err) => console.log(err));
+    }
+    if (mode === "editOthers" && username) {
+      // Get my user detail based on username in token
+      axios
+        .post(
+          "http://localhost:8080/user",
+          { username: username },
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        )
+        .then((res) => {
+          console.log("other user detail", res.data);
+          setUser(res.data[0]);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  // undefined
+  useEffect(() => {
+    console.log("user", user);
+  }, [user]);
+
   return (
     <>
       <Formik
         initialValues={{
-          username: "",
-          password: "",
-          email: "",
-          usergroup: "admin",
+          username: user?.username ?? "",
+          password: user?.password ?? "",
+          email: user?.email ?? "",
+          usergroup: user?.usergroup ?? "admin",
         }}
         validationSchema={UserSchema}
         // onSubmit={(values, { setSubmitting }) => {
@@ -58,6 +98,7 @@ export default function UserDetailForm({ onSubmitHandler }) {
       >
         {({ errors, touched }) => (
           <Form>
+            <p>{mode}</p>
             <Container>
               <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
                 <Col xs md lg={1}>

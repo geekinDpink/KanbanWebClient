@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import KanbanBoard from "./components/KanbanBoard";
 import CreateUserPage from "./components/CreateUserPage";
 import MyProfilePage from "./components/MyProfilePage";
+import EditUserPage from "./components/EditUserPage";
 
 // import "bootstrap/dist/css/bootstrap.css";
 
@@ -39,7 +40,7 @@ export default function App() {
           <Route path="/user_management" element={<UserManagement />} />
           <Route path="/create_user" element={<CreateUserPage />} />
           <Route path="/my_profile" element={<MyProfilePage />} />
-          <Route path="/edit_user" element={<MyProfilePage />} />
+          <Route path="/edit_user" element={<EditUserPage />} />
         </Routes>
       </Container>
 
