@@ -53,41 +53,38 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         <Navbar.Brand href="#home">TM</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="./">Home</Nav.Link>
-            <Nav.Link href="./user_management">Manage Users</Nav.Link>
-
-            <Toast
+          <Toast
+            style={{
+              zIndex: "999!important",
+              width: "200px",
+              height: "80px",
+            }}
+            delay={2000}
+            autohide
+            onClose={() => setShowToast(false)}
+            show={showToast}
+          >
+            <Toast.Header
               style={{
-                zIndex: "999!important",
-                width: "200px",
-                height: "80px",
+                backgroundColor: "pink",
+                color: "black",
+                fontSize: "11px",
               }}
-              delay={2000}
-              autohide
-              onClose={() => setShowToast(false)}
-              show={showToast}
             >
-              <Toast.Header
-                style={{
-                  backgroundColor: "pink",
-                  color: "black",
-                  fontSize: "11px",
-                }}
-              >
-                Error: Unable to Login
-              </Toast.Header>
-              <Toast.Body
-                style={{
-                  backgroundColor: "pink",
-                  color: "black",
-                  fontSize: "11px",
-                }}
-              >
-                Reason: {toastMsg}
-              </Toast.Body>
-            </Toast>
-            {!isLoggedIn ? (
+              Error: Unable to Login
+            </Toast.Header>
+            <Toast.Body
+              style={{
+                backgroundColor: "pink",
+                color: "black",
+                fontSize: "11px",
+              }}
+            >
+              Reason: {toastMsg}
+            </Toast.Body>
+          </Toast>
+          {!isLoggedIn ? (
+            <Nav className="me-auto">
               <Form
                 className="d-flex"
                 onSubmit={(event) => submitLoginHandler(event)}
@@ -110,7 +107,11 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                   Login
                 </Button>
               </Form>
-            ) : (
+            </Nav>
+          ) : (
+            <Nav className="me-auto">
+              <Nav.Link href="./">Home</Nav.Link>
+              <Nav.Link href="./user_management">Manage Users</Nav.Link>
               <Form
                 className="d-flex"
                 onSubmit={(event) => submitLogoutHandler(event)}
@@ -120,8 +121,8 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                   Logout
                 </Button>
               </Form>
-            )}
-          </Nav>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

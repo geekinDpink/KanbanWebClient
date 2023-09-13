@@ -15,7 +15,9 @@ import EditUserPage from "./components/EditUserPage";
 // import "bootstrap/dist/css/bootstrap.css";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("token"))
+  );
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
