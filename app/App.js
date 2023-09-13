@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Container from "react-bootstrap/Container";
 
@@ -25,8 +25,10 @@ export default function App() {
 
   const initialState = {
     isLoggedIn: Boolean(localStorage.getItem("token")),
+    // isAdmin: false,
   };
 
+  console.log(initialState);
   function myReducer(state, action) {
     switch (action.type) {
       case "login":
@@ -41,10 +43,10 @@ export default function App() {
   const [state, dispatch] = useReducer(myReducer, initialState);
 
   return (
-    <StateContext.Provider state={isLoggedIn}>
-      <DispatchContext.Provider dispatch={isAdmin}>
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-          <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <Header />
           <Container style={{ marginTop: "20px" }}>
             <Routes>
               <Route
@@ -61,10 +63,30 @@ export default function App() {
                   )
                 }
               />
-              <Route path="/user_management" element={<UserManagement />} />
-              <Route path="/create_user" element={<CreateUserPage />} />
-              <Route path="/my_profile" element={<MyProfilePage />} />
-              <Route path="/edit_user" element={<EditUserPage />} />
+              <Route
+                path="/user_management"
+                element={
+                  state.isLoggedIn ? <UserManagement /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/create_user"
+                element={
+                  state.isLoggedIn ? <CreateUserPage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/my_profile"
+                element={
+                  state.isLoggedIn ? <MyProfilePage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/edit_user"
+                element={
+                  state.isLoggedIn ? <EditUserPage /> : <Navigate to="/" />
+                }
+              />
             </Routes>
           </Container>
           <Footer />

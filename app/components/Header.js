@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -6,13 +6,20 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
+import StateContext from "../../Context/StateContext";
+import DispatchContext from "../../Context/DispatchContext";
 
-export default function Header({ isLoggedIn, setIsLoggedIn }) {
+export default function Header() {
   const [showToast, setShowToast] = useState(false);
   const [toastMsg, setToastMsg] = useState("");
+
+  const redState = useContext(StateContext);
+  const redDispatch = useContext(DispatchContext);
+
   // Login: Correct - get token and store to local storage and Wrong - snack bar
   const submitLoginHandler = async (event) => {
     event.preventDefault(); // prevent form from resetting on submit
+    console.log(redState);
     if (event.target[0].value && event.target[1].value) {
       try {
         const res = await axios.post("http://localhost:8080/login", {
@@ -21,8 +28,9 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         });
         if (res.data.token) {
           // console.log("token", res.data);
-          localStorage.setItem("token", res.data.token);
-          setIsLoggedIn(true);
+          await localStorage.setItem("token", res.data.token);
+          // setIsLoggedIn(true);
+          redDispatch({ type: "login" });
         } else {
           setToastMsg(res.data.remarks);
           setShowToast(true);
@@ -31,7 +39,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         }
       } catch (err) {
         console.log(err);
-        setToastMsg(err.response.data.remarks);
+        setToastMsg(err.response?.data?.remarks ?? "");
         setShowToast(true);
       }
     } else {
@@ -44,7 +52,8 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
   const submitLogoutHandler = (event) => {
     event.preventDefault(); // prevent form from resetting on submit
     localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    // setIsLoggedIn(false);
+    redDispatch({ type: "logout" });
   };
 
   return (
@@ -86,7 +95,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
               Reason: {toastMsg}
             </Toast.Body>
           </Toast>
-          {!isLoggedIn ? (
+          {!redState.isLoggedIn ? (
             <Nav className="me-auto">
               <Form
                 className="d-flex"
