@@ -15,14 +15,16 @@ export default function CreatableMultiSelect() {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        let user = {
-          value: res.data.username,
-          label: res.data.username,
-        };
-        let userArr = [];
-        userArr.push(user);
-        console.log(userArr);
-        setUserOptions(userArr);
+        let usergrpArr = [];
+
+        res.data.map((user) => {
+          let usergrpObj = {
+            value: user.usergroup,
+            label: user.usergroup,
+          };
+          usergrpArr.push(usergrpObj);
+        });
+        setUserOptions(usergrpArr);
       })
       .catch((err) => console.log(err));
   }, []);
