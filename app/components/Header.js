@@ -55,6 +55,9 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Toast
             style={{
+              position: "absolute",
+              top: "5%",
+              left: "30%",
               zIndex: "999!important",
               width: "200px",
               height: "80px",
