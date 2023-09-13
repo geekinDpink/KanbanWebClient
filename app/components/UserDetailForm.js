@@ -7,11 +7,13 @@ import axios from "axios";
 import { Formik, Field, Form, option } from "formik";
 import * as Yup from "yup";
 import CreatableSelect from "react-select/creatable";
+import CreatableMultiSelect from "./CreatableMultiSelect";
 
 export default function UserDetailForm({ onSubmitHandler, username, mode }) {
   const [usergroups, setUsergroups] = useState([]);
   const [user, setUser] = useState();
 
+  // const [useroptions, setUserOptions] = useState([]);
   const colourOptions = [
     { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
     { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
@@ -158,9 +160,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                     id="usergroup"
                     name="usergroup"
                     component={() => {
-                      return (
-                        <CreatableSelect isMulti options={colourOptions} />
-                      );
+                      return <CreatableMultiSelect />;
                     }}
                   />
                 </Col>
