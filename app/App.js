@@ -19,7 +19,7 @@ export default function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(
   //   Boolean(localStorage.getItem("token"))
   // );
-  // const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const initialState = {
     isLoggedIn: Boolean(localStorage.getItem("token")),
