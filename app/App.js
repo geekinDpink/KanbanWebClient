@@ -52,7 +52,7 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  isLoggedIn ? (
+                  state.isLoggedIn ? (
                     isAdmin ? (
                       <UserManagement />
                     ) : (
