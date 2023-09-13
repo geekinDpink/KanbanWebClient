@@ -5,11 +5,11 @@ import Container from "react-bootstrap/Container";
 
 import Footer from "./components/Footer";
 import UserManagement from "./components/UserManagement";
-import Home from "./components/Home";
+import HomePage from "./pages/HomePage";
 import KanbanBoard from "./components/KanbanBoard";
-import CreateUserPage from "./components/CreateUserPage";
-import MyProfilePage from "./components/MyProfilePage";
-import EditUserPage from "./components/EditUserPage";
+import CreateUserPage from "./pages/CreateUserPage";
+import MyProfilePage from "./pages/MyProfilePage";
+import EditUserPage from "./pages/EditUserPage";
 import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
 import { useImmerReducer } from "use-immer";
@@ -61,7 +61,7 @@ export default function App() {
                       <KanbanBoard />
                     )
                   ) : (
-                    <Home />
+                    <HomePage />
                   )
                 }
               />

@@ -1,10 +1,13 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-import UserDetailForm from "./UserDetailForm";
+import UserDetailForm from "../components/UserDetailForm";
 import axios from "axios";
 import { Container } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
-export default function CreateUserPage() {
+export default function EditUserPage() {
+  const user = useLocation();
+  const username = user.state.username;
+
   const onSubmitHandler = (values) => {
     const { username, password, email, usergroup } = values;
     const params = {
@@ -27,8 +30,12 @@ export default function CreateUserPage() {
   return (
     <>
       <Container style={{ alignContent: "center", justifyContent: "center" }}>
-        <h1>Create User Page</h1>
-        <UserDetailForm onSubmitHandler={onSubmitHandler} />
+        <h1>Edit User Detail</h1>
+        <UserDetailForm
+          onSubmitHandler={onSubmitHandler}
+          username={username}
+          mode="editMyProfile"
+        />
       </Container>
     </>
   );
