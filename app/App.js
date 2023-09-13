@@ -39,6 +39,7 @@ export default function App() {
           <Route path="/user_management" element={<UserManagement />} />
           <Route path="/create_user" element={<CreateUserPage />} />
           <Route path="/my_profile" element={<MyProfilePage />} />
+          <Route path="/edit_user" element={<MyProfilePage />} />
         </Routes>
       </Container>
 
