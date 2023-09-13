@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Container from "react-bootstrap/Container";
@@ -12,6 +12,7 @@ import MyProfilePage from "./components/MyProfilePage";
 import EditUserPage from "./components/EditUserPage";
 import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
+import { useImmerReducer } from "use-immer";
 
 // import "bootstrap/dist/css/bootstrap.css";
 
@@ -30,15 +31,18 @@ export default function App() {
   function myReducer(state, action) {
     switch (action.type) {
       case "login":
-        return { isLoggedIn: true };
+        state.isLoggedIn = true;
+        return; // either return or break
       case "logout":
-        return { isLoggedIn: false };
+        state.isLoggedIn = false;
+        return;
       default:
         return state;
     }
   }
 
-  const [state, dispatch] = useReducer(myReducer, initialState);
+  // const [state, dispatch] = useReducer(myReducer, initialState);
+  const [state, dispatch] = useImmerReducer(myReducer, initialState);
 
   return (
     <StateContext.Provider value={state}>
