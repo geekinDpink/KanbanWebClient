@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import StateContext from "../../Context/StateContext";
 import DispatchContext from "../../Context/DispatchContext";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [showToast, setShowToast] = useState(false);
@@ -128,7 +129,7 @@ export default function Header() {
             ) : (
               <Nav className="me-auto">
                 {redState.isAdmin && (
-                  <Nav.Link href="./user_management">Manage Users</Nav.Link>
+                  <Link to="./user_management"> Mange User</Link>
                 )}
                 <Nav.Link href="./kanban_board">Kanban Board</Nav.Link>
 
