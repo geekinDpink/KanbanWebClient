@@ -7,11 +7,16 @@ import { Container } from "react-bootstrap";
 export default function CreateUserPage() {
   const onSubmitHandler = (values) => {
     const { username, password, email, usergroup } = values;
+    console.log("value after submit", values);
+
+    // convert usergrp array to string to save to db
+    const usergroupStr = usergroup.join(",");
+
     const params = {
       username: username,
       password: password,
       email: email,
-      usergroup: usergroup,
+      usergroup: usergroupStr,
     };
     const token = localStorage.getItem("token");
 

@@ -14,18 +14,6 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
   const [user, setUser] = useState();
 
   // const [useroptions, setUserOptions] = useState([]);
-  const colourOptions = [
-    { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
-    { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
-    { value: "purple", label: "Purple", color: "#5243AA" },
-    { value: "red", label: "Red", color: "#FF5630", isFixed: true },
-    { value: "orange", label: "Orange", color: "#FF8B00" },
-    { value: "yellow", label: "Yellow", color: "#FFC400" },
-    { value: "green", label: "Green", color: "#36B37E" },
-    { value: "forest", label: "Forest", color: "#00875A" },
-    { value: "slate", label: "Slate", color: "#253858" },
-    { value: "silver", label: "Silver", color: "#666666" },
-  ];
 
   const UserSchema = Yup.object().shape({
     username: Yup.string()
@@ -99,7 +87,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           username: user?.username ?? "",
           password: user?.password ?? "",
           email: user?.email ?? "",
-          usergroup: user?.usergroup ?? "admin",
+          usergroup: user?.usergroup ?? "[]",
         }}
         validationSchema={UserSchema}
         // onSubmit={(values, { setSubmitting }) => {
@@ -112,7 +100,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           onSubmitHandler(values);
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, setFieldValue, values }) => (
           <Form>
             <p>{mode}</p>
             <Container>
@@ -158,9 +146,15 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 <Col xs md={4}>
                   <Field
                     id="usergroup"
+                    // className="custom-select"
                     name="usergroup"
                     component={() => {
-                      return <CreatableMultiSelect />;
+                      return (
+                        <CreatableMultiSelect
+                          setFieldValue={setFieldValue}
+                          values={values}
+                        />
+                      );
                     }}
                   />
                 </Col>
@@ -177,6 +171,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
 }
 
 {
+  //         {({ errors, touched, setFieldValue, values, field }) => (
   /* <Field id="usergroup" name="usergroup" component="select">
 {usergroups.length ? (
   usergroups.map((usergroup) => {
@@ -196,13 +191,26 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
 }
 
 {
-  /* <Field
-id="usergroup"
-name="usergroup"
-component={() => {
-  return (
-    <CreatableSelect isMulti options={colourOptions} />
-  );
-}}
+  /*
+  const colourOptions = [
+    { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
+    { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
+    { value: "purple", label: "Purple", color: "#5243AA" },
+    { value: "red", label: "Red", color: "#FF5630", isFixed: true },
+    { value: "orange", label: "Orange", color: "#FF8B00" },
+    { value: "yellow", label: "Yellow", color: "#FFC400" },
+    { value: "green", label: "Green", color: "#36B37E" },
+    { value: "forest", label: "Forest", color: "#00875A" },
+    { value: "slate", label: "Slate", color: "#253858" },
+    { value: "silver", label: "Silver", color: "#666666" },
+  ];
+  <Field
+  id="usergroup"
+  name="usergroup"
+  component={() => {
+    return (
+      <CreatableSelect isMulti options={colourOptions} />
+    );
+  }}
 /> */
 }
