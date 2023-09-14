@@ -31,6 +31,9 @@ export default function Header() {
           await localStorage.setItem("token", res.data.token);
           // setIsLoggedIn(true);
           redDispatch({ type: "login" });
+          if (res.data.isAdmin) {
+            redDispatch({ type: "isAdmin" });
+          }
         } else {
           setToastMsg(res.data.remarks);
           setShowToast(true);

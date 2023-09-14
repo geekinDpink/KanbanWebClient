@@ -59,7 +59,18 @@ export default function UserManagement() {
                   <td>{user.email}</td>
                   <td>{user.usergroup}</td>
                   <td>{user.active}</td>
-                  <td>@mdo</td>
+                  <td>
+                    <Button
+                      onClick={() => {
+                        // Route to edit user page and pass username to edit user details form
+                        navigate("/edit_user", {
+                          state: { username: user.username },
+                        });
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  </td>
                 </tr>
               ))
             ) : (

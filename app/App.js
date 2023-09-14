@@ -20,11 +20,11 @@ export default function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(
   //   Boolean(localStorage.getItem("token"))
   // );
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
 
   const initialState = {
     isLoggedIn: Boolean(localStorage.getItem("token")),
-    // isAdmin: false,
+    isAdmin: false,
   };
 
   console.log(initialState);
@@ -35,6 +35,13 @@ export default function App() {
         return; // either return or break
       case "logout":
         state.isLoggedIn = false;
+        state.isAdmin = false;
+        return;
+      case "isAdmin":
+        state.isAdmin = true;
+        return;
+      case "notAdmin":
+        state.isAdmin = false;
         return;
       default:
         return state;
@@ -55,7 +62,7 @@ export default function App() {
                 path="/"
                 element={
                   state.isLoggedIn ? (
-                    isAdmin ? (
+                    state.isAdmin ? (
                       <UserManagement />
                     ) : (
                       <KanbanBoard />
@@ -68,13 +75,21 @@ export default function App() {
               <Route
                 path="/user_management"
                 element={
-                  state.isLoggedIn ? <UserManagement /> : <Navigate to="/" />
+                  state.isLoggedIn && state.isAdmin ? (
+                    <UserManagement />
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
                 path="/create_user"
                 element={
-                  state.isLoggedIn ? <CreateUserPage /> : <Navigate to="/" />
+                  state.isLoggedIn && state.isAdmin ? (
+                    <CreateUserPage />
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
               <Route
