@@ -58,7 +58,7 @@ export default function UserManagement() {
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user.usergroup}</td>
-                  <td>{user.active}</td>
+                  <td>{(user.active = 1 ? "Yes" : "No")}</td>
                   <td>
                     <Button
                       onClick={() => {
