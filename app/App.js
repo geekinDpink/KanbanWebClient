@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Container from "react-bootstrap/Container";
 
 import Footer from "./components/Footer";
-import UserManagement from "./components/UserManagement";
+import UserManagementPage from "./pages/UserManagementPage";
 import HomePage from "./pages/HomePage";
 import KanbanBoard from "./components/KanbanBoard";
 import CreateUserPage from "./pages/CreateUserPage";
@@ -27,7 +27,7 @@ export default function App() {
     isAdmin: false,
   };
 
-  console.log(initialState);
+  console.log(initialState, "initialState");
   function myReducer(state, action) {
     switch (action.type) {
       case "login":
@@ -68,7 +68,7 @@ export default function App() {
                 element={
                   state.isLoggedIn ? (
                     state.isAdmin ? (
-                      <UserManagement />
+                      <UserManagementPage />
                     ) : (
                       <KanbanBoard />
                     )
@@ -81,7 +81,7 @@ export default function App() {
                 path="/user_management"
                 element={
                   state.isLoggedIn && state.isAdmin ? (
-                    <UserManagement />
+                    <UserManagementPage />
                   ) : (
                     <Navigate to="/" />
                   )

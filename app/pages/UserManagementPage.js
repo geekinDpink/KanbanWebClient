@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 
-export default function UserManagement() {
+export default function UserManagementPage() {
   const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export default function UserManagement() {
           <tbody>
             {users.length > 0 ? (
               users.map((user) => (
-                <tr>
+                <tr key={user.username}>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td>{user.usergroup}</td>
