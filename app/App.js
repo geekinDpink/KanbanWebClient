@@ -51,6 +51,11 @@ export default function App() {
   // const [state, dispatch] = useReducer(myReducer, initialState);
   const [state, dispatch] = useImmerReducer(myReducer, initialState);
 
+  ////////////////////////
+  // Without login, route to HomePage
+  // After login, if Admin go usermanagement page, else is to kanban board
+  // Admin can access create user page
+  ///////////////////////
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
@@ -80,6 +85,12 @@ export default function App() {
                   ) : (
                     <Navigate to="/" />
                   )
+                }
+              />
+              <Route
+                path="/kanban_board"
+                element={
+                  state.isLoggedIn ? <KanbanBoard /> : <Navigate to="/" />
                 }
               />
               <Route

@@ -98,46 +98,52 @@ export default function Header() {
               Reason: {toastMsg}
             </Toast.Body>
           </Toast>
-          {!redState.isLoggedIn ? (
-            <Nav className="me-auto">
-              <Form
-                className="d-flex"
-                onSubmit={(event) => submitLoginHandler(event)}
-              >
-                <Form.Control
-                  type="search"
-                  id="username"
-                  placeholder="Username"
-                  className="me-2"
-                  aria-label="username"
-                />
-                <Form.Control
-                  type="password"
-                  id="password"
-                  placeholder="Password"
-                  className="me-2"
-                  aria-label="password"
-                />
-                <Button variant="success" type="submit">
-                  Login
-                </Button>
-              </Form>
-            </Nav>
-          ) : (
-            <Nav className="me-auto">
-              <Nav.Link href="./">Home</Nav.Link>
-              <Nav.Link href="./user_management">Manage Users</Nav.Link>
-              <Form
-                className="d-flex"
-                onSubmit={(event) => submitLogoutHandler(event)}
-              >
-                <Nav.Link href="./my_profile">My Profile</Nav.Link>
-                <Button variant="secondary" type="submit">
-                  Logout
-                </Button>
-              </Form>
-            </Nav>
-          )}
+          {
+            //not logged in
+            !redState.isLoggedIn ? (
+              <Nav className="me-auto">
+                <Form
+                  className="d-flex"
+                  onSubmit={(event) => submitLoginHandler(event)}
+                >
+                  <Form.Control
+                    type="search"
+                    id="username"
+                    placeholder="Username"
+                    className="me-2"
+                    aria-label="username"
+                  />
+                  <Form.Control
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    className="me-2"
+                    aria-label="password"
+                  />
+                  <Button variant="success" type="submit">
+                    Login
+                  </Button>
+                </Form>
+              </Nav>
+            ) : (
+              <Nav className="me-auto">
+                {redState.isAdmin && (
+                  <Nav.Link href="./user_management">Manage Users</Nav.Link>
+                )}
+                <Nav.Link href="./kanban_board">Kanban Board</Nav.Link>
+
+                <Form
+                  className="d-flex"
+                  onSubmit={(event) => submitLogoutHandler(event)}
+                >
+                  <Nav.Link href="./my_profile">My Profile</Nav.Link>
+                  <Button variant="secondary" type="submit">
+                    Logout
+                  </Button>
+                </Form>
+              </Nav>
+            )
+          }
         </Navbar.Collapse>
       </Container>
     </Navbar>
