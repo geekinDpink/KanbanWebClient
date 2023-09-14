@@ -3,8 +3,6 @@ import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 
 export default function CreatableMultiSelect({ setFieldValue, values }) {
-  // get usergroups for usergroup dropdown list
-
   const [useroptions, setUserOptions] = useState([]);
 
   ////////////////////////////////////////////////////////
@@ -23,14 +21,52 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
   // Convert the value in arr [“abc”] to object based on options [{value:”abc”, label:”cde”}]
   //////////////////////////////////////////////////////
   const getValue = () => {
-    if (useroptions) {
-      const selectedOptions = useroptions.filter((option) => {
-        // console.log("***********************");
-        // console.log("option", option);
-        // console.log("values.usergroup", values.usergroup);
-        return values.usergroup.indexOf(option.value) >= 0;
+    const selectedOptions = [];
+    if (useroptions && values.usergroup instanceof Array) {
+      const hashmap = {};
+
+      useroptions.forEach((opt) => {
+        if (!hashmap[opt.value]) {
+          hashmap[opt.value] = opt.label;
+        }
       });
-      return selectedOptions;
+      console.log(hashmap);
+      values.usergroup.forEach((val) => {
+        if (hashmap[val]) {
+          selectedOptions.push({ value: val, label: hashmap[val] });
+        } else {
+          console.log("val", val);
+          selectedOptions.push({ value: val, label: val });
+          addNewUserGroup(val);
+        }
+      });
+      console.log(selectedOptions);
+      // const selectedOptions = useroptions.map((option) => {
+      //   // console.log("***********************");
+      //   // console.log("option", option);
+      //   // console.log("values.usergroup", values.usergroup);
+      //   return values.usergroup.indexOf(option.value) >= 0;
+      // });
+    }
+    // TODO no options error
+    return selectedOptions;
+  };
+
+  const addNewUserGroup = async (newUserGroup) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      console.log("try");
+      const res = await axios.post(
+        "http://localhost:8080/usergroups",
+        { usergroup: newUserGroup },
+        {
+          headers: { Authorization: `Basic ${token}` },
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -62,6 +98,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       isMulti
       options={useroptions}
       onChange={onChangeHandler}
+      // onCreateOption={addNewUserGroup}
       value={getValue()}
     />
   );
