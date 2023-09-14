@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Table from "react-bootstrap/Table";
@@ -6,11 +6,36 @@ import { Button } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-
+import DispatchContext from "../../Context/DispatchContext";
+import StateContext from "../../Context/StateContext";
 export default function UserManagementPage() {
   const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
+
+  const redDispatch = useContext(DispatchContext);
+  const redState = useContext(StateContext);
+
+  useEffect(() => {
+    redDispatch({ type: "login" });
+    console.log("user state", redState);
+    const token = localStorage.getItem("token");
+
+    // Get my user detail based on username in token
+    axios
+      .get("http://localhost:8080/user", {
+        headers: { Authorization: `Basic ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data);
+        // setUser(res.data[0]);
+        if (res.data[0].usergroup.includes("admin")) {
+          redDispatch({ type: "login" });
+          redDispatch({ type: "isAdmin" });
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
