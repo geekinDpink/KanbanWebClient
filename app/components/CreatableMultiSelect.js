@@ -16,11 +16,12 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
   const onChangeHandler = (selectedValues) => {
     const fieldValArr = selectedValues.map((item) => item.value);
     setFieldValue("usergroup", fieldValArr);
-    console.log("values", values);
-    console.log("selectedValues", selectedValues);
   };
 
-  // Get options that are selected
+  //////////////////////////////////////////////////////
+  // On render/re-render e.g. onChangeHandler
+  // Convert the value in arr [“abc”] to object based on options [{value:”abc”, label:”cde”}]
+  //////////////////////////////////////////////////////
   const getValue = () => {
     if (useroptions) {
       const selectedOptions = useroptions.filter((option) => {
@@ -29,8 +30,6 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
         // console.log("values.usergroup", values.usergroup);
         return values.usergroup.indexOf(option.value) >= 0;
       });
-
-      // console.log("selectedOptions", selectedOptions);
       return selectedOptions;
     }
   };
