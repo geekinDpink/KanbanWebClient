@@ -14,16 +14,18 @@ export default function EditUserPage() {
 
   const onSubmitHandler = (values) => {
     const { username, password, email, usergroup } = values;
+    const usergroupStr = usergroup.join(",");
     const params = {
       username: username,
       password: password,
       email: email,
-      usergroup: usergroup,
+      usergroup: usergroupStr,
+      active: true,
     };
     const token = localStorage.getItem("token");
 
     axios
-      .post("http://localhost:8080/register", params, {
+      .put("http://localhost:8080/users", params, {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
