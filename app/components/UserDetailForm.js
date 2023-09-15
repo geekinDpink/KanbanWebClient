@@ -105,6 +105,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <Field
                     id="password"
                     name="password"
+                    type="password"
                     placeholder=".eg:P@ssw0rd"
                   />
                   {touched.password && errors.password && (
