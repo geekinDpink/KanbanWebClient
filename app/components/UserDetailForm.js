@@ -34,7 +34,13 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
         })
         .then((res) => {
           console.log("my user detail", res.data);
-          setUser(res.data[0]);
+          // user may have multiple usergroups, joined by ",", hence split it up and put in array
+          const usergroupArr = res.data[0].usergroup.split(",");
+          const userData = {
+            ...res.data[0],
+            usergroup: usergroupArr,
+          };
+          setUser(userData);
         })
         .catch((err) => console.log(err));
     }
@@ -63,9 +69,10 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           username: user?.username ?? "",
           password: user?.password ?? "",
           email: user?.email ?? "",
-          usergroup: user?.usergroup ?? "[]",
+          usergroup: user?.usergroup ?? "",
         }}
         validationSchema={UserSchema}
+        enableReinitialize
         onSubmit={(values) => {
           onSubmitHandler(values);
         }}
