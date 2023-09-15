@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import StateContext from "../../Context/StateContext";
 import DispatchContext from "../../Context/DispatchContext";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [showToast, setShowToast] = useState(false);
@@ -128,15 +129,15 @@ export default function Header() {
             ) : (
               <Nav className="me-auto">
                 {redState.isAdmin && (
-                  <Nav.Link href="./user_management">Manage Users</Nav.Link>
+                  <Link to="./user_management"> Mange User</Link>
                 )}
-                <Nav.Link href="./kanban_board">Kanban Board</Nav.Link>
+                <Link to="./kanban_board">Kanban Board</Link>
 
                 <Form
                   className="d-flex"
                   onSubmit={(event) => submitLogoutHandler(event)}
                 >
-                  <Nav.Link href="./my_profile">My Profile</Nav.Link>
+                  <Link to="./my_profile">My Profile</Link>
                   <Button variant="secondary" type="submit">
                     Logout
                   </Button>

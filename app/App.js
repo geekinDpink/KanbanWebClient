@@ -23,33 +23,35 @@ export default function App() {
   // const [isAdmin, setIsAdmin] = useState(false);
 
   const initialState = {
-    isLoggedIn: Boolean(localStorage.getItem("token")),
+    isLoggedIn: false,
     isAdmin: false,
   };
 
-  console.log(initialState, "initialState");
-  function myReducer(state, action) {
+  function myReducer(draft, action) {
     switch (action.type) {
       case "login":
-        state.isLoggedIn = true;
+        draft.isLoggedIn = true;
         return; // either return or break
       case "logout":
-        state.isLoggedIn = false;
-        state.isAdmin = false;
+        // revert state to false and remove token
+        draft.isLoggedIn = false;
+        draft.isAdmin = false;
+        localStorage.removeItem("token");
         return;
       case "isAdmin":
-        state.isAdmin = true;
+        draft.isAdmin = true;
         return;
       case "notAdmin":
-        state.isAdmin = false;
+        draft.isAdmin = false;
         return;
       default:
-        return state;
+        return draft;
     }
   }
 
   // const [state, dispatch] = useReducer(myReducer, initialState);
   const [state, dispatch] = useImmerReducer(myReducer, initialState);
+  console.log("state", state);
 
   ////////////////////////
   // Without login, route to HomePage
