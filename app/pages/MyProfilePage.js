@@ -94,7 +94,10 @@ export default function MyProfile() {
                       onClick={() =>
                         // Route to edit user page and pass username to edit user details form
                         navigate("/edit_user", {
-                          state: { username: user.username },
+                          state: {
+                            mode: "editMyProfile",
+                            username: user.username,
+                          },
                         })
                       }
                     >

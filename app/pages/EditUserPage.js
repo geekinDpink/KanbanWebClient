@@ -8,7 +8,7 @@ import StateContext from "../../Context/StateContext";
 
 export default function EditUserPage() {
   const user = useLocation();
-  const username = user.state.username;
+  const { username: selUsername, mode } = user.state;
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
 
@@ -76,8 +76,8 @@ export default function EditUserPage() {
         <h1>Edit User Detail</h1>
         <UserDetailForm
           onSubmitHandler={onSubmitHandler}
-          username={username}
-          mode="editMyProfile"
+          username={selUsername}
+          mode={mode}
         />
       </Container>
     </>

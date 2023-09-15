@@ -35,21 +35,21 @@ export default function UserManagementPage() {
           //   redDispatch({ type: "login" });
           // }
           if (res.data[0].usergroup.includes("admin")) {
-            console.log("CreateUser Before Disp IsAdmin", redState);
+            //console.log("CreateUser Before Disp IsAdmin", redState);
             redDispatch({ type: "isAdmin" });
-            console.log("CreateUser After Disp IsAdmin", redState);
+            //console.log("CreateUser After Disp IsAdmin", redState);
           } else {
-            console.log("CreateUser Before Disp notAdmin", redState);
+            //console.log("CreateUser Before Disp notAdmin", redState);
             redDispatch({ type: "notAdmin" });
-            console.log("CreateUser After Disp notAdmin", redState);
+            //console.log("CreateUser After Disp notAdmin", redState);
           }
         })
         .catch((err) => {
           // api call is validation process e.g. token, if fail refuse entry and logout
           console.log(err);
-          console.log("CreateUser Before Disp logout", redState);
+          //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
-          console.log("CreateUser After Disp logout", redState);
+          //console.log("CreateUser After Disp logout", redState);
         });
     } else {
       redDispatch({ type: "logout" });
@@ -108,7 +108,10 @@ export default function UserManagementPage() {
                       onClick={() => {
                         // Route to edit user page and pass username to edit user details form
                         navigate("/edit_user", {
-                          state: { username: user.username },
+                          state: {
+                            mode: "editOthers",
+                            username: user.username,
+                          },
                         });
                       }}
                     >
