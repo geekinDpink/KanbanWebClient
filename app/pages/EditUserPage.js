@@ -32,9 +32,13 @@ export default function EditUserPage() {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
+        toast("Form Submitted");
         console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast("Unable to submit form");
+        console.log(err);
+      });
   };
 
   // Authentication and Authorisation (Admin) Check

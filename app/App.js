@@ -64,7 +64,11 @@ export default function App() {
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
           <Header />
-          <ToastContainer transition={Slide} hideProgressBar />
+          <ToastContainer
+            transition={Slide}
+            hideProgressBar
+            position="top-center"
+          />
           <Container style={{ marginTop: "20px" }}>
             <Routes>
               <Route

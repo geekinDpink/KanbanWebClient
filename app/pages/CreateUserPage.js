@@ -7,6 +7,7 @@ import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function CreateUserPage() {
   const redDispatch = useContext(DispatchContext);
@@ -72,9 +73,13 @@ export default function CreateUserPage() {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        console.log(res);
+        console.log("create submit res", res);
+        toast("Form Submitted");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast(`Unable to submit form` + err.response.data.code);
+        console.log(err);
+      });
   };
   return (
     <>

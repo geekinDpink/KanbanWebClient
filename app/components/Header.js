@@ -1,19 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Toast from "react-bootstrap/Toast";
 import StateContext from "../../Context/StateContext";
 import DispatchContext from "../../Context/DispatchContext";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Header() {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMsg, setToastMsg] = useState("");
+  // const [showToast, setShowToast] = useState(false);
+  // const [toastMsg, setToastMsg] = useState("");
 
   const redState = useContext(StateContext);
   const redDispatch = useContext(DispatchContext);
@@ -37,9 +36,7 @@ export default function Header() {
             redDispatch({ type: "isAdmin" });
           }
         } else {
-          toast(res.data.remarks, {
-            position: toast.POSITION.TOP_CENTER,
-          });
+          toast("Unable to login" + res.data.remarks);
           // setToastMsg(res.data.remarks);
           //setShowToast(true);
 
@@ -49,14 +46,10 @@ export default function Header() {
         console.log(err);
         // setToastMsg(err.response?.data?.remarks ?? "");
         //setShowToast(true);
-        toast(err.response?.data?.remarks ?? "", {
-          position: toast.POSITION.TOP_CENTER,
-        });
+        toast("Unable to login" + err.response?.data?.remarks ?? "");
       }
     } else {
-      toast("Incomplete/empty fields", {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      toast("Incomplete/empty fields");
       // setToastMsg("Incomplete/empty fields");
       //setShowToast(true);
     }
