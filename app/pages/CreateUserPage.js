@@ -60,9 +60,9 @@ export default function CreateUserPage() {
     const usergroupStr = usergroup.join(",");
 
     const params = {
-      username: username,
-      password: password,
-      email: email,
+      username: username.toLowerCase().trim(),
+      password: password.toLowerCase().trim(),
+      email: email.toLowerCase().trim(),
       usergroup: usergroupStr,
     };
     const token = localStorage.getItem("token");

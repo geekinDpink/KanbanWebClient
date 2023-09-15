@@ -1,4 +1,3 @@
-// not use
 import React from "react";
 
 export default function HomePage() {

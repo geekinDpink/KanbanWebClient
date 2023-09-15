@@ -1,24 +1,27 @@
 import React, { useEffect, useContext } from "react";
 import UserDetailForm from "../components/UserDetailForm";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default function EditUserPage() {
   const user = useLocation();
   const { username: selUsername, mode } = user.state;
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
+  const navigate = useNavigate();
 
   const onSubmitHandler = (values) => {
     const { username, password, email, usergroup } = values;
     const usergroupStr = usergroup.join(",");
     const params = {
-      username: username,
-      password: password,
-      email: email,
+      username: username.toLowerCase().trim(),
+      password: password.toLowerCase().trim(),
+      email: email.toLowerCase().trim(),
       usergroup: usergroupStr,
       active: true,
     };
@@ -75,7 +78,20 @@ export default function EditUserPage() {
   return (
     <>
       <Container style={{ alignContent: "center", justifyContent: "center" }}>
-        <h1>Edit User Detail</h1>
+        <Row>
+          <Col>
+            <h1>Edit User Detail</h1>
+          </Col>
+          {/* <Col>
+            <Button
+              onClick={() => {
+                navigate("/user_management");
+              }}
+            >
+              Back
+            </Button>
+          </Col> */}
+        </Row>
         <UserDetailForm
           onSubmitHandler={onSubmitHandler}
           username={selUsername}
