@@ -8,12 +8,12 @@ import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 
 export default function MyProfile() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
 
-  // Authentication Check
+  // Authentication Check and Get User Details
   useEffect(() => {
     const token = localStorage.getItem("token");
 
