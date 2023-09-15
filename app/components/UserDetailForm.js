@@ -91,7 +91,12 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <label htmlFor="username">Username</label>
                 </Col>
                 <Col xs md lg={4}>
-                  <Field id="username" name="username" placeholder=".eg:Jane" />
+                  <Field
+                    id="username"
+                    name="username"
+                    placeholder=".eg:Jane"
+                    disabled={mode ? true : false}
+                  />
                   {touched.username && errors.username && (
                     <div>{errors.username}</div>
                   )}

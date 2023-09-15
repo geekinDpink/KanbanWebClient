@@ -63,7 +63,9 @@ export default function Header() {
   return (
     <Navbar bg="primary" data-bs-theme="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">TM</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="./">TMS</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Toast

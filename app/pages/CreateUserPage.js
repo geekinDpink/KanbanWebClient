@@ -2,13 +2,16 @@ import React, { useEffect, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import UserDetailForm from "../components/UserDetailForm";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateUserPage() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
+  const navigate = useNavigate();
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -76,7 +79,21 @@ export default function CreateUserPage() {
   return (
     <>
       <Container style={{ alignContent: "center", justifyContent: "center" }}>
-        <h1>Create User Page</h1>
+        <Row>
+          <Col>
+            <h1>Create User Page</h1>
+          </Col>
+          <Col>
+            <Button
+              onClick={() =>
+                // Route to edit user page and pass username to edit user details form
+                navigate("/user_management")
+              }
+            >
+              Back
+            </Button>
+          </Col>
+        </Row>
         <UserDetailForm onSubmitHandler={onSubmitHandler} />
       </Container>
     </>

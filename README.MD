@@ -6,6 +6,9 @@ TODO:
   Edit - Password not churn, email and password optional, usergroup optional
   can be empty email, user grp
   Username disabled
+  Error and Success Msg for Edit and Create
+  Clear Form
+  TMS
 
 Done
 
