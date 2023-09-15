@@ -27,18 +27,18 @@ export default function MyProfile() {
           console.log("getUserProfile res", res.data);
           // setUser(res.data[0]);
           if (res) {
-            console.log("Kanban Before Disp logout", redState);
+            //console.log("Kanban Before Disp logout", redState);
             setUser(res.data[0]);
             redDispatch({ type: "login" });
-            console.log("Kanban Before Disp logout", redState);
+            //console.log("Kanban Before Disp logout", redState);
           }
         })
         .catch((err) => {
           // api call is validation process e.g. token, if fail refuse entry and logout
           console.log(err);
-          console.log("CreateUser Before Disp logout", redState);
+          //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
-          console.log("CreateUser After Disp logout", redState);
+          //console.log("CreateUser After Disp logout", redState);
         });
     } else {
       redDispatch({ type: "logout" });

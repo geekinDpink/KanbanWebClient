@@ -6,14 +6,10 @@ import axios from "axios";
 
 import { Formik, Field, Form, option } from "formik";
 import * as Yup from "yup";
-import CreatableSelect from "react-select/creatable";
 import CreatableMultiSelect from "./CreatableMultiSelect";
 
 export default function UserDetailForm({ onSubmitHandler, username, mode }) {
-  const [usergroups, setUsergroups] = useState([]);
   const [user, setUser] = useState();
-
-  // const [useroptions, setUserOptions] = useState([]);
 
   const UserSchema = Yup.object().shape({
     username: Yup.string()
@@ -27,24 +23,9 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
     email: Yup.string().email("Invalid email").required("Required"),
   });
 
-  // get usergroups for usergroup dropdown list
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    axios
-      .get("http://localhost:8080/usergroups", {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        setUsergroups(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    console.log("WOWOW");
     if (mode === "editMyProfile") {
       // Get my user detail based on username in token
       axios
@@ -75,11 +56,6 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
     }
   }, []);
 
-  // undefined
-  useEffect(() => {
-    console.log("user", user);
-  }, [user]);
-
   return (
     <>
       <Formik
@@ -90,26 +66,20 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           usergroup: user?.usergroup ?? "[]",
         }}
         validationSchema={UserSchema}
-        // onSubmit={(values, { setSubmitting }) => {
-        //   setTimeout(() => {
-        //     alert(JSON.stringify(values, null, 2));
-        //     setSubmitting(false);
-        //   }, 500);
-        // }}
         onSubmit={(values) => {
           onSubmitHandler(values);
         }}
       >
         {({ errors, touched, setFieldValue, values }) => (
           <Form>
-            <p>{mode}</p>
+            <p>{username}</p>
             <Container>
               <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
                 <Col xs md lg={1}>
                   <label htmlFor="username">Username</label>
                 </Col>
                 <Col xs md lg={4}>
-                  <Field id="username" name="username" placeholder="Jane" />
+                  <Field id="username" name="username" placeholder=".eg:Jane" />
                   {touched.username && errors.username && (
                     <div>{errors.username}</div>
                   )}
@@ -120,7 +90,11 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <label htmlFor="password">Password</label>
                 </Col>
                 <Col xs md={4}>
-                  <Field id="password" name="password" placeholder="P@ssw0rd" />
+                  <Field
+                    id="password"
+                    name="password"
+                    placeholder=".eg:P@ssw0rd"
+                  />
                   {touched.password && errors.password && (
                     <div>{errors.password}</div>
                   )}
@@ -134,7 +108,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <Field
                     id="email"
                     name="email"
-                    placeholder="jane@hotmail.com"
+                    placeholder=".eg:jane@hotmail.com"
                   />
                   {touched.email && errors.email && <div>{errors.email}</div>}
                 </Col>
