@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Footer from "./components/Footer";
 import UserManagementPage from "./pages/UserManagementPage";
 import HomePage from "./pages/HomePage";
-import KanbanBoard from "./components/KanbanBoard";
+import KanbanBoardPage from "./pages/KanbanBoardPage";
 import CreateUserPage from "./pages/CreateUserPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import EditUserPage from "./pages/EditUserPage";
@@ -72,7 +72,7 @@ export default function App() {
                     state.isAdmin ? (
                       <UserManagementPage />
                     ) : (
-                      <KanbanBoard />
+                      <KanbanBoardPage />
                     )
                   ) : (
                     <HomePage />
@@ -92,7 +92,7 @@ export default function App() {
               <Route
                 path="/kanban_board"
                 element={
-                  state.isLoggedIn ? <KanbanBoard /> : <Navigate to="/" />
+                  state.isLoggedIn ? <KanbanBoardPage /> : <Navigate to="/" />
                 }
               />
               <Route

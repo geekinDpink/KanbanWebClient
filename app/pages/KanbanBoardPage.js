@@ -3,7 +3,7 @@ import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import axios from "axios";
 
-export default function KanbanBoard() {
+export default function KanbanBoardPage() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
 
