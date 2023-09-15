@@ -13,7 +13,8 @@ import EditUserPage from "./pages/EditUserPage";
 import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
 import { useImmerReducer } from "use-immer";
-
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import "bootstrap/dist/css/bootstrap.css";
 
 export default function App() {
@@ -63,6 +64,7 @@ export default function App() {
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
           <Header />
+          <ToastContainer transition={Slide} hideProgressBar />
           <Container style={{ marginTop: "20px" }}>
             <Routes>
               <Route

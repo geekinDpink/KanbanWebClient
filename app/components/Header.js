@@ -9,6 +9,7 @@ import Toast from "react-bootstrap/Toast";
 import StateContext from "../../Context/StateContext";
 import DispatchContext from "../../Context/DispatchContext";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const [showToast, setShowToast] = useState(false);
@@ -36,19 +37,28 @@ export default function Header() {
             redDispatch({ type: "isAdmin" });
           }
         } else {
-          setToastMsg(res.data.remarks);
-          setShowToast(true);
+          toast(res.data.remarks, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          // setToastMsg(res.data.remarks);
+          //setShowToast(true);
 
           // console.log("no token", res.data);
         }
       } catch (err) {
         console.log(err);
-        setToastMsg(err.response?.data?.remarks ?? "");
-        setShowToast(true);
+        // setToastMsg(err.response?.data?.remarks ?? "");
+        //setShowToast(true);
+        toast(err.response?.data?.remarks ?? "", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } else {
-      setToastMsg("Incomplete/empty fields");
-      setShowToast(true);
+      toast("Incomplete/empty fields", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      // setToastMsg("Incomplete/empty fields");
+      //setShowToast(true);
     }
   };
 
@@ -68,7 +78,7 @@ export default function Header() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Toast
+          {/* <Toast
             style={{
               position: "absolute",
               top: "5%",
@@ -100,7 +110,7 @@ export default function Header() {
             >
               Reason: {toastMsg}
             </Toast.Body>
-          </Toast>
+          </Toast> */}
           {
             //not logged in
             !redState.isLoggedIn ? (

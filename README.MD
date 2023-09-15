@@ -9,6 +9,7 @@ TODO:
   Clear Form
   TMS
   Password Partial Update
+  Lowercase and trim at backend - c8 and edit
 
 Done
 
