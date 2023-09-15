@@ -56,7 +56,12 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
         )
         .then((res) => {
           console.log("other user detail", res.data);
-          setUser(res.data[0]);
+          const usergroupArr = res.data[0].usergroup.split(",");
+          const userData = {
+            ...res.data[0],
+            usergroup: usergroupArr,
+          };
+          setUser(userData);
         })
         .catch((err) => console.log(err));
     }
@@ -141,7 +146,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 </Col>
               </Row>
               <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-                <button type="submit">Create</button>
+                <button type="submit">{mode ? "Edit" : "Create"}</button>
               </Row>
             </Container>
           </Form>
