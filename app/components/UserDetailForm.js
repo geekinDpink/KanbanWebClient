@@ -19,8 +19,11 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
       .required("Required"),
     password:
       mode === "create"
-        ? Yup.string().max(50, "Max 50 chars").required("Required")
-        : Yup.string().max(50, "Max 50 chars"),
+        ? Yup.string()
+            .min(8, "Min 8 chars")
+            .max(10, "Max 10 chars")
+            .required("Required")
+        : Yup.string().min(8, "Min 8 chars").max(10, "Max 10 chars"),
     email: Yup.string().email("Invalid email"),
   });
 
