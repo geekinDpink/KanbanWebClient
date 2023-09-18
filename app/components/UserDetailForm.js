@@ -90,14 +90,15 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
             <p>{username}</p>
             <Container>
               <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs md lg={1}>
+                <Col xs s md={1}>
                   <label htmlFor="username">Username</label>
                 </Col>
-                <Col xs md lg={4}>
+                <Col xs s md={4}>
                   <Field
                     id="username"
                     name="username"
                     placeholder="eg.Jane"
+                    style={{ width: "100%" }}
                     disabled={mode !== "create" ? true : false}
                   />
                   {touched.username && errors.username && (
@@ -106,14 +107,15 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 </Col>
               </Row>
               <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs md={1}>
+                <Col xs s md={1}>
                   <label htmlFor="password">Password</label>
                 </Col>
-                <Col xs md={4}>
+                <Col xs s md={4}>
                   <Field
                     id="password"
                     name="password"
                     type="password"
+                    style={{ width: "100%" }}
                     placeholder="eg.P@ssw0rd"
                   />
                   {touched.password && errors.password && (
@@ -122,13 +124,14 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 </Col>
               </Row>
               <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs md={1}>
+                <Col xs s md={1}>
                   <label htmlFor="email">Email</label>
                 </Col>
-                <Col xs md={4}>
+                <Col xs s md={4}>
                   <Field
                     id="email"
                     name="email"
+                    style={{ width: "100%" }}
                     placeholder="eg.jane@hotmail.com"
                   />
                   {touched.email && errors.email && <div>{errors.email}</div>}
@@ -138,11 +141,12 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 <Col xs md={1}>
                   <label htmlFor="usergroup">User Group</label>
                 </Col>
-                <Col xs md={4}>
+                <Col xs s md={4}>
                   <Field
                     id="usergroup"
                     // className="custom-select"
                     name="usergroup"
+                    style={{ width: "100%" }}
                     component={() => {
                       return (
                         <CreatableMultiSelect
@@ -155,9 +159,17 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 </Col>
               </Row>
               <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-                <button type="submit">
-                  {mode !== "create" ? "Edit" : "Create"}
-                </button>
+                <Col xs s md={1}></Col>
+                <Col xs s md={4}>
+                  <button
+                    type="submit"
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    {mode !== "create" ? "Edit" : "Create"}
+                  </button>
+                </Col>
               </Row>
             </Container>
           </Form>

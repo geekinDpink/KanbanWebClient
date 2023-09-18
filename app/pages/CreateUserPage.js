@@ -84,12 +84,12 @@ export default function CreateUserPage() {
   };
   return (
     <>
-      <Container style={{ alignContent: "center", justifyContent: "center" }}>
+      <Container>
         <Row>
-          <Col>
+          <Col xs s md={4}>
             <h1>Create User Page</h1>
           </Col>
-          <Col>
+          <Col xs s md={8}>
             <Button
               onClick={() =>
                 // Route to edit user page and pass username to edit user details form

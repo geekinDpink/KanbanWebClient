@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Container, Button } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import DispatchContext from "../../Context/DispatchContext";
@@ -67,53 +68,55 @@ export default function MyProfile() {
           <h1>My Profile</h1>
         </Row>
         <Row>
-          <Table bordered hover size="sm" style={{ marginLeft: "15px" }}>
-            <thead>
-              <tr>
-                <th>Fields</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            {user ? (
-              <tbody>
+          <Col xs s md={8}>
+            <Table bordered hover size="sm">
+              <thead>
                 <tr>
-                  <td>Username</td>
-                  <td>{user.username}</td>
+                  <th>Fields</th>
+                  <th>Description</th>
                 </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>{user.email}</td>
-                </tr>
-                <tr>
-                  <td>User Group</td>
-                  <td>{user.usergroup}</td>
-                </tr>
-                <tr>
-                  <td colSpan={2}>
-                    <Button
-                      onClick={() =>
-                        // Route to edit user page and pass username to edit user details form
-                        navigate("/edit_user", {
-                          state: {
-                            mode: "editMyProfile",
-                            username: user.username,
-                          },
-                        })
-                      }
-                    >
-                      Edit
-                    </Button>
-                  </td>
-                </tr>
-              </tbody>
-            ) : (
-              <tbody>
-                <tr>
-                  <td colSpan={2}>Your user record is not available </td>
-                </tr>
-              </tbody>
-            )}
-          </Table>
+              </thead>
+              {user ? (
+                <tbody>
+                  <tr>
+                    <td>Username</td>
+                    <td>{user.username}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{user.email}</td>
+                  </tr>
+                  <tr>
+                    <td>User Group</td>
+                    <td>{user.usergroup}</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2}>
+                      <Button
+                        onClick={() =>
+                          // Route to edit user page and pass username to edit user details form
+                          navigate("/edit_user", {
+                            state: {
+                              mode: "editMyProfile",
+                              username: user.username,
+                            },
+                          })
+                        }
+                      >
+                        Edit
+                      </Button>
+                    </td>
+                  </tr>
+                </tbody>
+              ) : (
+                <tbody>
+                  <tr>
+                    <td colSpan={2}>Your user record is not available </td>
+                  </tr>
+                </tbody>
+              )}
+            </Table>
+          </Col>
         </Row>
       </Container>
     </>

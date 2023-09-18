@@ -148,7 +148,11 @@ export default function Header() {
                   className="d-flex"
                   onSubmit={(event) => submitLogoutHandler(event)}
                 >
-                  <Link to="./my_profile" className="nav-link">
+                  <Link
+                    to="./my_profile"
+                    className="nav-link"
+                    style={{ marginRight: "5px" }}
+                  >
                     My Profile
                   </Link>
                   <Button variant="secondary" type="submit">

@@ -69,7 +69,13 @@ export default function App() {
             hideProgressBar
             position="top-center"
           />
-          <Container style={{ marginTop: "20px" }}>
+          <Container
+            style={{
+              marginTop: "20px",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
             <Routes>
               <Route
                 path="/"
