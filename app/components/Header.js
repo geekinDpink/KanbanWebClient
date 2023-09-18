@@ -71,9 +71,8 @@ export default function Header() {
             TMS
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          {/* <Toast
+
+        {/* <Toast
             style={{
               position: "absolute",
               top: "5%",
@@ -106,44 +105,45 @@ export default function Header() {
               Reason: {toastMsg}
             </Toast.Body>
           </Toast> */}
-          {
-            //not logged in
-            !redState.isLoggedIn ? (
-              <Nav className="me-auto">
-                <Form
-                  className="d-flex"
-                  onSubmit={(event) => submitLoginHandler(event)}
-                >
-                  <Form.Control
-                    type="search"
-                    id="username"
-                    placeholder="Username"
-                    className="me-2"
-                    aria-label="username"
-                  />
-                  <Form.Control
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    className="me-2"
-                    aria-label="password"
-                  />
-                  <Button variant="success" type="submit">
-                    Login
-                  </Button>
-                </Form>
-              </Nav>
-            ) : (
-              <Nav className="me-auto">
-                {redState.isAdmin && (
-                  <Link to="./user_management" className="nav-link">
-                    Manage User
-                  </Link>
-                )}
-                <Link to="./kanban_board" className="nav-link">
-                  Kanban Board
+        {
+          //not logged in
+          !redState.isLoggedIn ? (
+            /* Container fluid for justify to work*/
+            <Nav className="container-fluid justify-content-end">
+              <Form
+                className="d-flex" // fields to be on the same row
+                onSubmit={(event) => submitLoginHandler(event)}
+              >
+                <Form.Control
+                  type="search"
+                  id="username"
+                  placeholder="Username"
+                  className="me-2"
+                  aria-label="username"
+                />
+                <Form.Control
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  className="me-2"
+                  aria-label="password"
+                />
+                <Button variant="success" type="submit">
+                  Login
+                </Button>
+              </Form>
+            </Nav>
+          ) : (
+            <Nav className="container-fluid me-auto">
+              {redState.isAdmin && (
+                <Link to="./user_management" className="nav-link">
+                  Manage User
                 </Link>
-
+              )}
+              <Link to="./kanban_board" className="nav-link">
+                Kanban Board
+              </Link>
+              <div className="position-absolute top-0 end-0 offsetPos">
                 <Form
                   className="d-flex"
                   onSubmit={(event) => submitLogoutHandler(event)}
@@ -155,10 +155,10 @@ export default function Header() {
                     Logout
                   </Button>
                 </Form>
-              </Nav>
-            )
-          }
-        </Navbar.Collapse>
+              </div>
+            </Nav>
+          )
+        }
       </Container>
     </Navbar>
   );
