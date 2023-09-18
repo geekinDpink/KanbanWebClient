@@ -67,7 +67,9 @@ export default function Header() {
     <Navbar bg="primary" data-bs-theme="dark" expand="lg">
       <Container>
         <Navbar.Brand>
-          <Link to="./">TMS</Link>
+          <Link to="./" className="nav-link">
+            TMS
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -134,15 +136,21 @@ export default function Header() {
             ) : (
               <Nav className="me-auto">
                 {redState.isAdmin && (
-                  <Link to="./user_management"> Mange User</Link>
+                  <Link to="./user_management" className="nav-link">
+                    Manage User
+                  </Link>
                 )}
-                <Link to="./kanban_board">Kanban Board</Link>
+                <Link to="./kanban_board" className="nav-link">
+                  Kanban Board
+                </Link>
 
                 <Form
                   className="d-flex"
                   onSubmit={(event) => submitLogoutHandler(event)}
                 >
-                  <Link to="./my_profile">My Profile</Link>
+                  <Link to="./my_profile" className="nav-link">
+                    My Profile
+                  </Link>
                   <Button variant="secondary" type="submit">
                     Logout
                   </Button>
