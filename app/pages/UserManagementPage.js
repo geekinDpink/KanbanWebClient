@@ -75,58 +75,62 @@ export default function UserManagementPage() {
   return (
     <>
       <Row>
-        <Col>
+        <Col xs s md={6}>
           <h3>User Management</h3>
         </Col>
-        <Col>
-          <Button onClick={() => navigate("/create_user")}>
-            Create New User
-          </Button>
+        <Col xs s md={2}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={() => navigate("/create_user")} variant="warning">
+              Create New User
+            </Button>
+          </div>
         </Col>
       </Row>
       <Row>
-        <Table bordered hover size="sm" style={{ marginLeft: "15px" }}>
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>User Group</th>
-              <th>Active Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <tr key={user.username}>
-                  <td>{user.username}</td>
-                  <td>{user.email}</td>
-                  <td>{user.usergroup}</td>
-                  <td>{(user.active = 1 ? "Yes" : "No")}</td>
-                  <td>
-                    <Button
-                      onClick={() => {
-                        // Route to edit user page and pass username to edit user details form
-                        navigate("/edit_user", {
-                          state: {
-                            mode: "editOthers",
-                            username: user.username,
-                          },
-                        });
-                      }}
-                    >
-                      Edit
-                    </Button>
-                  </td>
-                </tr>
-              ))
-            ) : (
+        <Col xs s md={8}>
+          <Table bordered hover size="sm">
+            <thead>
               <tr>
-                <td colSpan={5}>Useraccount Records are unavailable </td>
+                <th style={{ width: "10%" }}>Username</th>
+                <th style={{ width: "10%" }}>Email</th>
+                <th style={{ width: "5%" }}>User Group</th>
+                <th style={{ width: "5%" }}>Active Status</th>
+                <th style={{ width: "5%" }}>Actions</th>
               </tr>
-            )}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {users.length > 0 ? (
+                users.map((user) => (
+                  <tr key={user.username}>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td>{user.usergroup}</td>
+                    <td>{(user.active = 1 ? "Yes" : "No")}</td>
+                    <td>
+                      <Button
+                        onClick={() => {
+                          // Route to edit user page and pass username to edit user details form
+                          navigate("/edit_user", {
+                            state: {
+                              mode: "editOthers",
+                              username: user.username,
+                            },
+                          });
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={5}>Useraccount Records are unavailable </td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
+        </Col>
       </Row>
     </>
   );
