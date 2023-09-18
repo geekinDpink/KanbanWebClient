@@ -6,6 +6,8 @@ import { useLocation } from "react-router-dom";
 import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import Button from "react-bootstrap/Button";
 
 export default function EditUserPage() {
@@ -36,12 +38,12 @@ export default function EditUserPage() {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        toast("Form Submitted");
+        toast.success("Form Submitted");
         console.log(res);
       })
       .catch((err) => {
-        toast("Unable to submit form");
-        console.log(err);
+        toast.error(`Unable to submit; ${err.response}`);
+        console.log("err response", err);
       });
   };
 

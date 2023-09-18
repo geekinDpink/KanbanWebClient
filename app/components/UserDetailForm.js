@@ -39,6 +39,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           const usergroupArr = res.data[0].usergroup.split(",");
           const userData = {
             ...res.data[0],
+            password: null,
             usergroup: usergroupArr,
           };
           setUser(userData);
@@ -60,6 +61,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           const usergroupArr = res.data[0].usergroup.split(",");
           const userData = {
             ...res.data[0],
+            password: null,
             usergroup: usergroupArr,
           };
           setUser(userData);
@@ -95,7 +97,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <Field
                     id="username"
                     name="username"
-                    placeholder=".eg:Jane"
+                    placeholder="eg.Jane"
                     disabled={mode !== "create" ? true : false}
                   />
                   {touched.username && errors.username && (
@@ -112,7 +114,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                     id="password"
                     name="password"
                     type="password"
-                    placeholder=".eg:P@ssw0rd"
+                    placeholder="eg.P@ssw0rd"
                   />
                   {touched.password && errors.password && (
                     <div>{errors.password}</div>
@@ -127,7 +129,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   <Field
                     id="email"
                     name="email"
-                    placeholder=".eg:jane@hotmail.com"
+                    placeholder="eg.jane@hotmail.com"
                   />
                   {touched.email && errors.email && <div>{errors.email}</div>}
                 </Col>
