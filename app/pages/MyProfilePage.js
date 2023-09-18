@@ -65,7 +65,27 @@ export default function MyProfile() {
     <>
       <Container>
         <Row>
-          <h1>My Profile</h1>
+          <Col xs s md={6}>
+            <h1>My Profile</h1>
+          </Col>
+          <Col xs s md={2}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                onClick={() =>
+                  // Route to edit user page and pass username to edit user details form
+                  navigate("/edit_user", {
+                    state: {
+                      mode: "editMyProfile",
+                      username: user.username,
+                    },
+                  })
+                }
+                variant="primary"
+              >
+                Edit
+              </Button>
+            </div>
+          </Col>
         </Row>
         <Row>
           <Col xs s md={8}>
@@ -89,23 +109,6 @@ export default function MyProfile() {
                   <tr>
                     <td>User Group</td>
                     <td>{user.usergroup}</td>
-                  </tr>
-                  <tr>
-                    <td colSpan={2}>
-                      <Button
-                        onClick={() =>
-                          // Route to edit user page and pass username to edit user details form
-                          navigate("/edit_user", {
-                            state: {
-                              mode: "editMyProfile",
-                              username: user.username,
-                            },
-                          })
-                        }
-                      >
-                        Edit
-                      </Button>
-                    </td>
                   </tr>
                 </tbody>
               ) : (

@@ -97,6 +97,7 @@ export default function EditUserPage() {
               onClick={() => {
                 navigate(-1);
               }}
+              variant="secondary"
             >
               Back
             </Button>

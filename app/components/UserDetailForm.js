@@ -88,90 +88,88 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
         {({ errors, touched, setFieldValue, values }) => (
           <Form>
             <p>{username}</p>
-            <Container>
-              <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs s md={1}>
-                  <label htmlFor="username">Username</label>
-                </Col>
-                <Col xs s md={4}>
-                  <Field
-                    id="username"
-                    name="username"
-                    placeholder="eg.Jane"
-                    style={{ width: "100%" }}
-                    disabled={mode !== "create" ? true : false}
-                  />
-                  {touched.username && errors.username && (
-                    <div>{errors.username}</div>
-                  )}
-                </Col>
-              </Row>
-              <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs s md={1}>
-                  <label htmlFor="password">Password</label>
-                </Col>
-                <Col xs s md={4}>
-                  <Field
-                    id="password"
-                    name="password"
-                    type="password"
-                    style={{ width: "100%" }}
-                    placeholder="eg.P@ssw0rd"
-                  />
-                  {touched.password && errors.password && (
-                    <div>{errors.password}</div>
-                  )}
-                </Col>
-              </Row>
-              <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs s md={1}>
-                  <label htmlFor="email">Email</label>
-                </Col>
-                <Col xs s md={4}>
-                  <Field
-                    id="email"
-                    name="email"
-                    style={{ width: "100%" }}
-                    placeholder="eg.jane@hotmail.com"
-                  />
-                  {touched.email && errors.email && <div>{errors.email}</div>}
-                </Col>
-              </Row>
-              <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-                <Col xs md={1}>
-                  <label htmlFor="usergroup">User Group</label>
-                </Col>
-                <Col xs s md={4}>
-                  <Field
-                    id="usergroup"
-                    // className="custom-select"
-                    name="usergroup"
-                    style={{ width: "100%" }}
-                    component={() => {
-                      return (
-                        <CreatableMultiSelect
-                          setFieldValue={setFieldValue}
-                          values={values}
-                        />
-                      );
-                    }}
-                  />
-                </Col>
-              </Row>
-              <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-                <Col xs s md={1}></Col>
-                <Col xs s md={4}>
-                  <button
-                    type="submit"
-                    style={{
-                      width: "100%",
-                    }}
-                  >
-                    {mode !== "create" ? "Edit" : "Create"}
-                  </button>
-                </Col>
-              </Row>
-            </Container>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs s md={1}>
+                <label htmlFor="username">Username</label>
+              </Col>
+              <Col xs s md={5}>
+                <Field
+                  id="username"
+                  name="username"
+                  placeholder="eg.Jane"
+                  style={{ width: "100%" }}
+                  disabled={mode !== "create" ? true : false}
+                />
+                {touched.username && errors.username && (
+                  <div>{errors.username}</div>
+                )}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs s md={1}>
+                <label htmlFor="password">Password</label>
+              </Col>
+              <Col xs s md={5}>
+                <Field
+                  id="password"
+                  name="password"
+                  type="password"
+                  style={{ width: "100%" }}
+                  placeholder="eg.P@ssw0rd"
+                />
+                {touched.password && errors.password && (
+                  <div>{errors.password}</div>
+                )}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs s md={1}>
+                <label htmlFor="email">Email</label>
+              </Col>
+              <Col xs s md={5}>
+                <Field
+                  id="email"
+                  name="email"
+                  style={{ width: "100%" }}
+                  placeholder="eg.jane@hotmail.com"
+                />
+                {touched.email && errors.email && <div>{errors.email}</div>}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs md={1}>
+                <label htmlFor="usergroup">User Group</label>
+              </Col>
+              <Col xs s md={5}>
+                <Field
+                  id="usergroup"
+                  // className="custom-select"
+                  name="usergroup"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <CreatableMultiSelect
+                        setFieldValue={setFieldValue}
+                        values={values}
+                      />
+                    );
+                  }}
+                />
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
+              <Col xs s md={1}></Col>
+              <Col xs s md={5}>
+                <button
+                  type="submit"
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  {mode !== "create" ? "Edit" : "Create"}
+                </button>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>

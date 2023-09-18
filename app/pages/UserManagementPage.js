@@ -80,7 +80,7 @@ export default function UserManagementPage() {
         </Col>
         <Col xs s md={2}>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={() => navigate("/create_user")} variant="warning">
+            <Button onClick={() => navigate("/create_user")} variant="info">
               Create New User
             </Button>
           </div>
@@ -117,6 +117,7 @@ export default function UserManagementPage() {
                             },
                           });
                         }}
+                        variant="primary"
                       >
                         Edit
                       </Button>

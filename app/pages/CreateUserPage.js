@@ -89,15 +89,18 @@ export default function CreateUserPage() {
           <Col xs s md={4}>
             <h1>Create User Page</h1>
           </Col>
-          <Col xs s md={8}>
-            <Button
-              onClick={() =>
-                // Route to edit user page and pass username to edit user details form
-                navigate(-1)
-              }
-            >
-              Back
-            </Button>
+          <Col xs s md={2}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                onClick={() =>
+                  // Route to edit user page and pass username to edit user details form
+                  navigate(-1)
+                }
+                variant="secondary"
+              >
+                Back
+              </Button>
+            </div>
           </Col>
         </Row>
         <UserDetailForm onSubmitHandler={onSubmitHandler} mode="create" />
