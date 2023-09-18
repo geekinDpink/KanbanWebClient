@@ -11,16 +11,17 @@ import CreatableMultiSelect from "./CreatableMultiSelect";
 export default function UserDetailForm({ onSubmitHandler, username, mode }) {
   const [user, setUser] = useState();
 
+  // Password optional in edit user forms
   const UserSchema = Yup.object().shape({
     username: Yup.string()
       .min(3, "Min 3 chars")
       .max(50, "Max 50 chars")
       .required("Required"),
-    password: Yup.string()
-      .min(3, "Min 3 chars")
-      .max(50, "Max 50 chars")
-      .required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
+    password:
+      mode === "create"
+        ? Yup.string().max(50, "Max 50 chars").required("Required")
+        : Yup.string().max(50, "Max 50 chars"),
+    email: Yup.string().email("Invalid email"),
   });
 
   useEffect(() => {
@@ -95,7 +96,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                     id="username"
                     name="username"
                     placeholder=".eg:Jane"
-                    disabled={mode ? true : false}
+                    disabled={mode !== "create" ? true : false}
                   />
                   {touched.username && errors.username && (
                     <div>{errors.username}</div>
@@ -152,7 +153,9 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 </Col>
               </Row>
               <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-                <button type="submit">{mode ? "Edit" : "Create"}</button>
+                <button type="submit">
+                  {mode !== "create" ? "Edit" : "Create"}
+                </button>
               </Row>
             </Container>
           </Form>

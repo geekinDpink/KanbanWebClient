@@ -17,7 +17,11 @@ export default function EditUserPage() {
 
   const onSubmitHandler = (values) => {
     const { username, password, email, usergroup } = values;
-    const usergroupStr = usergroup.join(",");
+
+    // 1 or more input = Array, 0 input = string
+    const usergroupStr =
+      usergroup instanceof Array ? usergroup.join(",") : usergroup;
+
     const params = {
       username: username.toLowerCase().trim(),
       password: password.toLowerCase().trim(),

@@ -57,8 +57,9 @@ export default function CreateUserPage() {
     const { username, password, email, usergroup } = values;
     console.log("value after submit", values);
 
-    // convert usergrp array to string to save to db
-    const usergroupStr = usergroup.join(",");
+    // 1 or more input = Array, 0 input = string
+    const usergroupStr =
+      usergroup instanceof Array ? usergroup.join(",") : usergroup;
 
     const params = {
       username: username.toLowerCase().trim(),
@@ -77,7 +78,7 @@ export default function CreateUserPage() {
         toast("Form Submitted");
       })
       .catch((err) => {
-        toast(`Unable to submit form` + err.response.data.code);
+        toast(`Unable to submit; ${err.response.data.toLowerCase()}`);
         console.log(err);
       });
   };
@@ -99,7 +100,7 @@ export default function CreateUserPage() {
             </Button>
           </Col>
         </Row>
-        <UserDetailForm onSubmitHandler={onSubmitHandler} />
+        <UserDetailForm onSubmitHandler={onSubmitHandler} mode="create" />
       </Container>
     </>
   );
