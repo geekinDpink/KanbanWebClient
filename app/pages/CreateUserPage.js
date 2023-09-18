@@ -93,7 +93,7 @@ export default function CreateUserPage() {
             <Button
               onClick={() =>
                 // Route to edit user page and pass username to edit user details form
-                navigate("/user_management")
+                navigate(-1)
               }
             >
               Back

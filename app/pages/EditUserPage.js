@@ -92,15 +92,15 @@ export default function EditUserPage() {
           <Col>
             <h1>Edit User Detail</h1>
           </Col>
-          {/* <Col>
+          <Col>
             <Button
               onClick={() => {
-                navigate("/user_management");
+                navigate(-1);
               }}
             >
               Back
             </Button>
-          </Col> */}
+          </Col>
         </Row>
         <UserDetailForm
           onSubmitHandler={onSubmitHandler}
