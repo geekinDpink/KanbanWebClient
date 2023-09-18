@@ -75,10 +75,10 @@ export default function CreateUserPage() {
       })
       .then((res) => {
         console.log("create submit res", res);
-        toast("Form Submitted");
+        toast.success("Form Submitted");
       })
       .catch((err) => {
-        toast(`Unable to submit; ${err.response.data.toLowerCase()}`);
+        toast.error(`Unable to submit; ${err.response.data.toLowerCase()}`);
         console.log(err);
       });
   };
