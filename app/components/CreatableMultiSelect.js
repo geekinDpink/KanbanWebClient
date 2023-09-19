@@ -59,7 +59,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       );
     } catch (error) {
       console.log(error);
-      toast.error("Unable to create new user");
+      toast.error("Unable to create new user, " + error?.response?.data);
     }
   };
 
