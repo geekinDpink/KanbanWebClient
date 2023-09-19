@@ -1,6 +1,7 @@
 TODO:
 Creatable no options error
-Include Admin regex
+Change Include Admin regex as it accept substring
+
 Done
 Clear Form
 Pass username from myprofile to edit userdetail page using reducer
@@ -16,6 +17,7 @@ assign admin from another browser but user management tab doesn't come back
 
 Relook
 Lowercase and trim at backend - c8 and edit
+create usergroup for admin only
 
 Option
 Validation frontend for alphanumeric and symbols for password

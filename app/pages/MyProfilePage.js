@@ -26,11 +26,11 @@ export default function MyProfile() {
         })
         .then((res) => {
           console.log("getUserProfile res", res.data);
-          // setUser(res.data[0]);
+          setUser(res.data[0]);
 
-          // if (res && token) {
-          //   redDispatch({ type: "login" });
-          // }
+          if (res && token) {
+            redDispatch({ type: "login" });
+          }
           if (res.data[0].usergroup.includes("admin")) {
             //console.log("CreateUser Before Disp IsAdmin", redState);
             redDispatch({ type: "isAdmin" });
