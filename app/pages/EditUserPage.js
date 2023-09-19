@@ -90,18 +90,20 @@ export default function EditUserPage() {
     <>
       <Container style={{ alignContent: "center", justifyContent: "center" }}>
         <Row>
-          <Col>
+          <Col xs s md={4}>
             <h1>Edit User Detail</h1>
           </Col>
-          <Col>
-            <Button
-              onClick={() => {
-                navigate(-1);
-              }}
-              variant="secondary"
-            >
-              Back
-            </Button>
+          <Col xs s md={2}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                onClick={() => {
+                  navigate(-1);
+                }}
+                variant="secondary"
+              >
+                Back
+              </Button>
+            </div>
           </Col>
         </Row>
         <UserDetailForm
