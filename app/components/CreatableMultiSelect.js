@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function CreatableMultiSelect({ setFieldValue, values }) {
   const [useroptions, setUserOptions] = useState([]);
@@ -31,7 +32,6 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           hashmap[opt.value] = opt.label;
         }
       });
-      console.log("hashmap", hashmap);
       values.usergroup.forEach((val) => {
         if (hashmap[val]) {
           selectedOptions.push({ value: val, label: hashmap[val] });
@@ -41,13 +41,6 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           addNewUserGroup(val);
         }
       });
-      console.log("getValue selectedOptions", selectedOptions);
-      // const selectedOptions = useroptions.map((option) => {
-      //   // console.log("***********************");
-      //   // console.log("option", option);
-      //   // console.log("values.usergroup", values.usergroup);
-      //   return values.usergroup.indexOf(option.value) >= 0;
-      // });
     }
     // TODO no options error
     return selectedOptions;
@@ -57,7 +50,6 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
     const token = localStorage.getItem("token");
 
     try {
-      // console.log("try");
       const res = await axios.post(
         "http://localhost:8080/usergroups",
         { usergroup: newUserGroup },
@@ -65,9 +57,9 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           headers: { Authorization: `Basic ${token}` },
         }
       );
-      console.log(res);
     } catch (error) {
       console.log(error);
+      toast.error("Unable to create new user");
     }
   };
 
@@ -92,7 +84,10 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
         setUserOptions(usergrpArr);
         setIsLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error("Unable to retrieve usergroups");
+      });
   }, []);
 
   return (
