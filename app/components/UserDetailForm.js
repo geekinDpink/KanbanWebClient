@@ -81,6 +81,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           password: user?.password ?? "",
           email: user?.email ?? "",
           usergroup: user?.usergroup ?? "",
+          active: false,
         }}
         validationSchema={UserSchema}
         enableReinitialize
@@ -160,6 +161,14 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 />
               </Col>
             </Row>
+            {mode !== "create" && (
+              <Row>
+                <Col>
+                  <label>Active</label>
+                  <Field type="checkbox" name="active" />
+                </Col>
+              </Row>
+            )}
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs s md={1}></Col>
               <Col xs s md={5}>

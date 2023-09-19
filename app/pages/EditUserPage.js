@@ -18,7 +18,7 @@ export default function EditUserPage() {
   const navigate = useNavigate();
 
   const onSubmitHandler = (values, resetForm) => {
-    const { username, password, email, usergroup } = values;
+    const { username, password, email, usergroup, active } = values;
 
     // 1 or more input = Array, 0 input = string
     const usergroupStr =
@@ -29,7 +29,7 @@ export default function EditUserPage() {
       password: password.toLowerCase().trim(),
       email: email.toLowerCase().trim(),
       usergroup: usergroupStr,
-      active: true,
+      active: active,
     };
     const token = localStorage.getItem("token");
 
