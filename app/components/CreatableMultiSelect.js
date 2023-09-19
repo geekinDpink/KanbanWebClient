@@ -86,7 +86,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Unable to retrieve usergroups");
+        toast.error("Unable to retrieve usergroups, " + err?.response?.data);
       });
   }, []);
 
