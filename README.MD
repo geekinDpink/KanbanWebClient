@@ -14,3 +14,6 @@ Admin disable User/ Update Active
 
 Relook
 Lowercase and trim at backend - c8 and edit
+
+Option
+Validation frontend for alphanumeric and symbols for password
