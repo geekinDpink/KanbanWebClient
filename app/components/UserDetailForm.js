@@ -66,6 +66,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
             ...res.data[0],
             password: null,
             usergroup: usergroupArr,
+            active: res.data[0].active === 0 ? false : true,
           };
           setUser(userData);
         })
@@ -81,7 +82,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
           password: user?.password ?? "",
           email: user?.email ?? "",
           usergroup: user?.usergroup ?? "",
-          active: false,
+          active: user?.active ?? false,
         }}
         validationSchema={UserSchema}
         enableReinitialize
@@ -91,7 +92,6 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
       >
         {({ errors, touched, setFieldValue, values }) => (
           <Form>
-            <p>{username}</p>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs s md={1}>
                 <label htmlFor="username">Username</label>
@@ -161,7 +161,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                 />
               </Col>
             </Row>
-            {mode !== "create" && (
+            {mode === "editOthers" && (
               <Row>
                 <Col>
                   <label>Active</label>
