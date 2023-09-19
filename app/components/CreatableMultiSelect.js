@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function CreatableMultiSelect({ setFieldValue, values }) {
   const [useroptions, setUserOptions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   ////////////////////////////////////////////////////////
   /* When select an option -> add on to whatever existing options
@@ -30,17 +31,17 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           hashmap[opt.value] = opt.label;
         }
       });
-      console.log(hashmap);
+      console.log("hashmap", hashmap);
       values.usergroup.forEach((val) => {
         if (hashmap[val]) {
           selectedOptions.push({ value: val, label: hashmap[val] });
         } else {
-          console.log("val", val);
+          // console.log("val", val);
           selectedOptions.push({ value: val, label: val });
-          addNewUserGroup(val);
+          // addNewUserGroup(val);
         }
       });
-      console.log(selectedOptions);
+      console.log("getValue selectedOptions", selectedOptions);
       // const selectedOptions = useroptions.map((option) => {
       //   // console.log("***********************");
       //   // console.log("option", option);
@@ -56,7 +57,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
     const token = localStorage.getItem("token");
 
     try {
-      console.log("try");
+      // console.log("try");
       const res = await axios.post(
         "http://localhost:8080/usergroups",
         { usergroup: newUserGroup },
@@ -65,6 +66,12 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
         }
       );
       console.log(res);
+      console.log("addNewUserGrp useroptions state", useroptions);
+      const newUserOption = {
+        value: res.data.usergroup,
+        label: res.data.usergroup,
+      };
+      setUserOptions((prevUserOptions) => [...prevUserOptions, newUserOption]);
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +88,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       .then((res) => {
         let usergrpArr = [];
 
-        res.data.map((user) => {
+        res.data.forEach((user) => {
           let usergrpObj = {
             value: user.usergroup,
             label: user.usergroup,
@@ -89,6 +96,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           usergrpArr.push(usergrpObj);
         });
         setUserOptions(usergrpArr);
+        setIsLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -98,8 +106,9 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       isMulti
       options={useroptions}
       onChange={onChangeHandler}
-      // onCreateOption={addNewUserGroup}
+      onCreateOption={addNewUserGroup}
       value={getValue()}
+      isLoading={isLoading}
     />
   );
 }
