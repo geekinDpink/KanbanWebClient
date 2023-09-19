@@ -53,7 +53,7 @@ export default function CreateUserPage() {
     }
   }, []);
 
-  const onSubmitHandler = (values) => {
+  const onSubmitHandler = (values, resetForm) => {
     const { username, password, email, usergroup } = values;
     console.log("value after submit", values);
 
@@ -75,6 +75,7 @@ export default function CreateUserPage() {
       })
       .then((res) => {
         console.log("create submit res", res);
+        resetForm();
         toast.success("Form Submitted");
       })
       .catch((err) => {

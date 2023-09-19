@@ -84,8 +84,8 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
         }}
         validationSchema={UserSchema}
         enableReinitialize
-        onSubmit={(values) => {
-          onSubmitHandler(values);
+        onSubmit={(values, { resetForm }) => {
+          onSubmitHandler(values, resetForm);
         }}
       >
         {({ errors, touched, setFieldValue, values }) => (

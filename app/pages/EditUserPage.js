@@ -17,7 +17,7 @@ export default function EditUserPage() {
   const redState = useContext(StateContext);
   const navigate = useNavigate();
 
-  const onSubmitHandler = (values) => {
+  const onSubmitHandler = (values, resetForm) => {
     const { username, password, email, usergroup } = values;
 
     // 1 or more input = Array, 0 input = string
@@ -39,6 +39,7 @@ export default function EditUserPage() {
       })
       .then((res) => {
         toast.success("Form Submitted");
+        // resetForm(); // clear form but useEffect will repopulate form
         console.log(res);
       })
       .catch((err) => {
