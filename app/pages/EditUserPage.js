@@ -43,8 +43,8 @@ export default function EditUserPage() {
         console.log(res);
       })
       .catch((err) => {
-        toast.error(`Unable to submit; ${err.response}`);
-        console.log("err response", err);
+        toast.error(`Unable to submit; ${err.response.data}`);
+        console.log("err response", err.response);
       });
   };
 
@@ -65,6 +65,9 @@ export default function EditUserPage() {
           // if (res && token) {
           //   redDispatch({ type: "login" });
           // }
+          if (res.data[0].active !== 1) {
+            redDispatch({ type: "logout" });
+          }
           if (
             res.data[0].usergroup.toLowerCase().split(",").includes("admin")
           ) {

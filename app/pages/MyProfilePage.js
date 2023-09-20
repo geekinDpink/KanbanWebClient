@@ -31,6 +31,9 @@ export default function MyProfile() {
           if (res && token) {
             redDispatch({ type: "login" });
           }
+          if (res.data[0].active !== 1) {
+            redDispatch({ type: "logout" });
+          }
           if (
             res.data[0].usergroup.toLowerCase().split(",").includes("admin")
           ) {
