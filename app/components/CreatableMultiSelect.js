@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 import { toast } from "react-toastify";
+import StateContext from "../../Context/StateContext";
 
 export default function CreatableMultiSelect({ setFieldValue, values }) {
   const [useroptions, setUserOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const redState = useContext(StateContext);
 
   ////////////////////////////////////////////////////////
   /* When select an option -> add on to whatever existing options
@@ -93,6 +95,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
   return (
     <CreatableSelect
       isMulti
+      isDisabled={!redState.isAdmin}
       options={useroptions}
       onChange={onChangeHandler}
       // onCreateOption={addNewUserGroup}

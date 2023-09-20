@@ -192,7 +192,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
 }
 
 {
-  //         {({ errors, touched, setFieldValue, values, field }) => (
+  // {({ errors, touched, setFieldValue, values, field }) => (
   /* <Field id="usergroup" name="usergroup" component="select">
 {usergroups.length ? (
   usergroups.map((usergroup) => {
