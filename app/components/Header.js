@@ -36,7 +36,7 @@ export default function Header() {
             redDispatch({ type: "isAdmin" });
           }
         } else {
-          toast("Unable to login" + res.data.remarks);
+          toast("Unable to login, " + res.data.remarks);
           // setToastMsg(res.data.remarks);
           //setShowToast(true);
 
@@ -46,7 +46,7 @@ export default function Header() {
         console.log(err);
         // setToastMsg(err.response?.data?.remarks ?? "");
         //setShowToast(true);
-        toast("Unable to login" + err.response?.data?.remarks ?? "");
+        toast("Unable to login, " + err.response?.data?.remarks ?? "");
       }
     } else {
       toast("Incomplete/empty fields");
