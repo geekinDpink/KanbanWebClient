@@ -1,6 +1,7 @@
 TODO:
 Creatable no options error
 Change Include Admin regex as it accept substring
+Fix Bug of create user without user group, view user group will have popup error
 
 Done
 Clear Form
@@ -14,10 +15,10 @@ Admin disable User/ Update Active
 Change includes admin check to others
 Creatable Fire Twice, use onCreate attribute
 assign admin from another browser but user management tab doesn't come back
+user cannot edit or create user group
 
 Relook
 Lowercase and trim at backend - c8 and edit
-create usergroup for admin only
 
-Option
+Optional
 Validation frontend for alphanumeric and symbols for password
