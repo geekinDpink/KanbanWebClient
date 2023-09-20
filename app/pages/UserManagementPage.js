@@ -100,7 +100,7 @@ export default function UserManagementPage() {
                 <th style={{ width: "10%" }}>Username</th>
                 <th style={{ width: "10%" }}>Email</th>
                 <th style={{ width: "5%" }}>User Group</th>
-                <th style={{ width: "5%" }}>Active Status</th>
+                <th style={{ width: "5%" }}>Active</th>
                 <th style={{ width: "5%" }}>Actions</th>
               </tr>
             </thead>

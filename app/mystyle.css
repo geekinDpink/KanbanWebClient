@@ -1,5 +1,12 @@
 th {
   background-color: rgb(238, 233, 233) !important;
+  text-align: center !important;
+  vertical-align: top !important;
+}
+
+td {
+  text-align: center !important;
+  vertical-align: top !important;
 }
 
 .offsetPos {
