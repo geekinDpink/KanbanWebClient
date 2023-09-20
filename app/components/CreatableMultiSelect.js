@@ -66,7 +66,12 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       );
     } catch (error) {
       console.log(error);
-      toast.error("Unable to create new user, " + error?.response?.data);
+      // TODO: temp fix for not authorised toast when edit profile
+      if (redState.isAdmin) {
+        toast.error(
+          "Unable to create new usergroup222, " + error?.response?.data
+        );
+      }
     }
   };
 
