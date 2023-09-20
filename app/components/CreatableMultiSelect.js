@@ -26,7 +26,11 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
   //////////////////////////////////////////////////////
   const getValue = () => {
     const selectedOptions = [];
-    if (useroptions && values.usergroup instanceof Array && !isLoading) {
+    if (
+      isLoading === false &&
+      useroptions &&
+      values.usergroup instanceof Array
+    ) {
       const hashmap = {};
 
       useroptions.forEach((opt) => {
@@ -39,12 +43,13 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           selectedOptions.push({ value: val, label: hashmap[val] });
         } else {
           // console.log("val", val);
-          selectedOptions.push({ value: val, label: val });
-          addNewUserGroup(val);
+          if (val !== "") {
+            selectedOptions.push({ value: val, label: val });
+            addNewUserGroup(val);
+          }
         }
       });
     }
-    // TODO no options error
     return selectedOptions;
   };
 
