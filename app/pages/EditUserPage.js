@@ -65,7 +65,10 @@ export default function EditUserPage() {
           // if (res && token) {
           //   redDispatch({ type: "login" });
           // }
-          if (res.data[0].usergroup.includes("admin")) {
+          if (
+            res.data[0].usergroup.toLowerCase().split(",").includes("admin")
+          ) {
+            // if (res.data[0].usergroup.includes("admin")) {
             //console.log("CreateUser Before Disp IsAdmin", redState);
             redDispatch({ type: "isAdmin" });
             //console.log("CreateUser After Disp IsAdmin", redState);
