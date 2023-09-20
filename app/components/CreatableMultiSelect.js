@@ -45,7 +45,9 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
           // console.log("val", val);
           if (val !== "") {
             selectedOptions.push({ value: val, label: val });
-            addNewUserGroup(val);
+            if (redState.isAdmin) {
+              addNewUserGroup(val);
+            }
           }
         }
       });
@@ -66,12 +68,9 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
       );
     } catch (error) {
       console.log(error);
-      // TODO: temp fix for not authorised toast when edit profile
-      if (redState.isAdmin) {
-        toast.error(
-          "Unable to create new usergroup222, " + error?.response?.data
-        );
-      }
+      toast.error(
+        "Unable to create new usergroup222, " + error?.response?.data
+      );
     }
   };
 
