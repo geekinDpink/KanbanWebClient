@@ -105,7 +105,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   disabled={mode !== "create" ? true : false}
                 />
                 {touched.username && errors.username && (
-                  <div>{errors.username}</div>
+                  <div className="formErrors">{errors.username}</div>
                 )}
               </Col>
             </Row>
@@ -122,7 +122,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   placeholder="eg.P@ssw0rd"
                 />
                 {touched.password && errors.password && (
-                  <div>{errors.password}</div>
+                  <div className="formErrors">{errors.password}</div>
                 )}
               </Col>
             </Row>
@@ -137,7 +137,9 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                   style={{ width: "100%" }}
                   placeholder="eg.jane@hotmail.com"
                 />
-                {touched.email && errors.email && <div>{errors.email}</div>}
+                {touched.email && errors.email && (
+                  <div className="formErrors">{errors.email}</div>
+                )}
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>

@@ -9,6 +9,10 @@ td {
   vertical-align: top !important;
 }
 
+.formErrors {
+  color: red;
+}
+
 .offsetPos {
   margin-top: 0.5%;
   margin-right: 10%;
