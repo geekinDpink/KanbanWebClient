@@ -85,7 +85,13 @@ export default function UserManagementPage() {
           <h3>User Management</h3>
         </Col>
         <Col xs s md={2}>
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginBottom: "5px",
+            }}
+          >
             <Button onClick={() => navigate("/create_user")} variant="info">
               Create New User
             </Button>
