@@ -180,7 +180,7 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
                     width: "100%",
                   }}
                 >
-                  {mode !== "create" ? "Edit" : "Create"}
+                  {mode === "create" ? "Create" : "Save"}
                 </button>
               </Col>
             </Row>
