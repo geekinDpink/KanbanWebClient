@@ -62,9 +62,9 @@ export default function EditUserPage() {
           console.log("getUserProfile res", res.data);
           // setUser(res.data[0]);
 
-          // if (res && token) {
-          //   redDispatch({ type: "login" });
-          // }
+          if (res && token) {
+            redDispatch({ type: "login" });
+          }
           if (res.data[0].active !== 1) {
             redDispatch({ type: "logout" });
           }
@@ -78,6 +78,7 @@ export default function EditUserPage() {
           } else {
             //console.log("CreateUser Before Disp notAdmin", redState);
             redDispatch({ type: "notAdmin" });
+            navigate("/");
             //console.log("CreateUser After Disp notAdmin", redState);
           }
         })
@@ -86,6 +87,7 @@ export default function EditUserPage() {
           console.log(err);
           //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
+          navigate("/");
           //console.log("CreateUser After Disp logout", redState);
         });
     } else {

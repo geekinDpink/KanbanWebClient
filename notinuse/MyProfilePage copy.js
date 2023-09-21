@@ -52,7 +52,6 @@ export default function MyProfile() {
           console.log(err);
           //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
-          navigate("/");
           //console.log("CreateUser After Disp logout", redState);
         });
     } else {

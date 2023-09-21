@@ -14,8 +14,6 @@ import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
 import { useImmerReducer } from "use-immer";
 import { ToastContainer, Slide } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-
 import "react-toastify/dist/ReactToastify.css";
 // import "bootstrap/dist/css/bootstrap.css";
 
@@ -78,28 +76,60 @@ export default function App() {
               marginRight: "auto",
             }}
           >
-            {state.isLoggedIn ? (
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    state.isAdmin ? <UserManagementPage /> : <KanbanBoardPage />
-                  }
-                />
-                <Route
-                  path="/user_management"
-                  element={<UserManagementPage />}
-                />
-                <Route path="/kanban_board" element={<KanbanBoardPage />} />
-                <Route path="/create_user" element={<CreateUserPage />} />
-                <Route path="/my_profile" element={<MyProfilePage />} />
-                <Route path="/edit_user" element={<EditUserPage />} />
-              </Routes>
-            ) : (
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-              </Routes>
-            )}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  state.isLoggedIn ? (
+                    state.isAdmin ? (
+                      <UserManagementPage />
+                    ) : (
+                      <KanbanBoardPage />
+                    )
+                  ) : (
+                    <HomePage />
+                  )
+                }
+              />
+              <Route
+                path="/user_management"
+                element={
+                  state.isLoggedIn && state.isAdmin ? (
+                    <UserManagementPage />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/kanban_board"
+                element={
+                  state.isLoggedIn ? <KanbanBoardPage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/create_user"
+                element={
+                  state.isLoggedIn && state.isAdmin ? (
+                    <CreateUserPage />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/my_profile"
+                element={
+                  state.isLoggedIn ? <MyProfilePage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/edit_user"
+                element={
+                  state.isLoggedIn ? <EditUserPage /> : <Navigate to="/" />
+                }
+              />
+            </Routes>
           </Container>
           <Footer />
         </BrowserRouter>

@@ -47,7 +47,6 @@ export default function UserManagementPage() {
           } else {
             //console.log("CreateUser Before Disp notAdmin", redState);
             redDispatch({ type: "notAdmin" });
-            navigate("/");
             //console.log("CreateUser After Disp notAdmin", redState);
           }
         })
@@ -56,7 +55,6 @@ export default function UserManagementPage() {
           console.log(err);
           //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
-          navigate("/");
           //console.log("CreateUser After Disp logout", redState);
         });
     } else {

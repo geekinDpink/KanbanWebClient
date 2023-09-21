@@ -1,18 +1,52 @@
 import React, { useEffect, useContext } from "react";
-import Form from "react-bootstrap/Form";
-import UserDetailForm from "../components/UserDetailForm";
+import UserDetailForm from "../app/components/UserDetailForm";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
-import DispatchContext from "../../Context/DispatchContext";
-import StateContext from "../../Context/StateContext";
-import Button from "react-bootstrap/Button";
+import { useLocation } from "react-router-dom";
+import DispatchContext from "../Context/DispatchContext";
+import StateContext from "../Context/StateContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function CreateUserPage() {
+import Button from "react-bootstrap/Button";
+
+export default function EditUserPage() {
+  const user = useLocation();
+  const { username: selUsername, mode } = user.state;
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
   const navigate = useNavigate();
+
+  const onSubmitHandler = (values, resetForm) => {
+    const { username, password, email, usergroup, active } = values;
+
+    // 1 or more input = Array, 0 input = string
+    const usergroupStr =
+      usergroup instanceof Array ? usergroup.join(",") : usergroup;
+
+    const params = {
+      username: username.toLowerCase().trim(),
+      password: password.toLowerCase().trim(),
+      email: email.toLowerCase().trim(),
+      usergroup: usergroupStr,
+      active: active,
+    };
+    const token = localStorage.getItem("token");
+
+    axios
+      .put("http://localhost:8080/users", params, {
+        headers: { Authorization: `Basic ${token}` },
+      })
+      .then((res) => {
+        toast.success("Form Submitted");
+        // resetForm(); // clear form but useEffect will repopulate form
+        console.log(res);
+      })
+      .catch((err) => {
+        toast.error(`Unable to submit; ${err.response.data}`);
+        console.log("err response", err.response);
+      });
+  };
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -44,7 +78,6 @@ export default function CreateUserPage() {
           } else {
             //console.log("CreateUser Before Disp notAdmin", redState);
             redDispatch({ type: "notAdmin" });
-            navigate("/");
             //console.log("CreateUser After Disp notAdmin", redState);
           }
         })
@@ -53,58 +86,25 @@ export default function CreateUserPage() {
           console.log(err);
           //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
-          navigate("/");
           //console.log("CreateUser After Disp logout", redState);
         });
     } else {
       redDispatch({ type: "logout" });
     }
   }, []);
-
-  const onSubmitHandler = (values, resetForm) => {
-    const { username, password, email, usergroup } = values;
-    console.log("value after submit", values);
-
-    // 1 or more input = Array, 0 input = string
-    const usergroupStr =
-      usergroup instanceof Array ? usergroup.join(",") : usergroup;
-
-    const params = {
-      username: username.toLowerCase().trim(),
-      password: password.toLowerCase().trim(),
-      email: email.toLowerCase().trim(),
-      usergroup: usergroupStr,
-    };
-    const token = localStorage.getItem("token");
-
-    axios
-      .post("http://localhost:8080/register", params, {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        console.log("create submit res", res);
-        resetForm();
-        toast.success("Form Submitted");
-      })
-      .catch((err) => {
-        console.log("err", err);
-        toast.error(`Unable to submit, ${err.response.data.toLowerCase()}`);
-      });
-  };
   return (
     <>
-      <Container>
+      <Container style={{ alignContent: "center", justifyContent: "center" }}>
         <Row>
           <Col xs s md={4}>
-            <h1>Create User Page</h1>
+            <h1>Edit User Detail</h1>
           </Col>
           <Col xs s md={2}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
-                onClick={() =>
-                  // Route to edit user page and pass username to edit user details form
-                  navigate(-1)
-                }
+                onClick={() => {
+                  navigate(-1);
+                }}
                 variant="secondary"
               >
                 Back
@@ -112,7 +112,11 @@ export default function CreateUserPage() {
             </div>
           </Col>
         </Row>
-        <UserDetailForm onSubmitHandler={onSubmitHandler} mode="create" />
+        <UserDetailForm
+          onSubmitHandler={onSubmitHandler}
+          username={selUsername}
+          mode={mode}
+        />
       </Container>
     </>
   );

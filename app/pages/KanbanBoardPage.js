@@ -1,11 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function KanbanBoardPage() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
+  const navigate = useNavigate();
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -45,6 +47,7 @@ export default function KanbanBoardPage() {
           console.log(err);
           //console.log("CreateUser Before Disp logout", redState);
           redDispatch({ type: "logout" });
+          navigate("/");
           //console.log("CreateUser After Disp logout", redState);
         });
     } else {
