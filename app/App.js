@@ -65,6 +65,7 @@ export default function App() {
         <BrowserRouter>
           <Header />
           <ToastContainer
+            autoClose={1500}
             transition={Slide}
             hideProgressBar
             position="top-center"
