@@ -14,22 +14,12 @@ export default function KanbanBoardPage() {
     if (token) {
       // Get my user detail based on username in token
       axios
-        .get("http://localhost:8080/user", {
+        .get("http://localhost:8080/user/admin", {
           headers: { Authorization: `Basic ${token}` },
         })
         .then((res) => {
-          console.log("getUserProfile res", res.data);
-          // setUser(res.data[0]);
-
-          // if (res && token) {
-          //   redDispatch({ type: "login" });
-          // }
-          if (res.data[0].active !== 1) {
-            redDispatch({ type: "logout" });
-          }
-          if (
-            res.data[0].usergroup.toLowerCase().split(",").includes("admin")
-          ) {
+          console.log("Kanbanboard res", res.data);
+          if (res.data.isAdmin) {
             redDispatch({ type: "isAdmin" });
           } else {
             redDispatch({ type: "notAdmin" });

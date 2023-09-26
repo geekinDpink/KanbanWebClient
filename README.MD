@@ -1,4 +1,5 @@
 TODO:
+Workflow bug of editing own usergroup after removing ownself as admin
 Refactor return is admin or not
 
 Done
