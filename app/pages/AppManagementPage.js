@@ -9,10 +9,12 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function AppManagementPage() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
+  const navigate = useNavigate();
 
   const [applications, setApplications] = useState([]);
 
@@ -71,7 +73,7 @@ export default function AppManagementPage() {
               marginBottom: "5px",
             }}
           >
-            <Button onClick={() => navigate("/create_user")} variant="info">
+            <Button onClick={() => navigate("/create_app")} variant="info">
               Create App
             </Button>
           </div>

@@ -8,9 +8,10 @@ import UserManagementPage from "./pages/UserManagementPage";
 import HomePage from "./pages/HomePage";
 import AppManagementPage from "./pages/AppManagementPage";
 import KanbanBoardPage from "./pages/KanbanBoardPage";
-import CreateUserPage from "./pages/CreateUserPage";
 import MyProfilePage from "./pages/MyProfilePage";
+import CreateUserPage from "./pages/CreateUserPage";
 import EditUserPage from "./pages/EditUserPage";
+import CreateAppPage from "./pages/CreateAppPage";
 import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
 import { useImmerReducer } from "use-immer";
@@ -116,6 +117,12 @@ export default function App() {
                 }
               />
               <Route
+                path="/my_profile"
+                element={
+                  state.isLoggedIn ? <MyProfilePage /> : <Navigate to="/" />
+                }
+              />
+              <Route
                 path="/create_user"
                 element={
                   state.isLoggedIn && state.isAdmin ? (
@@ -126,15 +133,15 @@ export default function App() {
                 }
               />
               <Route
-                path="/my_profile"
-                element={
-                  state.isLoggedIn ? <MyProfilePage /> : <Navigate to="/" />
-                }
-              />
-              <Route
                 path="/edit_user"
                 element={
                   state.isLoggedIn ? <EditUserPage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/create_app"
+                element={
+                  state.isLoggedIn ? <CreateAppPage /> : <Navigate to="/" />
                 }
               />
             </Routes>
