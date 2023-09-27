@@ -48,6 +48,8 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
       });
   }, []);
 
+  console.log(useroptions);
+
   //   useEffect(() => {
   //     const token = localStorage.getItem("token");
 
@@ -182,9 +184,40 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                 )}
               </Col>
             </Row>
+            <Row>
+              <b>App Permit</b>
+            </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs sm={1} md={2}>
-                <label htmlFor="endDate">End Date</label>
+                <label htmlFor="permitCreate">Create</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="permitCreate"
+                  name="permitCreate"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <Select
+                        isMulti
+                        options={useroptions}
+                        defaultValue={{
+                          value: "project lead",
+                          label: "project lead",
+                        }}
+                      />
+                    );
+                  }}
+                />
+                {touched.permitCreate && errors.permitCreate && (
+                  <div className="formErrors">{errors.permitCreate}</div>
+                )}
+              </Col>
+            </Row>
+
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="endDate">Open</label>
               </Col>
               <Col xs sm={5} md={4}>
                 <Field
@@ -192,11 +225,104 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   name="permitOpen"
                   style={{ width: "100%" }}
                   component={() => {
-                    return <Select isMulti options={useroptions} />;
+                    return (
+                      <Select
+                        isMulti
+                        options={useroptions}
+                        defaultValue={{
+                          value: "project manager",
+                          label: "project manager",
+                        }}
+                      />
+                    );
                   }}
                 />
                 {touched.permitOpen && errors.permitOpen && (
                   <div className="formErrors">{errors.permitOpen}</div>
+                )}
+              </Col>
+            </Row>
+
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="permitTodo">Todo</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="permitTodo"
+                  name="permitTodo"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <Select
+                        isMulti
+                        options={useroptions}
+                        defaultValue={{
+                          value: "developer",
+                          label: "developer",
+                        }}
+                      />
+                    );
+                  }}
+                />
+                {touched.permitTodo && errors.permitTodo && (
+                  <div className="formErrors">{errors.permitTodo}</div>
+                )}
+              </Col>
+            </Row>
+
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="permitDoing">Doing</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="permitDoing"
+                  name="permitDoing"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <Select
+                        isMulti
+                        options={useroptions}
+                        defaultValue={{
+                          value: "developer",
+                          label: "developer",
+                        }}
+                      />
+                    );
+                  }}
+                />
+                {touched.permitDoing && errors.permitDoing && (
+                  <div className="formErrors">{errors.permitDoing}</div>
+                )}
+              </Col>
+            </Row>
+
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="permitDone">Done</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="permitDone"
+                  name="permitDone"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <Select
+                        isMulti
+                        options={useroptions}
+                        defaultValue={{
+                          value: "project lead",
+                          label: "project lead",
+                        }}
+                      />
+                    );
+                  }}
+                />
+                {touched.permitDone && errors.permitDone && (
+                  <div className="formErrors">{errors.permitDone}</div>
                 )}
               </Col>
             </Row>
