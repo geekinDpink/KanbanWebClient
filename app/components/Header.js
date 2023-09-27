@@ -140,8 +140,8 @@ export default function Header() {
                   Manage User
                 </Link>
               )}
-              <Link to="./kanban_board" className="nav-link">
-                Kanban Board
+              <Link to="./app_management" className="nav-link">
+                App Management
               </Link>
               <div className="position-absolute top-0 end-0 offsetPos">
                 <Form
