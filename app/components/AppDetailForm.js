@@ -166,6 +166,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                 <Field
                   id="startDate"
                   name="startDate"
+                  type="date"
                   style={{ width: "100%" }}
                 />
                 {touched.startDate && errors.startDate && (
@@ -178,7 +179,12 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                 <label htmlFor="endDate">End Date</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="endDate" name="endDate" style={{ width: "100%" }} />
+                <Field
+                  id="endDate"
+                  name="endDate"
+                  style={{ width: "100%" }}
+                  type="date"
+                />
                 {touched.endDate && errors.endDate && (
                   <div className="formErrors">{errors.endDate}</div>
                 )}
