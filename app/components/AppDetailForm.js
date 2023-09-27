@@ -16,7 +16,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
       .max(50, "Max 50 chars")
       .required("Required"),
     description: Yup.string(),
-    rnumber: Yup.number().required("Required"),
+    rnumber: Yup.number().positive().integer().required("Required"),
     startDate: Yup.date(),
     endDate: Yup.date(),
   });
