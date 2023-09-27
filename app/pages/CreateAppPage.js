@@ -42,19 +42,15 @@ export default function CreateAppPage() {
   }, []);
 
   const onSubmitHandler = (values, resetForm) => {
-    const { acronym, password, email, usergroup } = values;
+    const { acronym, description, rnumber, startDate, endDate } = values;
     console.log("value after submit", values);
 
-    // 1 or more input = Array, 0 input = string
-    const usergroupStr =
-      usergroup instanceof Array ? usergroup.join(",") : usergroup;
-
     const params = {
-      App_Acronym: "KOF",
-      App_Description: "King of fighter",
-      App_Rnumber: 0,
-      App_startDate: "2022-06-03",
-      App_endDate: "2023-05-03",
+      App_Acronym: acronym,
+      App_Description: description,
+      App_Rnumber: rnumber,
+      App_startDate: startDate,
+      App_endDate: endDate,
     };
     const token = localStorage.getItem("token");
 
