@@ -80,10 +80,10 @@ export default function EditUserPage() {
     <>
       <Container style={{ alignContent: "center", justifyContent: "center" }}>
         <Row>
-          <Col xs s md={4}>
+          <Col xs sm md={4}>
             <h1>Edit User Detail</h1>
           </Col>
-          <Col xs s md={2}>
+          <Col xs sm md={2}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 onClick={() => {

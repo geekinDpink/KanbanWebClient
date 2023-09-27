@@ -64,10 +64,10 @@ export default function UserManagementPage() {
   return (
     <>
       <Row>
-        <Col xs s md={6}>
+        <Col xs sm md={6}>
           <h3>User Management</h3>
         </Col>
-        <Col xs s md={2}>
+        <Col xs sm md={2}>
           <div
             style={{
               display: "flex",
@@ -82,7 +82,7 @@ export default function UserManagementPage() {
         </Col>
       </Row>
       <Row>
-        <Col xs s md={8}>
+        <Col xs sm md={8}>
           <Table bordered hover size="sm">
             <thead>
               <tr>

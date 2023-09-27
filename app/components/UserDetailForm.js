@@ -93,10 +93,10 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
         {({ errors, touched, setFieldValue, values }) => (
           <Form>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="username">Username</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="username"
                   name="username"
@@ -110,10 +110,10 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="password">Password</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="password"
                   name="password"
@@ -127,10 +127,10 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="email">Email</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="email"
                   name="email"
@@ -143,10 +143,10 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="usergroup">User Group</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="usergroup"
                   // className="custom-select"
@@ -165,17 +165,17 @@ export default function UserDetailForm({ onSubmitHandler, username, mode }) {
             </Row>
             {mode === "editOthers" && (
               <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-                <Col xs s={1} md={2}>
+                <Col xs sm={1} md={2}>
                   <label>Active</label>
                 </Col>
-                <Col xs s={5} md={4}>
+                <Col xs sm={5} md={4}>
                   <Field type="checkbox" name="active" />
                 </Col>
               </Row>
             )}
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-              <Col xs s={1} md={2}></Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={1} md={2}></Col>
+              <Col xs sm={5} md={4}>
                 <button
                   type="submit"
                   style={{
