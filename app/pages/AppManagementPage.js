@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import { Container } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 export default function AppManagementPage() {
   const redDispatch = useContext(DispatchContext);
@@ -19,33 +20,38 @@ export default function AppManagementPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
+    const authUserFetchData = async (token) => {
+      try {
+        const res = await axios.get("http://localhost:8080/user/admin", {
+          headers: { Authorization: `Basic ${token}` },
+        });
+
+        if (res.data.isAdmin) {
+          redDispatch({ type: "isAdmin" });
+        } else {
+          redDispatch({ type: "notAdmin" });
+        }
+      } catch (err) {
+        // api call is validation process e.g. token, if fail refuse entry and logout
+        console.log(err);
+        redDispatch({ type: "logout" });
+      }
+
+      try {
+        const response = await axios.get("http://localhost:8080/apps", {
+          headers: { Authorization: `Basic ${token}` },
+        });
+        setApplications(response.data);
+      } catch (error) {
+        // api call is validation process e.g. token, if fail refuse entry and logout
+        console.log(error);
+        setApplications([]);
+      }
+    };
+
     if (token) {
       // Get my user detail based on username in token
-      axios
-        .get("http://localhost:8080/user/admin", {
-          headers: { Authorization: `Basic ${token}` },
-        })
-        .then((res) => {
-          console.log("Kanbanboard res", res.data);
-          if (res.data.isAdmin) {
-            redDispatch({ type: "isAdmin" });
-          } else {
-            redDispatch({ type: "notAdmin" });
-          }
-
-          axios
-            .get("http://localhost:8080/apps", {
-              headers: { Authorization: `Basic ${token}` },
-            })
-            .then((response) => {
-              setApplications(response.data);
-            });
-        })
-        .catch((err) => {
-          // api call is validation process e.g. token, if fail refuse entry and logout
-          console.log(err);
-          redDispatch({ type: "logout" });
-        });
+      authUserFetchData(token);
     } else {
       redDispatch({ type: "logout" });
     }
@@ -109,3 +115,39 @@ export default function AppManagementPage() {
     </Container>
   );
 }
+
+// Callback version
+// useEffect(() => {
+//   const token = localStorage.getItem("token");
+
+//   if (token) {
+//     // Get my user detail based on username in token
+//     axios
+//       .get("http://localhost:8080/user/admin", {
+//         headers: { Authorization: `Basic ${token}` },
+//       })
+//       .then((res) => {
+//         console.log("Kanbanboard res", res.data);
+//         if (res.data.isAdmin) {
+//           redDispatch({ type: "isAdmin" });
+//         } else {
+//           redDispatch({ type: "notAdmin" });
+//         }
+
+//         axios
+//           .get("http://localhost:8080/apps", {
+//             headers: { Authorization: `Basic ${token}` },
+//           })
+//           .then((response) => {
+//             setApplications(response.data);
+//           });
+//       })
+//       .catch((err) => {
+//         // api call is validation process e.g. token, if fail refuse entry and logout
+//         console.log(err);
+//         redDispatch({ type: "logout" });
+//       });
+//   } else {
+//     redDispatch({ type: "logout" });
+//   }
+// }, []);
