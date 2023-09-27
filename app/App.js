@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Footer from "./components/Footer";
 import UserManagementPage from "./pages/UserManagementPage";
 import HomePage from "./pages/HomePage";
+import AppManagementPage from "./pages/AppManagementPage";
 import KanbanBoardPage from "./pages/KanbanBoardPage";
 import CreateUserPage from "./pages/CreateUserPage";
 import MyProfilePage from "./pages/MyProfilePage";
@@ -85,7 +86,7 @@ export default function App() {
                     state.isAdmin ? (
                       <UserManagementPage />
                     ) : (
-                      <KanbanBoardPage />
+                      <AppManagementPage />
                     )
                   ) : (
                     <HomePage />
@@ -100,6 +101,12 @@ export default function App() {
                   ) : (
                     <Navigate to="/" />
                   )
+                }
+              />
+              <Route
+                path="/app_management"
+                element={
+                  state.isLoggedIn ? <AppManagementPage /> : <Navigate to="/" />
                 }
               />
               <Route

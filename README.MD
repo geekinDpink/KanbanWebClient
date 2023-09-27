@@ -1,6 +1,5 @@
 TODO:
 Workflow bug of editing own usergroup after removing ownself as admin
-Refactor return is admin or not
 
 Done
 Clear Form
@@ -18,6 +17,7 @@ user cannot edit or create user group
 Change Include Admin regex as it accept substring
 Creatable no options error
 Fix Bug of create user without user group, view user group will have popup error
+Refactor return is admin or not
 
 Relook
 Lowercase and trim at backend - c8 and edit
