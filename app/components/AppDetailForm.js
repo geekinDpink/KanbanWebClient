@@ -16,7 +16,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
       .max(50, "Max 50 chars")
       .required("Required"),
     description: Yup.string(),
-    rnumber: Yup.number("Number only").required("Required"),
+    rnumber: Yup.number().required("Required"),
     startDate: Yup.date(),
     endDate: Yup.date(),
   });
@@ -98,13 +98,14 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
   return (
     <>
       <Formik
-        // initialValues={{
-        //   acronym: user?.username ?? "",
-        //   password: user?.password ?? "",
-        //   email: user?.email ?? "",
-        //   usergroup: user?.usergroup ?? "",
-        //   active: user?.active ?? false,
-        // }}
+        initialValues={{
+          acronym: "",
+          description: "",
+          rnumber: "",
+          startDate: "",
+          endDate: "",
+          permitOpen: "",
+        }}
         validationSchema={AppSchema}
         enableReinitialize
         onSubmit={(values, { resetForm }) => {
@@ -114,10 +115,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
         {({ errors, touched, setFieldValue, values }) => (
           <Form>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="acronym">Acronym</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="acronym"
                   name="acronym"
@@ -130,10 +131,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="description">Description</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="description"
                   name="description"
@@ -145,10 +146,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="rnumber">RNumber</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field id="rnumber" name="rnumber" style={{ width: "100%" }} />
                 {touched.rnumber && errors.rnumber && (
                   <div className="formErrors">{errors.rnumber}</div>
@@ -156,10 +157,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="startDate">Start Date</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
                   id="startDate"
                   name="startDate"
@@ -171,10 +172,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="endDate">End Date</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field id="endDate" name="endDate" style={{ width: "100%" }} />
                 {touched.endDate && errors.endDate && (
                   <div className="formErrors">{errors.endDate}</div>
@@ -182,26 +183,26 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
               </Col>
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs s={1} md={2}>
+              <Col xs sm={1} md={2}>
                 <label htmlFor="endDate">End Date</label>
               </Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={5} md={4}>
                 <Field
-                  id="permit"
-                  name="permit"
+                  id="permitOpen"
+                  name="permitOpen"
                   style={{ width: "100%" }}
                   component={() => {
                     return <Select isMulti options={useroptions} />;
                   }}
                 />
-                {touched.endDate && errors.endDate && (
-                  <div className="formErrors">{errors.endDate}</div>
+                {touched.permitOpen && errors.permitOpen && (
+                  <div className="formErrors">{errors.permitOpen}</div>
                 )}
               </Col>
             </Row>
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-              <Col xs s={1} md={2}></Col>
-              <Col xs s={5} md={4}>
+              <Col xs sm={1} md={2}></Col>
+              <Col xs sm={5} md={4}>
                 <button
                   type="submit"
                   style={{

@@ -24,7 +24,7 @@ export default function CreateAppPage() {
           headers: { Authorization: `Basic ${token}` },
         })
         .then((res) => {
-          console.log("createUser res", res.data);
+          console.log("createApp res", res.data);
           if (res.data.isAdmin) {
             redDispatch({ type: "isAdmin" });
           } else {
@@ -42,7 +42,7 @@ export default function CreateAppPage() {
   }, []);
 
   const onSubmitHandler = (values, resetForm) => {
-    const { username, password, email, usergroup } = values;
+    const { acronym, password, email, usergroup } = values;
     console.log("value after submit", values);
 
     // 1 or more input = Array, 0 input = string
@@ -50,15 +50,16 @@ export default function CreateAppPage() {
       usergroup instanceof Array ? usergroup.join(",") : usergroup;
 
     const params = {
-      username: username.toLowerCase().trim(),
-      password: password.toLowerCase().trim(),
-      email: email.toLowerCase().trim(),
-      usergroup: usergroupStr,
+      App_Acronym: "KOF",
+      App_Description: "King of fighter",
+      App_Rnumber: 0,
+      App_startDate: "2022-06-03",
+      App_endDate: "2023-05-03",
     };
     const token = localStorage.getItem("token");
 
     axios
-      .post("http://localhost:8080/register", params, {
+      .post("http://localhost:8080/app", params, {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
@@ -93,7 +94,7 @@ export default function CreateAppPage() {
           </Col>
         </Row>
         <Row>
-          <AppDetailForm mode="create" />
+          <AppDetailForm mode="create" onSubmitHandler={onSubmitHandler} />
         </Row>
       </Container>
     </>
