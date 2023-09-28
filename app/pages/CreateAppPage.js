@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import AppDetailForm from "../components/AppDetailForm";
+import moment from "moment";
 
 export default function CreateAppPage() {
   const redDispatch = useContext(DispatchContext);
@@ -49,9 +50,11 @@ export default function CreateAppPage() {
       App_Acronym: acronym,
       App_Description: description,
       App_Rnumber: rnumber,
-      App_startDate: startDate,
-      App_endDate: endDate,
+      App_startDate: moment(startDate).format("YYYY-MM-DD"),
+      App_endDate: moment(endDate).format("YYYY-MM-DD"),
+      App_permit_create:
     };
+    console.log("params", params);
     const token = localStorage.getItem("token");
 
     axios
