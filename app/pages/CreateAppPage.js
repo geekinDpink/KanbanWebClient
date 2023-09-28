@@ -43,16 +43,31 @@ export default function CreateAppPage() {
   }, []);
 
   const onSubmitHandler = (values, resetForm) => {
-    const { acronym, description, rnumber, startDate, endDate } = values;
+    const {
+      acronym,
+      description,
+      rnumber,
+      startDate,
+      endDate,
+      permitCreate,
+      permitOpen,
+      permitTodo,
+      permitDoing,
+      permitDone,
+    } = values;
     console.log("value after submit", values);
 
     const params = {
       App_Acronym: acronym,
       App_Description: description,
       App_Rnumber: rnumber,
-      App_startDate: moment(startDate).format("YYYY-MM-DD"),
-      App_endDate: moment(endDate).format("YYYY-MM-DD"),
-      App_permit_create:
+      App_StartDate: moment(startDate).format("YYYY-MM-DD"),
+      App_EndDate: moment(endDate).format("YYYY-MM-DD"),
+      App_Permit_Create: permitCreate,
+      App_Permit_Open: permitOpen,
+      App_Permit_Todo: permitTodo,
+      App_Permit_Doing: permitDoing,
+      App_Permit_Done: permitDone,
     };
     console.log("params", params);
     const token = localStorage.getItem("token");

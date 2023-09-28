@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import Select from "react-select";
-
+import MultiSelect from "./MultiSelect";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
@@ -48,55 +47,6 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
       });
   }, []);
 
-  console.log(useroptions);
-
-  //   useEffect(() => {
-  //     const token = localStorage.getItem("token");
-
-  //     if (mode === "editMyProfile") {
-  //       // Get my user detail based on username in token
-  //       axios
-  //         .get("http://localhost:8080/user", {
-  //           headers: { Authorization: `Basic ${token}` },
-  //         })
-  //         .then((res) => {
-  //           console.log("my user detail", res.data);
-  //           // user may have multiple usergroups, joined by ",", hence split it up and put in array
-  //           const usergroupArr = res.data[0].usergroup.split(",");
-  //           const userData = {
-  //             ...res.data[0],
-  //             password: null,
-  //             usergroup: usergroupArr,
-  //           };
-  //           setUser(userData);
-  //         })
-  //         .catch((err) => console.log(err));
-  //     }
-  //     if (mode === "editOthers" && username) {
-  //       // Get my user detail based on username in token
-  //       axios
-  //         .post(
-  //           "http://localhost:8080/user",
-  //           { username: username },
-  //           {
-  //             headers: { Authorization: `Basic ${token}` },
-  //           }
-  //         )
-  //         .then((res) => {
-  //           console.log("other user detail", res.data);
-  //           const usergroupArr = res.data[0].usergroup.split(",");
-  //           const userData = {
-  //             ...res.data[0],
-  //             password: null,
-  //             usergroup: usergroupArr,
-  //             active: res.data[0].active === 0 ? false : true,
-  //           };
-  //           setUser(userData);
-  //         })
-  //         .catch((err) => console.log(err));
-  //     }
-  //   }, []);
-
   return (
     <>
       <Formik
@@ -106,7 +56,11 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
           rnumber: "",
           startDate: "",
           endDate: "",
+          permitCreate: "",
           permitOpen: "",
+          permitTodo: "",
+          permitDoing: "",
+          permitDone: "",
         }}
         validationSchema={AppSchema}
         enableReinitialize
@@ -204,9 +158,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <Select
-                        isMulti
-                        options={useroptions}
+                      <MultiSelect
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        fieldName="permitCreate"
                         defaultValue={{
                           value: "project lead",
                           label: "project lead",
@@ -232,9 +187,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <Select
-                        isMulti
-                        options={useroptions}
+                      <MultiSelect
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        fieldName="permitOpen"
                         defaultValue={{
                           value: "project manager",
                           label: "project manager",
@@ -260,9 +216,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <Select
-                        isMulti
-                        options={useroptions}
+                      <MultiSelect
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        fieldName="permitTodo"
                         defaultValue={{
                           value: "developer",
                           label: "developer",
@@ -288,9 +245,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <Select
-                        isMulti
-                        options={useroptions}
+                      <MultiSelect
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        fieldName="permitDoing"
                         defaultValue={{
                           value: "developer",
                           label: "developer",
@@ -316,9 +274,10 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <Select
-                        isMulti
-                        options={useroptions}
+                      <MultiSelect
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        fieldName="permitDone"
                         defaultValue={{
                           value: "project lead",
                           label: "project lead",
