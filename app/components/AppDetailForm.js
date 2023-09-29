@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-import Select from "react-select";
-import MultiSelect from "./MultiSelect";
+import SingleSelect from "./SingleSelect";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
@@ -158,7 +158,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <MultiSelect
+                      <SingleSelect
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitCreate"
@@ -187,7 +187,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <MultiSelect
+                      <SingleSelect
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitOpen"
@@ -216,7 +216,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <MultiSelect
+                      <SingleSelect
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitTodo"
@@ -245,7 +245,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <MultiSelect
+                      <SingleSelect
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitDoing"
@@ -274,7 +274,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
                   style={{ width: "100%" }}
                   component={() => {
                     return (
-                      <MultiSelect
+                      <SingleSelect
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitDone"
