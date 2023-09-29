@@ -21,25 +21,27 @@ export default function EditAppPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
+    const authUser = async (token) => {
+      try {
+        const res = await axios.get("http://localhost:8080/user/admin", {
+          headers: { Authorization: `Basic ${token}` },
+        });
+
+        if (res.data.isAdmin) {
+          redDispatch({ type: "isAdmin" });
+        } else {
+          redDispatch({ type: "notAdmin" });
+        }
+      } catch (err) {
+        // api call is validation process e.g. token, if fail refuse entry and logout
+        console.log(err);
+        redDispatch({ type: "logout" });
+      }
+    };
+
     if (token) {
       // Get my user detail based on username in token
-      axios
-        .get("http://localhost:8080/user/admin", {
-          headers: { Authorization: `Basic ${token}` },
-        })
-        .then((res) => {
-          console.log("createApp res", res.data);
-          if (res.data.isAdmin) {
-            redDispatch({ type: "isAdmin" });
-          } else {
-            redDispatch({ type: "notAdmin" });
-          }
-        })
-        .catch((err) => {
-          // api call is validation process e.g. token, if fail refuse entry and logout
-          console.log(err);
-          redDispatch({ type: "logout" });
-        });
+      authUser(token);
     } else {
       redDispatch({ type: "logout" });
     }
@@ -111,7 +113,11 @@ export default function EditAppPage() {
           </Col>
         </Row>
         <Row>
-          <AppDetailForm mode="edit" onSubmitHandler={onSubmitHandler} />
+          <AppDetailForm
+            mode="edit"
+            onSubmitHandler={onSubmitHandler}
+            appAcronym={appAcronym}
+          />
         </Row>
       </Container>
     </>

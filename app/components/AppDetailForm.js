@@ -5,9 +5,10 @@ import axios from "axios";
 import SingleSelect from "./SingleSelect";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
-export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
-  const [useroptions, setUserOptions] = useState();
+export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
+  const [app, setApp] = useState();
 
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
@@ -24,38 +25,42 @@ export default function AppDetailForm({ onSubmitHandler, appAcroynm, mode }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    axios
-      .get("http://localhost:8080/usergroups", {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        let usergrpArr = [];
+    const getAppDetails = async (param) => {
+      try {
+        const res = await axios.post(
+          "http://localhost:8080/app/acronym",
+          param,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
 
-        res.data.forEach((user) => {
-          let usergrpObj = {
-            value: user.usergroup,
-            label: user.usergroup,
-          };
-          usergrpArr.push(usergrpObj);
-        });
-        setUserOptions(usergrpArr);
-        // setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Unable to retrieve usergroups, " + err?.response?.data);
-      });
+        if (res.data[0]) {
+          setApp(res.data[0]);
+        } else {
+          toast.show("App record not found");
+        }
+      } catch (error) {
+        toast.error("Unable to retrieve app record, ");
+        console.log(error);
+      }
+    };
+
+    if (mode !== "create" && appAcronym) {
+      const param = { App_Acronym: appAcronym };
+      getAppDetails(param);
+    }
   }, []);
 
   return (
     <>
       <Formik
         initialValues={{
-          acronym: "",
-          description: "",
-          rnumber: "",
-          startDate: "",
-          endDate: "",
+          acronym: app?.App_Acronym ?? "",
+          description: app?.App_Description ?? "",
+          rnumber: app?.App_Rnumber ?? "",
+          startDate: app?.App_startDate ?? "",
+          endDate: app?.App_endDate ?? "",
           permitCreate: "",
           permitOpen: "",
           permitTodo: "",

@@ -104,7 +104,7 @@ export default function AppManagementPage() {
                         onClick={() =>
                           navigate("/edit_app", {
                             state: {
-                              username: app.App_Acronym,
+                              App_Acronym: app.App_Acronym,
                             },
                           })
                         }
