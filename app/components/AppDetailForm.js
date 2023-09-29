@@ -66,11 +66,11 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
           endDate: app?.App_endDate
             ? moment(app.App_endDate).format("YYYY-MM-DD")
             : "",
-          permitCreate: "",
-          permitOpen: "",
-          permitTodo: "",
-          permitDoing: "",
-          permitDone: "",
+          permitCreate: app?.App_permit_Create ?? "",
+          permitOpen: app?.App_permit_Open ?? "",
+          permitTodo: app?.App_permit_toDoList ?? "",
+          permitDoing: app?.App_permit_Doing ?? "",
+          permitDone: app?.App_permit_Done ?? "",
         }}
         validationSchema={AppSchema}
         enableReinitialize
