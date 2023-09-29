@@ -90,10 +90,10 @@ export default function CreateAppPage() {
     <>
       <Container>
         <Row>
-          <Col xs s md={4}>
+          <Col xs sm md={4}>
             <h1>Create App Page</h1>
           </Col>
-          <Col xs s md={2}>
+          <Col xs sm md={2}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <Button
                 onClick={() =>

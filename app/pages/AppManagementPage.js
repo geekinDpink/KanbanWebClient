@@ -108,7 +108,7 @@ export default function AppManagementPage() {
                             },
                           })
                         }
-                        variant="info"
+                        variant="primary"
                       >
                         Edit
                       </Button>
