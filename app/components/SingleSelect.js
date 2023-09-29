@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import Select from "react-select";
 import axios from "axios";
 import { toast } from "react-toastify";
-import StateContext from "../../Context/StateContext";
 
 export default function SingleSelect({
   setFieldValue,
@@ -11,49 +10,20 @@ export default function SingleSelect({
   defaultValue,
 }) {
   const [useroptions, setUserOptions] = useState();
-  const redState = useContext(StateContext);
 
   ////////////////////////////////////////////////////////
-  /* When select an option -> add on to whatever existing options
-  onChangeHandler is triggered when you select an option. 
-  It will take in params of whatever options that is selected (*but not save to field value), including the option you select e.g. [{value:”abc”, label:”cde”}].
-  Update the field value */
+  /* Triggered when you select an option. 
+  param selectedValue is the option selected, which comes in the form {value: "a", label;"a"}, field value is string
+  */
   ///////////////////////////////////////////////////////////
   const onChangeHandler = (selectedValues) => {
-    console.log(
-      `selectedValues ${JSON.stringify(selectedValues)} fieldName ${fieldName}`
-    );
     setFieldValue(fieldName, selectedValues.value);
   };
 
   //////////////////////////////////////////////////////
-  // On render/re-render e.g. onChangeHandler
-  // Convert the value in arr [“abc”] to object based on options [{value:”abc”, label:”cde”}]
+  // Takes in {value: "a", label;"a"}
   //////////////////////////////////////////////////////
   const getValue = () => {
-    const selectedOptions = [];
-    if (useroptions && values[fieldName] instanceof Array) {
-      const hashmap = {};
-
-      useroptions.forEach((opt) => {
-        if (!hashmap[opt.value]) {
-          hashmap[opt.value] = opt.label;
-        }
-      });
-      values[fieldName].forEach((val) => {
-        if (hashmap[val]) {
-          selectedOptions.push({ value: val, label: hashmap[val] });
-        } else {
-          // console.log("val", val);
-
-          selectedOptions.push({ value: val, label: val });
-        }
-      });
-    }
-    return selectedOptions;
-  };
-
-  const getValue2 = () => {
     let fieldVal = "";
 
     if (useroptions) {
@@ -94,14 +64,9 @@ export default function SingleSelect({
   return (
     <Select
       options={useroptions}
-      value={getValue2()}
+      value={getValue()}
       onChange={onChangeHandler}
-      defaultValue={defaultValue.value}
-      // value={() => {
-      //   return useroptions
-      //     ? useroptions.find((option) => option.value === values[fieldName])
-      //     : "";
-      // }}
+      // defaultValue={defaultValue}
     />
   );
 }
