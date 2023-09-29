@@ -6,6 +6,7 @@ import SingleSelect from "./SingleSelect";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
   const [app, setApp] = useState();
@@ -59,8 +60,12 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
           acronym: app?.App_Acronym ?? "",
           description: app?.App_Description ?? "",
           rnumber: app?.App_Rnumber ?? "",
-          startDate: app?.App_startDate ?? "",
-          endDate: app?.App_endDate ?? "",
+          startDate: app?.App_startDate
+            ? moment(app.App_startDate).format("YYYY-MM-DD")
+            : "",
+          endDate: app?.App_endDate
+            ? moment(app.App_endDate).format("YYYY-MM-DD")
+            : "",
           permitCreate: "",
           permitOpen: "",
           permitTodo: "",
