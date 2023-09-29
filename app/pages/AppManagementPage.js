@@ -100,7 +100,18 @@ export default function AppManagementPage() {
                     <td>{app.App_startDate}</td>
                     <td>{app.App_endDate}</td>
                     <td>
-                      <button>Edit App</button>
+                      <Button
+                        onClick={() =>
+                          navigate("/edit_app", {
+                            state: {
+                              username: app.App_Acronym,
+                            },
+                          })
+                        }
+                        variant="info"
+                      >
+                        Edit
+                      </Button>
                       <button>View Kanban Board</button>
                     </td>
                   </tr>
