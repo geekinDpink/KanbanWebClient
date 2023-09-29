@@ -78,12 +78,11 @@ export default function EditAppPage() {
     const token = localStorage.getItem("token");
 
     axios
-      .post("http://localhost:8080/app", params, {
+      .put("http://localhost:8080/app", params, {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
         console.log("create submit res", res);
-        resetForm();
         toast.success("Form Submitted");
       })
       .catch((err) => {
