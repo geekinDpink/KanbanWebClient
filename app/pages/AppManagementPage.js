@@ -112,7 +112,18 @@ export default function AppManagementPage() {
                       >
                         Edit
                       </Button>
-                      <button>View Kanban Board</button>
+                      <Button
+                        onClick={() =>
+                          navigate("/kanban_board", {
+                            state: {
+                              App_Acronym: app.App_Acronym,
+                            },
+                          })
+                        }
+                        variant="warning"
+                      >
+                        Kanban Board
+                      </Button>
                     </td>
                   </tr>
                 ))
