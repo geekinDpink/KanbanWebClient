@@ -56,89 +56,85 @@ export default function KanbanBoardPage() {
     <>
       <Container fluid>
         <Row>
+          <Col>
+            <h1>Kanban Board</h1>
+          </Col>
+          <Col>
+            <Button onClick={() => navigate("/create_app")} variant="info">
+              Create Task
+            </Button>
+          </Col>
+        </Row>
+        <Row>
           <Col xs={2}>
-            <Card>
-              <Card.Header>To Do</Card.Header>
-              <ListGroup>
-                {tasks
-                  .filter((task) => task.Task_state === "create")
-                  .map((task) => {
-                    console.log(task);
-                    return (
-                      <ListGroup.Item key={task.Task_id}>
-                        {task.Task_name}
-                      </ListGroup.Item>
-                    );
-                  })}
-              </ListGroup>
-            </Card>
+            <h3>Create</h3>
+            <div>
+              {tasks
+                .filter((task) => task.Task_state === "create")
+                .map((task) => {
+                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                })}
+            </div>
           </Col>
           <Col xs={2}>
-            <Card>
-              <Card.Header>To Do List</Card.Header>
-              <ListGroup>
-                {tasks
-                  .filter((task) => task.Task_state === "todolist")
-                  .map((task) => {
-                    return (
-                      <ListGroup.Item key={task.Task_id}>
-                        {task.Task_name}
-                      </ListGroup.Item>
-                    );
-                  })}
-              </ListGroup>
-            </Card>
+            <h3>To Do List</h3>
+            <div>
+              {tasks
+                .filter((task) => task.Task_state === "todolist")
+                .map((task) => {
+                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                })}
+            </div>
           </Col>
           <Col xs={2}>
-            <Card>
-              <Card.Header>Doing</Card.Header>
-              <ListGroup>
-                {tasks
-                  .filter((task) => task.Task_state === "doing")
-                  .map((task) => {
-                    return (
-                      <ListGroup.Item key={task.Task_id}>
-                        {task.Task_name}
-                      </ListGroup.Item>
-                    );
-                  })}
-              </ListGroup>
-            </Card>
+            <h3>Doing</h3>
+            <div>
+              {tasks
+                .filter((task) => task.Task_state === "doing")
+                .map((task) => {
+                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                })}
+            </div>
           </Col>
           <Col xs={2}>
-            <Card>
-              <Card.Header>Done</Card.Header>
-              <ListGroup>
-                {tasks
-                  .filter((task) => task.Task_state === "done")
-                  .map((task) => {
-                    return (
-                      <ListGroup.Item key={task.Task_id}>
-                        {task.Task_name}
-                      </ListGroup.Item>
-                    );
-                  })}
-              </ListGroup>
-            </Card>
+            <h3>Done</h3>
+            <div>
+              {tasks
+                .filter((task) => task.Task_state === "done")
+                .map((task) => {
+                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                })}
+            </div>
           </Col>
           <Col xs={2}>
-            <Card>
-              <Card.Header>Closed</Card.Header>
-              <ListGroup>
-                {tasks
-                  .filter((task) => task.Task_state === "closed")
-                  .map((task) => {
-                    return (
-                      <ListGroup.Item key={task.Task_id}>
-                        {task.Task_name}
-                      </ListGroup.Item>
-                    );
-                  })}
-              </ListGroup>
-            </Card>
+            <h3>Closed</h3>
+            <div>
+              {tasks
+                .filter((task) => task.Task_state === "closed")
+                .map((task) => {
+                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                })}
+            </div>
           </Col>
         </Row>
       </Container>
     </>
   );
 }
+
+/*Each lane is a card 
+<Col xs={2}>
+  <Card>
+    <Card.Header>Doing</Card.Header>
+    <ListGroup>
+      {tasks
+        .filter((task) => task.Task_state === "doing")
+        .map((task) => {
+          return (
+            <ListGroup.Item key={task.Task_id}>{task.Task_name}</ListGroup.Item>
+          );
+        })}
+    </ListGroup>
+  </Card>
+</Col>
+*/
