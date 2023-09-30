@@ -1,12 +1,22 @@
-import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";
+import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
-import { Col, Row, Container, ListGroup, Card } from "react-bootstrap";
+import {
+  Col,
+  Row,
+  Container,
+  Modal,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 import axios from "axios";
 export default function KanbanBoardPage() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
 
   const [tasks, setTasks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -60,7 +70,7 @@ export default function KanbanBoardPage() {
             <h1>Kanban Board</h1>
           </Col>
           <Col>
-            <Button onClick={() => navigate("/create_app")} variant="info">
+            <Button onClick={() => setShowModal(true)} variant="info">
               Create Task
             </Button>
           </Col>
@@ -117,6 +127,18 @@ export default function KanbanBoardPage() {
             </div>
           </Col>
         </Row>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header>Create Task</Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group controlId="name">
+                <Form.Label>Task name</Form.Label>
+                <Form.Control type="text" name="name" />
+              </Form.Group>
+              <Button type="submit">Create</Button>
+            </Form>
+          </Modal.Body>
+        </Modal>
       </Container>
     </>
   );
