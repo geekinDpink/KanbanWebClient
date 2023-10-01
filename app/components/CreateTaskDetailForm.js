@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import SingleSelect from "./SingleSelect";
@@ -8,8 +7,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function CreateTaskDetailForm() {
-  const [app, setApp] = useState();
+export default function CreateTaskDetailForm({ setTasks }) {
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
       .min(3, "Min 3 chars")
@@ -55,8 +53,11 @@ export default function CreateTaskDetailForm() {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        console.log("create submit res", res);
-        resetForm();
+        setTasks((task) => {
+          const arr = task;
+          arr.push(params);
+          return arr;
+        });
         toast.success("Form Submitted");
         resetForm();
       })

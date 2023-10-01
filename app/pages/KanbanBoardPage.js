@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -61,8 +60,6 @@ export default function KanbanBoardPage() {
       redDispatch({ type: "logout" });
     }
   }, []);
-
-  console.log(tasks);
 
   return (
     <>
@@ -129,10 +126,19 @@ export default function KanbanBoardPage() {
             </div>
           </Col>
         </Row>
-        <Modal show={showModal} onHide={() => setShowModal(false)}>
-          <Modal.Header>Create Task</Modal.Header>
+        <Modal show={showModal}>
+          <Modal.Header>
+            <p>Create Task</p>
+            <Button
+              onClick={() => {
+                setShowModal(false);
+              }}
+            >
+              Close
+            </Button>
+          </Modal.Header>
           <Modal.Body>
-            <CreateTaskDetailForm />
+            <CreateTaskDetailForm setTasks={setTasks} />
           </Modal.Body>
         </Modal>
       </Container>
