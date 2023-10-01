@@ -10,6 +10,7 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
+import TaskDetailForm from "../components/TaskDetailForm";
 import axios from "axios";
 export default function KanbanBoardPage() {
   const redDispatch = useContext(DispatchContext);
@@ -130,13 +131,7 @@ export default function KanbanBoardPage() {
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header>Create Task</Modal.Header>
           <Modal.Body>
-            <Form>
-              <Form.Group controlId="name">
-                <Form.Label>Task name</Form.Label>
-                <Form.Control type="text" name="name" />
-              </Form.Group>
-              <Button type="submit">Create</Button>
-            </Form>
+            <TaskDetailForm />
           </Modal.Body>
         </Modal>
       </Container>
