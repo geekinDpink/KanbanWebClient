@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -12,6 +11,7 @@ import {
 } from "react-bootstrap";
 import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
 import axios from "axios";
+
 export default function KanbanBoardPage() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
@@ -131,7 +131,7 @@ export default function KanbanBoardPage() {
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header>Create Task</Modal.Header>
           <Modal.Body>
-            <TaskDetailForm />
+            <CreateTaskDetailForm onSubmitHandler={onSubmitHandler} />
           </Modal.Body>
         </Modal>
       </Container>
