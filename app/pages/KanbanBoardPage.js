@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";
+import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -81,7 +82,18 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "create")
                 .map((task) => {
-                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                  return (
+                    <Card key={task.Task_id}>
+                      {task.Task_name}
+                      <Button
+                        onClick={() => {
+                          setShowModal(true);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Card>
+                  );
                 })}
             </div>
           </Col>
@@ -121,7 +133,18 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "closed")
                 .map((task) => {
-                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                  return (
+                    <Card key={task.Task_id}>
+                      {task.Task_name}
+                      <Button
+                        onClick={() => {
+                          setShowModal(true);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Card>
+                  );
                 })}
             </div>
           </Col>
