@@ -10,7 +10,7 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
-import TaskDetailForm from "../components/TaskDetailForm";
+import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
 import axios from "axios";
 export default function KanbanBoardPage() {
   const redDispatch = useContext(DispatchContext);

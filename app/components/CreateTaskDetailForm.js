@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import SingleSelect from "./SingleSelect";
@@ -6,7 +7,8 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
-export default function TaskDetailForm({ appAcronym, mode }) {
+
+export default function CreateTaskDetailForm() {
   const [app, setApp] = useState();
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
@@ -225,7 +227,7 @@ export default function TaskDetailForm({ appAcronym, mode }) {
                     width: "100%",
                   }}
                 >
-                  {mode === "create" ? "Create" : "Save"}
+                  Create
                 </button>
               </Col>
             </Row>
