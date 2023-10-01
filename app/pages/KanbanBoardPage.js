@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";
+import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -131,7 +132,7 @@ export default function KanbanBoardPage() {
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header>Create Task</Modal.Header>
           <Modal.Body>
-            <CreateTaskDetailForm onSubmitHandler={onSubmitHandler} />
+            <CreateTaskDetailForm />
           </Modal.Body>
         </Modal>
       </Container>
