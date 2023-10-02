@@ -4,12 +4,16 @@ import Col from "react-bootstrap/Col";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { Formik, Field, Form } from "formik";
+import { useLocation } from "react-router-dom";
+
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
 export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
   const [selTask, setSelTask] = useState({});
+  const appLocation = useLocation();
+  const { App_Acronym: appAcronym } = appLocation.state;
 
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
@@ -90,8 +94,6 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
   const onPromoteHandler = (values) => {
     const { taskId } = values;
 
-    console.log("Task_id", taskId);
-
     const params = {
       // Task_notes: notes,
       Task_id: taskId,
@@ -99,17 +101,52 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
 
     const token = localStorage.getItem("token");
 
-    axios
-      .put("http://localhost:8080/task/promote", params, {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        toast.success("Form Submitted");
-      })
-      .catch((err) => {
+    const promoteAndRefreshBoard = async () => {
+      try {
+        const res = await axios.put(
+          "http://localhost:8080/task/promote",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        if (res) {
+          toast.success("Successfully Promoted");
+          const params2 = { Task_app_Acronym: appAcronym };
+          try {
+            const resAllTaskByAcroynm = await axios.post(
+              "http://localhost:8080/tasks/acronym",
+              params2,
+              {
+                headers: { Authorization: `Basic ${token}` },
+              }
+            );
+            if (resAllTaskByAcroynm) {
+              setTasks(resAllTaskByAcroynm.data);
+            }
+          } catch (error) {
+            toast.error(`Unable to refresh`);
+          }
+        }
+      } catch (err) {
         console.log("err", err);
-        toast.error(`Unable to submit`);
-      });
+        toast.error(`Unable to Promote`);
+      }
+    };
+
+    promoteAndRefreshBoard();
+
+    // const res = axios
+    //   .put("http://localhost:8080/task/promote", params, {
+    //     headers: { Authorization: `Basic ${token}` },
+    //   })
+    //   .then((res) => {
+    //     toast.success("Form Submitted");
+    //   })
+    //   .catch((err) => {
+    //     console.log("err", err);
+    //     toast.error(`Unable to submit`);
+    //   });
   };
 
   return (
