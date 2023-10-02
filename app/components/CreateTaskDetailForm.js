@@ -10,6 +10,7 @@ import moment from "moment";
 
 export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
   const [username, setUsername] = useState();
+  const [appRn, setAppRn] = useState();
 
   const TaskSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
@@ -17,15 +18,35 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
     taskId: Yup.number().positive().integer().required("Required"),
   });
 
+  // onload get username and running number for creater/owner fields and task id field
   useEffect(() => {
     const getUser = async () => {
       try {
         const token = localStorage.getItem("token");
-
-        const response = await axios.get("http://localhost:8080/user", {
+        const res = await axios.get("http://localhost:8080/user", {
           headers: { Authorization: `Basic ${token}` },
         });
-        setUsername(response.data[0].username);
+        if (res.data.length > 0) {
+          setUsername(res.data[0].username);
+        } else {
+          toast("Unable to retrieve username");
+        }
+      } catch (error) {
+        console.log(error);
+        toast("Database transaction/connection error");
+      }
+      // to retrieve running number to generate task id
+      try {
+        const token = localStorage.getItem("token");
+        const paramsAppAcron = { App_Acronym: appAcronym };
+        const response = await axios.post(
+          "http://localhost:8080/app/acronym",
+          paramsAppAcron,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        setAppRn(response.data[0].App_Rnumber);
       } catch (error) {
         console.log(error);
       }
@@ -99,7 +120,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
           name: "",
           description: "",
           notes: "",
-          taskId: "",
+          taskId: `${appAcronym}_${appRn}` ?? "",
           plan: "",
           appAcronym: appAcronym ?? "",
           taskState: "open",

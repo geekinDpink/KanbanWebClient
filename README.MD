@@ -4,6 +4,9 @@ After Create Task, update task
 Not empty - Name, Desc
 App Acronymn, Note gen
 Plan Appear as Label on note in kanban board e.g. sprint 1
+Stop Work <- Start Work -> Submit Work + send email
+Done to reject or change plan to other sprint, Else close
+Mailtrap
 
 Done
 Clear Form
