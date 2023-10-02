@@ -67,6 +67,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
+        // offline addition of task
         setTasks((task) => {
           const arr = task;
           arr.push(params);
