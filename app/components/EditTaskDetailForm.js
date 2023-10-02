@@ -36,11 +36,10 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
       })
       .then((res) => {
         setSelTask(res.data[0]);
-        toast.success("Form Submitted");
       })
       .catch((err) => {
         console.log("err", err);
-        toast.error(`Unable to submit`);
+        toast.error(`Unable to retrieve task details`);
       });
   }, []);
 
