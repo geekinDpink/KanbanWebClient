@@ -14,7 +14,7 @@ export default function HomePage() {
     if (token) {
       // Get my user detail based on username in token
       axios
-        .get("http://localhost:8080/user/admin", {
+        .get("http://localhost:8080/user/auth", {
           headers: { Authorization: `Basic ${token}` },
         })
         .then((res) => {

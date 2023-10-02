@@ -19,7 +19,7 @@ export default function MyProfile() {
     const token = localStorage.getItem("token");
     const authUserFetchData = async (token) => {
       try {
-        const res = await axios.get("http://localhost:8080/user/admin", {
+        const res = await axios.get("http://localhost:8080/user/auth", {
           headers: { Authorization: `Basic ${token}` },
         });
 

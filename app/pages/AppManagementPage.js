@@ -24,7 +24,7 @@ export default function AppManagementPage() {
 
     const authUserFetchData = async (token) => {
       try {
-        const res = await axios.get("http://localhost:8080/user/admin", {
+        const res = await axios.get("http://localhost:8080/user/auth", {
           headers: { Authorization: `Basic ${token}` },
         });
 
@@ -147,7 +147,7 @@ export default function AppManagementPage() {
 //   if (token) {
 //     // Get my user detail based on username in token
 //     axios
-//       .get("http://localhost:8080/user/admin", {
+//       .get("http://localhost:8080/user/auth", {
 //         headers: { Authorization: `Basic ${token}` },
 //       })
 //       .then((res) => {
