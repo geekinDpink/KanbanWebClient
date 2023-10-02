@@ -153,7 +153,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <label htmlFor="taskId">Task ID</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="taskId" name="taskId" style={{ width: "100%" }} />
+                <Field
+                  id="taskId"
+                  name="taskId"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.taskId && errors.taskId && (
                   <div className="formErrors">{errors.taskId}</div>
                 )}
@@ -179,6 +184,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                   id="appAcronym"
                   name="appAcronym"
                   style={{ width: "100%" }}
+                  disabled
                 />
                 {touched.appAcronym && errors.appAcronym && (
                   <div className="formErrors">{errors.appAcronym}</div>
@@ -194,6 +200,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                   id="taskState"
                   name="taskState"
                   style={{ width: "100%" }}
+                  disabled
                 />
                 {touched.taskState && errors.taskState && (
                   <div className="formErrors">{errors.taskState}</div>
@@ -205,7 +212,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <label htmlFor="creator">Creator</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="creator" name="creator" style={{ width: "100%" }} />
+                <Field
+                  id="creator"
+                  name="creator"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.creator && errors.creator && (
                   <div className="formErrors">{errors.creator}</div>
                 )}
@@ -216,7 +228,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <label htmlFor="owner">Owner</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="owner" name="owner" style={{ width: "100%" }} />
+                <Field
+                  id="owner"
+                  name="owner"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.owner && errors.owner && (
                   <div className="formErrors">{errors.owner}</div>
                 )}
@@ -231,6 +248,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                   id="createDate"
                   name="createDate"
                   type="date"
+                  disabled
                   style={{ width: "100%" }}
                 />
                 {touched.createDate && errors.createDate && (
