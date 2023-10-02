@@ -172,6 +172,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <Field
                   id="appAcronym"
                   name="appAcronym"
+                  disabled
                   style={{ width: "100%" }}
                 />
                 {touched.appAcronym && errors.appAcronym && (
@@ -187,6 +188,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <Field
                   id="taskState"
                   name="taskState"
+                  disabled
                   style={{ width: "100%" }}
                 />
                 {touched.taskState && errors.taskState && (
@@ -199,7 +201,12 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <label htmlFor="creator">Creator</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="creator" name="creator" style={{ width: "100%" }} />
+                <Field
+                  id="creator"
+                  name="creator"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.creator && errors.creator && (
                   <div className="formErrors">{errors.creator}</div>
                 )}
@@ -210,7 +217,12 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <label htmlFor="owner">Owner</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="owner" name="owner" style={{ width: "100%" }} />
+                <Field
+                  id="owner"
+                  name="owner"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.owner && errors.owner && (
                   <div className="formErrors">{errors.owner}</div>
                 )}
@@ -225,6 +237,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                   id="createDate"
                   name="createDate"
                   type="date"
+                  disabled
                   style={{ width: "100%" }}
                 />
                 {touched.createDate && errors.createDate && (

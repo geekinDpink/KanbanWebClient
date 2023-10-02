@@ -3,6 +3,7 @@ Workflow bug of editing own usergroup after removing ownself as admin
 After Create Task, update task
 Not empty - Name, Desc
 App Acronymn, Note gen
+Plan Appear as Label on note in kanban board e.g. sprint 1
 
 Done
 Clear Form
