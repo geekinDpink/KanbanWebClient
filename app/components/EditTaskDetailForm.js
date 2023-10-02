@@ -135,18 +135,53 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
     };
 
     promoteAndRefreshBoard();
+  };
 
-    // const res = axios
-    //   .put("http://localhost:8080/task/promote", params, {
-    //     headers: { Authorization: `Basic ${token}` },
-    //   })
-    //   .then((res) => {
-    //     toast.success("Form Submitted");
-    //   })
-    //   .catch((err) => {
-    //     console.log("err", err);
-    //     toast.error(`Unable to submit`);
-    //   });
+  // Submit edited value to database
+  const onDemoteHandler = (values) => {
+    const { taskId } = values;
+
+    const params = {
+      // Task_notes: notes,
+      Task_id: taskId,
+    };
+
+    const token = localStorage.getItem("token");
+
+    const demoteAndRefreshBoard = async () => {
+      try {
+        const res = await axios.put(
+          "http://localhost:8080/task/demote",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        if (res) {
+          toast.success("Task Demoted");
+          const params2 = { Task_app_Acronym: appAcronym };
+          try {
+            const resAllTaskByAcroynm = await axios.post(
+              "http://localhost:8080/tasks/acronym",
+              params2,
+              {
+                headers: { Authorization: `Basic ${token}` },
+              }
+            );
+            if (resAllTaskByAcroynm) {
+              setTasks(resAllTaskByAcroynm.data);
+            }
+          } catch (error) {
+            toast.error(`Unable to refresh`);
+          }
+        }
+      } catch (err) {
+        console.log("err", err);
+        toast.error(`Unable to Demote`);
+      }
+    };
+
+    demoteAndRefreshBoard();
   };
 
   return (
@@ -322,6 +357,16 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
               <Col xs sm={5} md={4}>
+                <Button
+                  style={{
+                    width: "100%",
+                  }}
+                  onClick={() => {
+                    onDemoteHandler(values);
+                  }}
+                >
+                  Demote
+                </Button>
                 <Button
                   type="submit"
                   style={{
