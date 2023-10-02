@@ -1,6 +1,8 @@
 TODO:
 Workflow bug of editing own usergroup after removing ownself as admin
 After Create Task, update task
+Not empty - Name, Desc
+App Acronymn, Note gen
 
 Done
 Clear Form

@@ -11,6 +11,7 @@ import {
   Form,
 } from "react-bootstrap";
 import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
+import EditTaskDetailForm from "../components/EditTaskDetailForm";
 import axios from "axios";
 
 export default function KanbanBoardPage() {
@@ -18,7 +19,8 @@ export default function KanbanBoardPage() {
   const redState = useContext(StateContext);
 
   const [tasks, setTasks] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function KanbanBoardPage() {
             <h1>Kanban Board</h1>
           </Col>
           <Col>
-            <Button onClick={() => setShowModal(true)} variant="info">
+            <Button onClick={() => setShowCreateModal(true)} variant="info">
               Create Task
             </Button>
           </Col>
@@ -87,7 +89,7 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
-                          setShowModal(true);
+                          setShowEditModal(true);
                         }}
                       >
                         Edit
@@ -138,7 +140,7 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
-                          setShowModal(true);
+                          setShowCreateModal(true);
                         }}
                       >
                         Edit
@@ -149,19 +151,36 @@ export default function KanbanBoardPage() {
             </div>
           </Col>
         </Row>
-        <Modal show={showModal}>
+        <Modal show={showCreateModal}>
           <Modal.Header>
             <p>Create Task</p>
             <Button
               onClick={() => {
-                setShowModal(false);
+                setShowCreateModal(false);
               }}
+              variant="secondary"
             >
-              Close
+              Back
             </Button>
           </Modal.Header>
           <Modal.Body>
             <CreateTaskDetailForm setTasks={setTasks} />
+          </Modal.Body>
+        </Modal>
+        <Modal show={showEditModal}>
+          <Modal.Header>
+            <p>Edit Task</p>
+            <Button
+              onClick={() => {
+                setShowEditModal(false);
+              }}
+              variant="secondary"
+            >
+              Back
+            </Button>
+          </Modal.Header>
+          <Modal.Body>
+            <EditTaskDetailForm setTasks={setTasks} />
           </Modal.Body>
         </Modal>
       </Container>
