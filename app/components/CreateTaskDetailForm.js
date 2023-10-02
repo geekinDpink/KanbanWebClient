@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
 import SingleSelect from "./SingleSelect";
@@ -8,16 +9,29 @@ import { toast } from "react-toastify";
 import moment from "moment";
 
 export default function CreateTaskDetailForm({ setTasks }) {
-  const AppSchema = Yup.object().shape({
-    acronym: Yup.string()
-      .min(3, "Min 3 chars")
-      .max(50, "Max 50 chars")
-      .required("Required"),
-    description: Yup.string(),
-    rnumber: Yup.number().positive().integer().required("Required"),
-    startDate: Yup.date(),
-    endDate: Yup.date(),
+  const [username, setUsername] = useState();
+
+  const TaskSchema = Yup.object().shape({
+    name: Yup.string().required("Required"),
+    description: Yup.string().required("Required"),
+    taskId: Yup.number().positive().integer().required("Required"),
   });
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get("http://localhost:8080/user", {
+          headers: { Authorization: `Basic ${token}` },
+        });
+        setUsername(response.data[0].username);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  }, []);
 
   const onSubmitHandler = (values, resetForm) => {
     const {
@@ -77,12 +91,12 @@ export default function CreateTaskDetailForm({ setTasks }) {
           taskId: "",
           plan: "",
           appAcronym: "",
-          taskState: "",
-          creator: "",
-          owner: "",
+          taskState: "open",
+          creator: username ?? "",
+          owner: username ?? "",
           createDate: new Date(),
         }}
-        // validationSchema={AppSchema}
+        validationSchema={TaskSchema}
         enableReinitialize
         onSubmit={(values, { resetForm }) => {
           onSubmitHandler(values, resetForm);
