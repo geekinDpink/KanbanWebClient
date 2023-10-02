@@ -8,7 +8,9 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function EditTaskDetailForm({ setTasks, taskId }) {
+export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
+  const [selTask, setSelTask] = useState({});
+
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
       .min(3, "Min 3 chars")
@@ -19,6 +21,28 @@ export default function EditTaskDetailForm({ setTasks, taskId }) {
     startDate: Yup.date(),
     endDate: Yup.date(),
   });
+
+  useEffect(() => {
+    const params = {
+      Task_id: selectedTaskId,
+    };
+
+    const token = localStorage.getItem("token");
+
+    axios
+      .post("http://localhost:8080/task/id", params, {
+        headers: { Authorization: `Basic ${token}` },
+      })
+      .then((res) => {
+        console.log(res.data[0]);
+        setSelTask(res.data[0]);
+        toast.success("Form Submitted");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        toast.error(`Unable to submit, ${err.response.data.toLowerCase()}`);
+      });
+  }, []);
 
   const onSubmitHandler = (values, resetForm) => {
     const {
@@ -72,16 +96,16 @@ export default function EditTaskDetailForm({ setTasks, taskId }) {
     <>
       <Formik
         initialValues={{
-          name: "",
-          description: "",
-          notes: "",
-          taskId: "",
-          plan: "",
-          appAcronym: "",
-          taskState: "",
-          creator: "",
-          owner: "",
-          createDate: new Date(),
+          name: selTask.Task_name ?? "",
+          description: selTask.Task_description ?? "",
+          notes: selTask.Task_notes ?? "",
+          taskId: selTask.Task_id ?? "",
+          plan: selTask.Task_plan ?? "",
+          appAcronym: selTask.Task_app_Acronym ?? "",
+          taskState: selTask.Task_state ?? "",
+          creator: selTask.Task_creator ?? "",
+          owner: selTask.Task_owner ?? "",
+          createDate: selTask.Task_createDate ?? "",
         }}
         // validationSchema={AppSchema}
         enableReinitialize

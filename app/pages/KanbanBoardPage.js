@@ -21,6 +21,7 @@ export default function KanbanBoardPage() {
   const [tasks, setTasks] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedTaskId, setSelectedTaskId] = useState("");
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -89,6 +90,7 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
+                          setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
                         }}
                       >
@@ -105,7 +107,19 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "todolist")
                 .map((task) => {
-                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                  return (
+                    <Card key={task.Task_id}>
+                      {task.Task_name}
+                      <Button
+                        onClick={() => {
+                          setSelectedTaskId(task.Task_id);
+                          setShowEditModal(true);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Card>
+                  );
                 })}
             </div>
           </Col>
@@ -115,7 +129,19 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "doing")
                 .map((task) => {
-                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                  return (
+                    <Card key={task.Task_id}>
+                      {task.Task_name}
+                      <Button
+                        onClick={() => {
+                          setSelectedTaskId(task.Task_id);
+                          setShowEditModal(true);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Card>
+                  );
                 })}
             </div>
           </Col>
@@ -125,7 +151,19 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "done")
                 .map((task) => {
-                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                  return (
+                    <Card key={task.Task_id}>
+                      {task.Task_name}
+                      <Button
+                        onClick={() => {
+                          setSelectedTaskId(task.Task_id);
+                          setShowEditModal(true);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                    </Card>
+                  );
                 })}
             </div>
           </Col>
@@ -135,18 +173,7 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "closed")
                 .map((task) => {
-                  return (
-                    <Card key={task.Task_id}>
-                      {task.Task_name}
-                      <Button
-                        onClick={() => {
-                          setShowCreateModal(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                    </Card>
-                  );
+                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
                 })}
             </div>
           </Col>
@@ -180,7 +207,10 @@ export default function KanbanBoardPage() {
             </Button>
           </Modal.Header>
           <Modal.Body>
-            <EditTaskDetailForm setTasks={setTasks} />
+            <EditTaskDetailForm
+              setTasks={setTasks}
+              selectedTaskId={selectedTaskId}
+            />
           </Modal.Body>
         </Modal>
       </Container>
