@@ -12,6 +12,8 @@ import {
 } from "react-bootstrap";
 import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
 import EditTaskDetailForm from "../components/EditTaskDetailForm";
+import { useLocation } from "react-router-dom";
+
 import axios from "axios";
 
 export default function KanbanBoardPage() {
@@ -22,6 +24,9 @@ export default function KanbanBoardPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState("");
+
+  const appLocation = useLocation();
+  const { App_Acronym: appAcronym } = appLocation.state;
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -191,7 +196,7 @@ export default function KanbanBoardPage() {
             </Button>
           </Modal.Header>
           <Modal.Body>
-            <CreateTaskDetailForm setTasks={setTasks} />
+            <CreateTaskDetailForm setTasks={setTasks} appAcronym={appAcronym} />
           </Modal.Body>
         </Modal>
         <Modal show={showEditModal}>

@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function CreateTaskDetailForm({ setTasks }) {
+export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
   const [username, setUsername] = useState();
 
   const TaskSchema = Yup.object().shape({
@@ -90,7 +90,7 @@ export default function CreateTaskDetailForm({ setTasks }) {
           notes: "",
           taskId: "",
           plan: "",
-          appAcronym: "",
+          appAcronym: appAcronym ?? "",
           taskState: "open",
           creator: username ?? "",
           owner: username ?? "",
