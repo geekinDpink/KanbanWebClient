@@ -13,6 +13,7 @@ import {
 import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
 import EditTaskDetailForm from "../components/EditTaskDetailForm";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import axios from "axios";
 
@@ -50,15 +51,20 @@ export default function KanbanBoardPage() {
       }
 
       try {
-        const response = await axios.get("http://localhost:8080/tasks", {
-          headers: { Authorization: `Basic ${token}` },
-        });
+        const params = { Task_app_Acronym: appAcronym };
+        const response = await axios.post(
+          "http://localhost:8080/tasks/acronym",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
         console.log("task res", response);
         setTasks(response.data);
       } catch (error) {
+        toast("No task record found");
         // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(error);
-        setApplications([]);
       }
     };
 
