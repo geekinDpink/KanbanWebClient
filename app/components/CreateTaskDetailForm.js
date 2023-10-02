@@ -91,7 +91,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
           taskId: "",
           plan: "",
           appAcronym: appAcronym ?? "",
-          taskState: "open",
+          taskState: "create",
           creator: username ?? "",
           owner: username ?? "",
           createDate: new Date(),
