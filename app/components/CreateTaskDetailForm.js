@@ -94,7 +94,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
           taskState: "create",
           creator: username ?? "",
           owner: username ?? "",
-          createDate: new Date(),
+          createDate: moment(new Date()).format("YYYY-MM-DD"),
         }}
         validationSchema={TaskSchema}
         enableReinitialize
