@@ -14,90 +14,42 @@ export default function MyProfile() {
   const redDispatch = useContext(DispatchContext);
   const redState = useContext(StateContext);
 
-  // Get User profile and Authentication and Authorisation (Admin) Check
+  // Authentication and Authorisation (Admin) Check and get userprofile
   useEffect(() => {
     const token = localStorage.getItem("token");
-
-    if (token) {
-      // Get my user detail based on username in token
-      axios
-        .get("http://localhost:8080/user", {
+    const authUserFetchData = async (token) => {
+      try {
+        const res = await axios.get("http://localhost:8080/user/admin", {
           headers: { Authorization: `Basic ${token}` },
-        })
-        .then((res) => {
-          console.log("getUserProfile res", res.data);
-          setUser(res.data[0]);
-
-          if (res && token) {
-            redDispatch({ type: "login" });
-          }
-          if (res.data[0].active !== 1) {
-            redDispatch({ type: "logout" });
-          }
-          if (
-            res.data[0].usergroup.toLowerCase().split(",").includes("admin")
-          ) {
-            redDispatch({ type: "isAdmin" });
-          } else {
-            redDispatch({ type: "notAdmin" });
-          }
-        })
-        .catch((err) => {
-          // api call is validation process e.g. token, if fail refuse entry and logout
-          console.log(err);
-          redDispatch({ type: "logout" });
         });
+
+        if (res.data.isAdmin) {
+          redDispatch({ type: "isAdmin" });
+        } else {
+          redDispatch({ type: "notAdmin" });
+        }
+      } catch (err) {
+        // api call is validation process e.g. token, if fail refuse entry and logout
+        console.log(err);
+        redDispatch({ type: "logout" });
+      }
+
+      try {
+        const response = await axios.get("http://localhost:8080/user", {
+          headers: { Authorization: `Basic ${token}` },
+        });
+        console.log("task res", response);
+        setUser(response.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (token) {
+      authUserFetchData(token);
     } else {
       redDispatch({ type: "logout" });
     }
   }, []);
-
-  // Authentication Check and Get User Details
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-
-  //   if (token) {
-  //     // Get my user detail based on username in token
-  //     axios
-  //       .get("http://localhost:8080/user", {
-  //         headers: { Authorization: `Basic ${token}` },
-  //       })
-  //       .then((res) => {
-  //         console.log("getUserProfile res", res.data);
-  //         // setUser(res.data[0]);
-  //         if (res) {
-  //           //console.log("Kanban Before Disp logout", redState);
-  //           setUser(res.data[0]);
-  //           redDispatch({ type: "login" });
-  //           //console.log("Kanban Before Disp logout", redState);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         // api call is validation process e.g. token, if fail refuse entry and logout
-  //         console.log(err);
-  //         //console.log("CreateUser Before Disp logout", redState);
-  //         redDispatch({ type: "logout" });
-  //         //console.log("CreateUser After Disp logout", redState);
-  //       });
-  //   } else {
-  //     redDispatch({ type: "logout" });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-
-  //   // Get my user detail based on username in token
-  //   axios
-  //     .get("http://localhost:8080/user", {
-  //       headers: { Authorization: `Basic ${token}` },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setUser(res.data[0]);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
 
   return (
     <>
@@ -163,3 +115,88 @@ export default function MyProfile() {
     </>
   );
 }
+
+// Get User profile and Authentication and Authorisation (Admin) Check - with getuserprofile and manually check isAdmin
+// useEffect(() => {
+//   const token = localStorage.getItem("token");
+
+//   if (token) {
+//     // Get my user detail based on username in token
+//     axios
+//       .get("http://localhost:8080/user", {
+//         headers: { Authorization: `Basic ${token}` },
+//       })
+//       .then((res) => {
+//         console.log("getUserProfile res", res.data);
+//         setUser(res.data[0]);
+
+//         if (res && token) {
+//           redDispatch({ type: "login" });
+//         }
+//         if (res.data[0].active !== 1) {
+//           redDispatch({ type: "logout" });
+//         }
+//         if (
+//           res.data[0].usergroup.toLowerCase().split(",").includes("admin")
+//         ) {
+//           redDispatch({ type: "isAdmin" });
+//         } else {
+//           redDispatch({ type: "notAdmin" });
+//         }
+//       })
+//       .catch((err) => {
+//         // api call is validation process e.g. token, if fail refuse entry and logout
+//         console.log(err);
+//         redDispatch({ type: "logout" });
+//       });
+//   } else {
+//     redDispatch({ type: "logout" });
+//   }
+// }, []);
+
+// Authentication Check and Get User Details
+// useEffect(() => {
+//   const token = localStorage.getItem("token");
+
+//   if (token) {
+//     // Get my user detail based on username in token
+//     axios
+//       .get("http://localhost:8080/user", {
+//         headers: { Authorization: `Basic ${token}` },
+//       })
+//       .then((res) => {
+//         console.log("getUserProfile res", res.data);
+//         // setUser(res.data[0]);
+//         if (res) {
+//           //console.log("Kanban Before Disp logout", redState);
+//           setUser(res.data[0]);
+//           redDispatch({ type: "login" });
+//           //console.log("Kanban Before Disp logout", redState);
+//         }
+//       })
+//       .catch((err) => {
+//         // api call is validation process e.g. token, if fail refuse entry and logout
+//         console.log(err);
+//         //console.log("CreateUser Before Disp logout", redState);
+//         redDispatch({ type: "logout" });
+//         //console.log("CreateUser After Disp logout", redState);
+//       });
+//   } else {
+//     redDispatch({ type: "logout" });
+//   }
+// }, []);
+
+// useEffect(() => {
+//   const token = localStorage.getItem("token");
+
+//   // Get my user detail based on username in token
+//   axios
+//     .get("http://localhost:8080/user", {
+//       headers: { Authorization: `Basic ${token}` },
+//     })
+//     .then((res) => {
+//       console.log(res.data);
+//       setUser(res.data[0]);
+//     })
+//     .catch((err) => console.log(err));
+// }, []);
