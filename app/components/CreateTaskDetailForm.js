@@ -15,7 +15,6 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
   const TaskSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
-    taskId: Yup.number().positive().integer().required("Required"),
   });
 
   // onload get username and running number for creater/owner fields and task id field
@@ -179,7 +178,12 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <label htmlFor="taskId">Task ID</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="taskId" name="taskId" style={{ width: "100%" }} />
+                <Field
+                  id="taskId"
+                  name="taskId"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.taskId && errors.taskId && (
                   <div className="formErrors">{errors.taskId}</div>
                 )}

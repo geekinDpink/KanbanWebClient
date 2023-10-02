@@ -10,7 +10,6 @@ import moment from "moment";
 
 export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
   const [selTask, setSelTask] = useState({});
-  const allTaskState = ["open", "todolist", "doing", "done", "closed"];
 
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
