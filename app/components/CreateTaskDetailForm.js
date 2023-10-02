@@ -62,24 +62,34 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
 
     const token = localStorage.getItem("token");
 
-    axios
-      .post("http://localhost:8080/task", params, {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        // offline addition of task
-        setTasks((task) => {
-          const arr = task;
-          arr.push(params);
-          return arr;
+    const submitTaskAndRefreshBoard = async () => {
+      try {
+        // save task to db
+        const resTask = await axios.post("http://localhost:8080/task", params, {
+          headers: { Authorization: `Basic ${token}` },
         });
-        toast.success("Form Submitted");
-        resetForm();
-      })
-      .catch((err) => {
-        console.log("err", err);
-        toast.error(`Unable to submit, ${err.response.data.toLowerCase()}`);
-      });
+        if (resTask) {
+          toast.success("Form Submitted");
+
+          // retrieve all task by app acronym and update tasks state/kanbard board
+          const params2 = { Task_app_Acronym: appAcronym };
+          const resAllTaskByAcroynm = await axios.post(
+            "http://localhost:8080/tasks/acronym",
+            params2,
+            {
+              headers: { Authorization: `Basic ${token}` },
+            }
+          );
+          if (resAllTaskByAcroynm) {
+            setTasks(resAllTaskByAcroynm.data);
+          }
+          resetForm();
+        }
+      } catch (error) {
+        toast.error("Unable to submit");
+      }
+    };
+    submitTaskAndRefreshBoard();
   };
 
   return (
@@ -266,3 +276,23 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
     </>
   );
 }
+
+// Callback method for task retreival and offline add task
+// axios
+//   .post("http://localhost:8080/task", params, {
+//     headers: { Authorization: `Basic ${token}` },
+//   })
+//   .then((res) => {
+//     // offline addition of task
+//     setTasks((task) => {
+//       const arr = task;
+//       arr.push(params);
+//       return arr;
+//     });
+//     toast.success("Form Submitted");
+//     resetForm();
+//   })
+//   .catch((err) => {
+//     console.log("err", err);
+//     toast.error(`Unable to submit, ${err.response.data.toLowerCase()}`);
+//   });
