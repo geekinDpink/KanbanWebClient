@@ -239,7 +239,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <label htmlFor="notes">Task Notes</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="notes" name="notes" style={{ width: "100%" }} />
+                <Field
+                  id="notes"
+                  name="notes"
+                  style={{ width: "100%" }}
+                  component="textarea"
+                />
                 {touched.notes && errors.notes && (
                   <div className="formErrors">{errors.notes}</div>
                 )}
