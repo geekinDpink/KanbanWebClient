@@ -86,6 +86,32 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
       });
   };
 
+  // Submit edited value to database
+  const onPromoteHandler = (values) => {
+    const { taskId } = values;
+
+    console.log("Task_id", taskId);
+
+    const params = {
+      // Task_notes: notes,
+      Task_id: taskId,
+    };
+
+    const token = localStorage.getItem("token");
+
+    axios
+      .put("http://localhost:8080/task/promote", params, {
+        headers: { Authorization: `Basic ${token}` },
+      })
+      .then((res) => {
+        toast.success("Form Submitted");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        toast.error(`Unable to submit`);
+      });
+  };
+
   return (
     <>
       <Formik
@@ -266,6 +292,16 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                   }}
                 >
                   Save
+                </Button>
+                <Button
+                  style={{
+                    width: "100%",
+                  }}
+                  onClick={() => {
+                    onPromoteHandler(values);
+                  }}
+                >
+                  Promote
                 </Button>
               </Col>
             </Row>
