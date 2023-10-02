@@ -22,6 +22,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
     endDate: Yup.date(),
   });
 
+  // On load, populate selected Task details on modal by saving to selTask state for loading to initial form values
   useEffect(() => {
     const params = {
       Task_id: selectedTaskId,
@@ -34,17 +35,17 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        console.log(res.data[0]);
         setSelTask(res.data[0]);
         toast.success("Form Submitted");
       })
       .catch((err) => {
         console.log("err", err);
-        toast.error(`Unable to submit, ${err.response.data.toLowerCase()}`);
+        toast.error(`Unable to submit`);
       });
   }, []);
 
-  const onSubmitHandler = (values, resetForm) => {
+  // Submit edited value to database
+  const onSubmitHandler = (values) => {
     const {
       name,
       description,
@@ -78,17 +79,11 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        setTasks((task) => {
-          const arr = task;
-          arr.push(params);
-          return arr;
-        });
         toast.success("Form Submitted");
-        resetForm();
       })
       .catch((err) => {
         console.log("err", err);
-        toast.error(`Unable to submit, ${err.response.data.toLowerCase()}`);
+        toast.error(`Unable to submit`);
       });
   };
 
