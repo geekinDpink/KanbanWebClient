@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Button } from "react-bootstrap";
 import axios from "axios";
-import SingleSelect from "./SingleSelect";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ import moment from "moment";
 
 export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
   const [selTask, setSelTask] = useState({});
+  const allTaskState = ["open", "todolist", "doing", "done", "closed"];
 
   const AppSchema = Yup.object().shape({
     acronym: Yup.string()
@@ -241,14 +242,14 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
               <Col xs sm={5} md={4}>
-                <button
+                <Button
                   type="submit"
                   style={{
                     width: "100%",
                   }}
                 >
                   Save
-                </button>
+                </Button>
               </Col>
             </Row>
           </Form>

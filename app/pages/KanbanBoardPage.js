@@ -88,7 +88,7 @@ export default function KanbanBoardPage() {
             <h3>Create</h3>
             <div>
               {tasks
-                .filter((task) => task.Task_state === "create")
+                .filter((task) => task.Task_state === "open")
                 .map((task) => {
                   return (
                     <Card key={task.Task_id}>
