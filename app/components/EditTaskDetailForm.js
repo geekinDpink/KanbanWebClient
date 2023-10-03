@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Button } from "react-bootstrap";
 import axios from "axios";
@@ -10,7 +9,11 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
+export default function EditTaskDetailForm({
+  setTasks,
+  selectedTaskId,
+  isPermit,
+}) {
   const [selTask, setSelTask] = useState({});
   const appLocation = useLocation();
   const { App_Acronym: appAcronym } = appLocation.state;
@@ -393,16 +396,18 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
               <Col xs sm={5} md={4}>
-                <Button
-                  style={{
-                    width: "100%",
-                  }}
-                  onClick={() => {
-                    onDemoteHandler(values);
-                  }}
-                >
-                  Demote
-                </Button>
+                {isPermit && (
+                  <Button
+                    style={{
+                      width: "100%",
+                    }}
+                    onClick={() => {
+                      onDemoteHandler(values);
+                    }}
+                  >
+                    Demote
+                  </Button>
+                )}
                 <Button
                   // type="submit"
                   style={{
@@ -414,16 +419,18 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 >
                   Add Note
                 </Button>
-                <Button
-                  style={{
-                    width: "100%",
-                  }}
-                  onClick={() => {
-                    onPromoteHandler(values);
-                  }}
-                >
-                  Promote
-                </Button>
+                {isPermit && (
+                  <Button
+                    style={{
+                      width: "100%",
+                    }}
+                    onClick={() => {
+                      onPromoteHandler(values);
+                    }}
+                  >
+                    Promote
+                  </Button>
+                )}
               </Col>
             </Row>
           </Form>

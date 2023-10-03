@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";
+import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -24,6 +25,7 @@ export default function KanbanBoardPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState("");
+  const [isPermit, setIsPermit] = useState(false);
 
   const appLocation = useLocation();
   const { App_Acronym: appAcronym } = appLocation.state;
@@ -137,6 +139,11 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
+                          console.log("redState", redState);
+                          if (redState.isOpen) {
+                            console.log("open permit true");
+                            setIsPermit(true);
+                          }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
                         }}
@@ -159,6 +166,9 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
+                          if (redState.isTodolist) {
+                            setIsPermit(true);
+                          }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
                         }}
@@ -181,6 +191,9 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
+                          if (redState.isDoing) {
+                            setIsPermit(true);
+                          }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
                         }}
@@ -203,6 +216,9 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
+                          if (redState.isDone) {
+                            setIsPermit(true);
+                          }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
                         }}
@@ -257,6 +273,7 @@ export default function KanbanBoardPage() {
             <EditTaskDetailForm
               setTasks={setTasks}
               selectedTaskId={selectedTaskId}
+              isPermit={isPermit}
             />
           </Modal.Body>
         </Modal>
