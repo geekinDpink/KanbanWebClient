@@ -29,6 +29,11 @@ export default function App() {
   const initialState = {
     isLoggedIn: false,
     isAdmin: false,
+    isCreate: false,
+    isOpen: false,
+    isTodolist: false,
+    isDoing: false,
+    isDone: false,
   };
 
   function myReducer(draft, action) {
@@ -47,6 +52,36 @@ export default function App() {
         return;
       case "notAdmin":
         draft.isAdmin = false;
+        return;
+      case "isCreate":
+        draft.isCreate = true;
+        return;
+      case "notCreate":
+        draft.isCreate = false;
+        return;
+      case "isOpen":
+        draft.isOpen = true;
+        return;
+      case "notOpen":
+        draft.isOpen = false;
+        return;
+      case "isTodo":
+        draft.isTodolist = true;
+        return;
+      case "notTodo":
+        draft.isTodolist = false;
+        return;
+      case "isDoing":
+        draft.isDoing = true;
+        return;
+      case "notDoing":
+        draft.isDoing = false;
+        return;
+      case "isDone":
+        draft.isDone = true;
+        return;
+      case "notDone":
+        draft.isDone = false;
         return;
       default:
         return draft;
