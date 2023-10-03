@@ -47,50 +47,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
       });
   }, []);
 
-  // Submit edited value to database
-  const onSubmitHandler = (values) => {
-    const {
-      name,
-      description,
-      notes,
-      taskId,
-      plan,
-      appAcronym,
-      taskState,
-      creator,
-      owner,
-      createDate,
-    } = values;
-
-    const params = {
-      Task_name: name,
-      Task_description: description,
-      Task_notes: notes,
-      Task_id: taskId,
-      Task_plan: plan,
-      Task_app_Acronym: appAcronym,
-      Task_state: taskState,
-      Task_creator: creator,
-      Task_owner: owner,
-      Task_createDate: createDate,
-    };
-
-    const token = localStorage.getItem("token");
-
-    axios
-      .put("http://localhost:8080/task", params, {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        toast.success("Form Submitted");
-      })
-      .catch((err) => {
-        console.log("err", err);
-        toast.error(`Unable to submit`);
-      });
-  };
-
-  // Submit edited value to database
+  // Promote State, Add Note and Refresh Board
   const onPromoteHandler = (values) => {
     const { taskId, addTaskNotes } = values;
 
@@ -138,7 +95,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
     promoteAndRefreshBoard();
   };
 
-  // Submit edited value to database
+  // Demote State, Add Note and Refresh Board
   const onDemoteHandler = (values) => {
     const { taskId, addTaskNotes } = values;
 
@@ -186,6 +143,54 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
     demoteAndRefreshBoard();
   };
 
+  // Add Note
+  const onAddNoteHandler = (values) => {
+    const { taskId, addTaskNotes } = values;
+
+    const params = {
+      // Task_notes: notes,
+      Task_id: taskId,
+      Add_Task_Notes: addTaskNotes,
+    };
+
+    const token = localStorage.getItem("token");
+
+    const addNoteAndRefreshBoard = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:8080/task/note",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        if (res) {
+          toast.success("Added new note");
+          const params2 = { Task_app_Acronym: appAcronym };
+          try {
+            const resAllTaskByAcroynm = await axios.post(
+              "http://localhost:8080/tasks/acronym",
+              params2,
+              {
+                headers: { Authorization: `Basic ${token}` },
+              }
+            );
+            if (resAllTaskByAcroynm) {
+              setTasks(resAllTaskByAcroynm.data);
+            }
+          } catch (error) {
+            toast.error(`Unable to refresh`);
+          }
+        }
+      } catch (err) {
+        console.log("err", err);
+        toast.error(`Unable to add note`);
+      }
+    };
+
+    addNoteAndRefreshBoard();
+  };
+
   return (
     <>
       <Formik
@@ -204,9 +209,9 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
         }}
         // validationSchema={AppSchema}
         enableReinitialize
-        onSubmit={(values, { resetForm }) => {
-          onSubmitHandler(values, resetForm);
-        }}
+        // onSubmit={(values, { resetForm }) => {
+        //   onSubmitHandler(values, resetForm);
+        // }}
       >
         {({ errors, touched, setFieldValue, values }) => (
           <Form>
@@ -399,12 +404,15 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                   Demote
                 </Button>
                 <Button
-                  type="submit"
+                  // type="submit"
                   style={{
                     width: "100%",
                   }}
+                  onClick={() => {
+                    onAddNoteHandler(values);
+                  }}
                 >
-                  Save
+                  Add Note
                 </Button>
                 <Button
                   style={{
@@ -424,3 +432,46 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
     </>
   );
 }
+
+// Not in use, Submit edited value to database
+// const onSubmitHandler = (values) => {
+//   const {
+//     name,
+//     description,
+//     notes,
+//     taskId,
+//     plan,
+//     appAcronym,
+//     taskState,
+//     creator,
+//     owner,
+//     createDate,
+//   } = values;
+
+//   const params = {
+//     Task_name: name,
+//     Task_description: description,
+//     Task_notes: notes,
+//     Task_id: taskId,
+//     Task_plan: plan,
+//     Task_app_Acronym: appAcronym,
+//     Task_state: taskState,
+//     Task_creator: creator,
+//     Task_owner: owner,
+//     Task_createDate: createDate,
+//   };
+
+//   const token = localStorage.getItem("token");
+
+//   axios
+//     .put("http://localhost:8080/task", params, {
+//       headers: { Authorization: `Basic ${token}` },
+//     })
+//     .then((res) => {
+//       toast.success("Form Submitted");
+//     })
+//     .catch((err) => {
+//       console.log("err", err);
+//       toast.error(`Unable to submit`);
+//     });
+// };

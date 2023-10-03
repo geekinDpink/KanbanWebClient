@@ -7,6 +7,7 @@ Plan Appear as Label on note in kanban board e.g. sprint 1
 Stop Work <- Start Work -> Submit Work + send email
 Done to reject or change plan to other sprint, Else close
 Mailtrap
+After Promote/Demote/Editing Note, note do not refresh
 
 Done
 Clear Form
