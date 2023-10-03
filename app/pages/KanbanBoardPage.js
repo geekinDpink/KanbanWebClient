@@ -91,7 +91,7 @@ export default function KanbanBoardPage() {
         </Row>
         <Row>
           <Col xs={2}>
-            <h3>Create</h3>
+            <h3>Open</h3>
             <div>
               {tasks
                 .filter((task) => task.Task_state === "open")
@@ -113,7 +113,7 @@ export default function KanbanBoardPage() {
             </div>
           </Col>
           <Col xs={2}>
-            <h3>To Do List</h3>
+            <h3>To Do</h3>
             <div>
               {tasks
                 .filter((task) => task.Task_state === "todolist")
