@@ -31,6 +31,14 @@ export default function SingleSelect({
       fieldVal = useroptions.filter((option) => {
         return option.value === values[fieldName];
       });
+      // faulty default value that doesn't register value when submit
+      //if (values[fieldName] !== "") {
+      // fieldVal = useroptions.filter((option) => {
+      //   return option.value === values[fieldName];
+      // });
+      // } else {
+      //   fieldVal = defaultValue;
+      // }
     }
     return fieldVal;
   };
