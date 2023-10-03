@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";
+import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -11,6 +12,8 @@ import {
 } from "react-bootstrap";
 import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
 import EditTaskDetailForm from "../components/EditTaskDetailForm";
+import PlanDetailForm from "../components/PlanDetailForm";
+
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -122,7 +125,7 @@ export default function KanbanBoardPage() {
           <Col>
             {redState.isCreate && (
               <Button
-                onClick={() => setShowCreatePlanModal(true)}
+                onClick={() => setShowCreateTaskModal(true)}
                 variant="info"
               >
                 Create Task
@@ -130,7 +133,7 @@ export default function KanbanBoardPage() {
             )}
           </Col>
           <Col>
-            <Button onClick={() => setShowCreateTaskModal(true)} variant="info">
+            <Button onClick={() => setShowCreatePlanModal(true)} variant="info">
               Create Plan
             </Button>
           </Col>
@@ -262,7 +265,7 @@ export default function KanbanBoardPage() {
             </Button>
           </Modal.Header>
           <Modal.Body>
-            <CreateTaskDetailForm setTasks={setTasks} appAcronym={appAcronym} />
+            <PlanDetailForm appAcronym={appAcronym} />
           </Modal.Body>
         </Modal>
         <Modal show={showCreateTaskModal}>
