@@ -164,7 +164,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs sm={1} md={2}>
-                <label htmlFor="notes">Task Notes</label>
+                <label htmlFor="notes">Add Task Notes</label>
               </Col>
               <Col xs sm={5} md={4}>
                 <Field

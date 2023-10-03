@@ -92,11 +92,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
 
   // Submit edited value to database
   const onPromoteHandler = (values) => {
-    const { taskId } = values;
+    const { taskId, addTaskNotes } = values;
 
     const params = {
       // Task_notes: notes,
       Task_id: taskId,
+      Add_Task_Notes: addTaskNotes,
     };
 
     const token = localStorage.getItem("token");
@@ -139,11 +140,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
 
   // Submit edited value to database
   const onDemoteHandler = (values) => {
-    const { taskId } = values;
+    const { taskId, addTaskNotes } = values;
 
     const params = {
       // Task_notes: notes,
       Task_id: taskId,
+      Add_Task_Notes: addTaskNotes,
     };
 
     const token = localStorage.getItem("token");
@@ -191,6 +193,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
           name: selTask.Task_name ?? "",
           description: selTask.Task_description ?? "",
           notes: selTask.Task_notes ?? "",
+          addTaskNotes: "",
           taskId: selTask.Task_id ?? "",
           plan: selTask.Task_plan ?? "",
           appAcronym: selTask.Task_app_Acronym ?? "",
@@ -242,11 +245,28 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <Field
                   id="notes"
                   name="notes"
+                  disabled
                   style={{ width: "100%" }}
                   component="textarea"
                 />
                 {touched.notes && errors.notes && (
                   <div className="formErrors">{errors.notes}</div>
+                )}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="addTaskNotes">Add Task Notes</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="addTaskNotes"
+                  name="addTaskNotes"
+                  style={{ width: "100%" }}
+                  component="textarea"
+                />
+                {touched.addTaskNotes && errors.addTaskNotes && (
+                  <div className="formErrors">{errors.addTaskNotes}</div>
                 )}
               </Col>
             </Row>
