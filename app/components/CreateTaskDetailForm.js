@@ -70,7 +70,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
     const params = {
       Task_name: name,
       Task_description: description,
-      Task_notes: notes,
+      Add_task_notes: notes,
       Task_id: taskId,
       Task_plan: plan,
       Task_app_Acronym: appAcronym,
