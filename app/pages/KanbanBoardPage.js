@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -22,7 +21,8 @@ export default function KanbanBoardPage() {
   const redState = useContext(StateContext);
 
   const [tasks, setTasks] = useState([]);
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showCreatePlanModal, setShowCreatePlanModal] = useState(false);
+  const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState("");
   const [isPermit, setIsPermit] = useState(false);
@@ -121,10 +121,18 @@ export default function KanbanBoardPage() {
           </Col>
           <Col>
             {redState.isCreate && (
-              <Button onClick={() => setShowCreateModal(true)} variant="info">
+              <Button
+                onClick={() => setShowCreatePlanModal(true)}
+                variant="info"
+              >
                 Create Task
               </Button>
             )}
+          </Col>
+          <Col>
+            <Button onClick={() => setShowCreateTaskModal(true)} variant="info">
+              Create Plan
+            </Button>
           </Col>
         </Row>
         <Row>
@@ -241,12 +249,28 @@ export default function KanbanBoardPage() {
             </div>
           </Col>
         </Row>
-        <Modal show={showCreateModal}>
+        <Modal show={showCreatePlanModal}>
+          <Modal.Header>
+            <p>Create Plan</p>
+            <Button
+              onClick={() => {
+                setShowCreatePlanModal(false);
+              }}
+              variant="secondary"
+            >
+              Back
+            </Button>
+          </Modal.Header>
+          <Modal.Body>
+            <CreateTaskDetailForm setTasks={setTasks} appAcronym={appAcronym} />
+          </Modal.Body>
+        </Modal>
+        <Modal show={showCreateTaskModal}>
           <Modal.Header>
             <p>Create Task</p>
             <Button
               onClick={() => {
-                setShowCreateModal(false);
+                setShowCreateTaskModal(false);
               }}
               variant="secondary"
             >
