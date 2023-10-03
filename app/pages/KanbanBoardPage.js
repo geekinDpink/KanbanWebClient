@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import DispatchContext from "../../Context/DispatchContext";
+import React, { useContext, useState, useEffect } from "react";import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import {
   Col,
@@ -51,6 +50,41 @@ export default function KanbanBoardPage() {
       }
 
       try {
+        const params = { App_Acronym: appAcronym };
+        const resPermit = await axios.post(
+          "http://localhost:8080/user/permits",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        console.log("permit res", resPermit);
+        resPermit.data.isCreate
+          ? redDispatch({ type: "isCreate" })
+          : redDispatch({ type: "notCreate" });
+
+        resPermit.data.isOpen
+          ? redDispatch({ type: "isOpen" })
+          : redDispatch({ type: "notOpen" });
+
+        resPermit.data.isTodo
+          ? redDispatch({ type: "isTodo" })
+          : redDispatch({ type: "notTodo" });
+
+        resPermit.data.isDoing
+          ? redDispatch({ type: "isDoing" })
+          : redDispatch({ type: "notDoing" });
+
+        resPermit.data.isDoing
+          ? redDispatch({ type: "isDone" })
+          : redDispatch({ type: "notDone" });
+      } catch (error) {
+        toast("No task record found");
+        // api call is validation process e.g. token, if fail refuse entry and logout
+        console.log(error);
+      }
+
+      try {
         const params = { Task_app_Acronym: appAcronym };
         const response = await axios.post(
           "http://localhost:8080/tasks/acronym",
@@ -84,9 +118,11 @@ export default function KanbanBoardPage() {
             <h1>Kanban Board</h1>
           </Col>
           <Col>
-            <Button onClick={() => setShowCreateModal(true)} variant="info">
-              Create Task
-            </Button>
+            {redState.isCreate && (
+              <Button onClick={() => setShowCreateModal(true)} variant="info">
+                Create Task
+              </Button>
+            )}
           </Col>
         </Row>
         <Row>
