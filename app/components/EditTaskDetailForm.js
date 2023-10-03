@@ -215,7 +215,12 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <label htmlFor="name">Name</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="name" name="name" style={{ width: "100%" }} />
+                <Field
+                  id="name"
+                  name="name"
+                  disabled
+                  style={{ width: "100%" }}
+                />
                 {touched.name && errors.name && (
                   <div className="formErrors">{errors.name}</div>
                 )}
@@ -230,6 +235,7 @@ export default function EditTaskDetailForm({ setTasks, selectedTaskId }) {
                 <Field
                   id="description"
                   name="description"
+                  disabled
                   style={{ width: "100%" }}
                 />
                 {touched.description && errors.description && (
