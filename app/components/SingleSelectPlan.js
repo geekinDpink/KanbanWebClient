@@ -69,7 +69,6 @@ export default function SingleSelectPlan({
             planArr.push(planObj);
           });
           setPlanOptions(planArr);
-          console.log("defaultValue", defaultValue);
           values[fieldName] =
             values[fieldName] === "" ? defaultValue.value : values[fieldName];
         } else {
