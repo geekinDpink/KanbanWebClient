@@ -14,7 +14,9 @@ import moment from "moment";
 export default function EditTaskDetailForm({
   setTasks,
   selectedTaskId,
-  isPermit,
+  isPermitPlan,
+  isPermitPromote,
+  isPermitDemote,
 }) {
   const [selTask, setSelTask] = useState({});
   const appLocation = useLocation();
@@ -369,6 +371,7 @@ export default function EditTaskDetailForm({
                 <Field
                   id="plan"
                   name="plan"
+                  disabled={!isPermitPlan}
                   style={{ width: "100%" }}
                   component={() => {
                     return (
@@ -474,7 +477,7 @@ export default function EditTaskDetailForm({
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
               <Col xs sm={5} md={4}>
-                {isPermit && (
+                {isPermitDemote && (
                   <Button
                     style={{
                       width: "100%",
@@ -497,7 +500,7 @@ export default function EditTaskDetailForm({
                 >
                   Add Note
                 </Button>
-                {isPermit && (
+                {isPermitPromote && (
                   <Button
                     style={{
                       width: "100%",

@@ -28,7 +28,9 @@ export default function KanbanBoardPage() {
   const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTaskId, setSelectedTaskId] = useState("");
-  const [isPermit, setIsPermit] = useState(false);
+  const [isPermitPlan, setIsPermitPlan] = useState(false);
+  const [isPermitPromote, setIsPermitPromote] = useState(false);
+  const [isPermitDemote, setIsPermitDemote] = useState(false);
 
   const appLocation = useLocation();
   const { App_Acronym: appAcronym } = appLocation.state;
@@ -63,7 +65,7 @@ export default function KanbanBoardPage() {
             headers: { Authorization: `Basic ${token}` },
           }
         );
-        console.log("permit res", resPermit);
+        console.log("permit res", resPermit.data);
         resPermit.data.isCreate
           ? redDispatch({ type: "isCreate" })
           : redDispatch({ type: "notCreate" });
@@ -72,7 +74,7 @@ export default function KanbanBoardPage() {
           ? redDispatch({ type: "isOpen" })
           : redDispatch({ type: "notOpen" });
 
-        resPermit.data.isTodo
+        resPermit.data.isTodolist
           ? redDispatch({ type: "isTodo" })
           : redDispatch({ type: "notTodo" });
 
@@ -83,6 +85,8 @@ export default function KanbanBoardPage() {
         resPermit.data.isDoing
           ? redDispatch({ type: "isDone" })
           : redDispatch({ type: "notDone" });
+
+        console.log("After update", redState);
       } catch (error) {
         toast("No task record found");
         // api call is validation process e.g. token, if fail refuse entry and logout
@@ -157,8 +161,13 @@ export default function KanbanBoardPage() {
                         onClick={() => {
                           console.log("redState", redState);
                           if (redState.isOpen) {
-                            console.log("open permit true");
-                            setIsPermit(true);
+                            setIsPermitPlan(true);
+                            setIsPermitPromote(true);
+                            setIsPermitDemote(false);
+                          } else {
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(false);
+                            setIsPermitDemote(false);
                           }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
@@ -182,8 +191,15 @@ export default function KanbanBoardPage() {
                       {task.Task_name}
                       <Button
                         onClick={() => {
+                          console.log("redState isTodoList", redState);
                           if (redState.isTodolist) {
-                            setIsPermit(true);
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(true);
+                            setIsPermitDemote(false);
+                          } else {
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(false);
+                            setIsPermitDemote(false);
                           }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
@@ -208,7 +224,13 @@ export default function KanbanBoardPage() {
                       <Button
                         onClick={() => {
                           if (redState.isDoing) {
-                            setIsPermit(true);
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(true);
+                            setIsPermitDemote(true);
+                          } else {
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(false);
+                            setIsPermitDemote(false);
                           }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
@@ -233,7 +255,13 @@ export default function KanbanBoardPage() {
                       <Button
                         onClick={() => {
                           if (redState.isDone) {
-                            setIsPermit(true);
+                            setIsPermitPlan(true);
+                            setIsPermitPromote(true);
+                            setIsPermitDemote(true);
+                          } else {
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(false);
+                            setIsPermitDemote(false);
                           }
                           setSelectedTaskId(task.Task_id);
                           setShowEditModal(true);
@@ -305,7 +333,9 @@ export default function KanbanBoardPage() {
             <EditTaskDetailForm
               setTasks={setTasks}
               selectedTaskId={selectedTaskId}
-              isPermit={isPermit}
+              isPermitPlan={isPermitPlan}
+              isPermitPromote={isPermitPromote}
+              isPermitDemote={isPermitDemote}
             />
           </Modal.Body>
         </Modal>
