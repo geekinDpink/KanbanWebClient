@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";import Row from "react-bootstrap/Row";
+import React, { useState, useEffect } from "react";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Button } from "react-bootstrap";
 import axios from "axios";
@@ -7,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import SingleSelectPlan from "./SingleSelectPlan";
 import moment from "moment";
 
 export default function EditTaskDetailForm({
@@ -365,7 +367,25 @@ export default function EditTaskDetailForm({
                 <label htmlFor="plan">Plan</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="plan" name="plan" style={{ width: "100%" }} />
+                <Field
+                  id="plan"
+                  name="plan"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <SingleSelectPlan
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        App_Acronym={appAcronym}
+                        fieldName="plan"
+                        defaultValue={{
+                          value: "",
+                          label: "project manager",
+                        }}
+                      />
+                    );
+                  }}
+                />
                 {touched.plan && errors.plan && (
                   <div className="formErrors">{errors.plan}</div>
                 )}
@@ -499,8 +519,6 @@ export default function EditTaskDetailForm({
     </>
   );
 }
-
-// Not in use, Submit edited value to database
 // const onSubmitHandler = (values) => {
 //   const {
 //     name,

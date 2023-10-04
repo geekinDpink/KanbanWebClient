@@ -1,9 +1,13 @@
 TODO:
+Add dropdown for plan
+isPermit -> isDemote or isPromote for specifc state
+Kanban Task name, description
 After Create Task, update task
+Done to reject or change plan to other sprint, Else close
 Align Request param app_permit_ToDoList with SQL app_permit_toDoList
 Plan Appear as Label on note in kanban board e.g. sprint 1
-Done to reject or change plan to other sprint, Else close
 Unable to create app or plan without date
+Promote close modal
 
 Done
 Clear Form

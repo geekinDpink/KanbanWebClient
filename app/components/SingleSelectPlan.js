@@ -1,14 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";import Select from "react-select";
+import React, { useEffect, useState, useContext } from "react";
+import Select from "react-select";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export default function SingleSelect({
+export default function SingleSelectPlan({
   setFieldValue,
   values,
   fieldName,
+  App_Acronym,
   defaultValue,
 }) {
-  const [useroptions, setUserOptions] = useState();
+  const [planOptions, setPlanOptions] = useState();
 
   ////////////////////////////////////////////////////////
   /* Triggered when you select an option. 
@@ -25,14 +27,14 @@ export default function SingleSelect({
   const getValue = () => {
     let fieldVal = "";
 
-    if (useroptions) {
+    if (planOptions) {
       console.log("getVal values[fieldName]", values[fieldName]);
-      fieldVal = useroptions.filter((option) => {
+      fieldVal = planOptions.filter((option) => {
         return option.value === values[fieldName];
       });
       // faulty default value that doesn't register value when submit
       //if (values[fieldName] !== "") {
-      // fieldVal = useroptions.filter((option) => {
+      // fieldVal = setPlanOptions.filter((option) => {
       //   return option.value === values[fieldName];
       // });
       // } else {
@@ -42,25 +44,27 @@ export default function SingleSelect({
     return fieldVal;
   };
 
-  // Fetch usergroups to populate as options
+  // Fetch plan name to populate as options
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const params = { Plan_app_Acronym: App_Acronym };
 
     axios
-      .post("http://localhost:8080/plans", {
+      .post("http://localhost:8080/plans", params, {
         headers: { Authorization: `Basic ${token}` },
       })
       .then((res) => {
-        let usergrpArr = [];
+        console.log("plans res", res);
+        let planArr = [];
 
-        res.data.forEach((user) => {
-          let usergrpObj = {
-            value: user.usergroup,
-            label: user.usergroup,
+        res.data.forEach((plan) => {
+          let planObj = {
+            value: plan.Plan_MVP_name,
+            label: plan.Plan_MVP_name,
           };
-          usergrpArr.push(usergrpObj);
+          planArr.push(planObj);
         });
-        setUserOptions(usergrpArr);
+        setPlanOptions(planArr);
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +74,7 @@ export default function SingleSelect({
 
   return (
     <Select
-      options={useroptions}
+      options={planOptions}
       value={getValue()}
       onChange={onChangeHandler}
       // defaultValue={defaultValue}
