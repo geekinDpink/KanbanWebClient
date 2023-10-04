@@ -62,6 +62,9 @@ export default function SingleSelect({
           usergrpArr.push(usergrpObj);
         });
         setUserOptions(usergrpArr);
+        // At start, if no initial value in formik, give it a string default value, else just use the form value that is selected
+        // values[fieldName] =
+        //   values[fieldName] === "" ? defaultValue.value : values[fieldName];
       })
       .catch((err) => {
         console.log(err);

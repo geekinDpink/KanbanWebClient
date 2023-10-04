@@ -46,30 +46,41 @@ export default function SingleSelectPlan({
 
   // Fetch plan name to populate as options
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const params = { Plan_app_Acronym: App_Acronym };
+    const fetchAllPlan = async () => {
+      const token = localStorage.getItem("token");
 
-    axios
-      .post("http://localhost:8080/plans", params, {
-        headers: { Authorization: `Basic ${token}` },
-      })
-      .then((res) => {
-        console.log("plans res", res);
-        let planArr = [];
+      try {
+        const params = { Plan_app_Acronym: App_Acronym };
+        const resAllPlans = await axios.post(
+          "http://localhost:8080/plans",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        if (resAllPlans.data.length > 0) {
+          let planArr = [];
 
-        res.data.forEach((plan) => {
-          let planObj = {
-            value: plan.Plan_MVP_name,
-            label: plan.Plan_MVP_name,
-          };
-          planArr.push(planObj);
-        });
-        setPlanOptions(planArr);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Unable to retrieve usergroups, " + err?.response?.data);
-      });
+          resAllPlans.data.forEach((plan) => {
+            let planObj = {
+              value: plan.Plan_MVP_name,
+              label: plan.Plan_MVP_name,
+            };
+            planArr.push(planObj);
+          });
+          setPlanOptions(planArr);
+          console.log("defaultValue", defaultValue);
+          values[fieldName] =
+            values[fieldName] === "" ? defaultValue.value : values[fieldName];
+        } else {
+          toast.error("No Plan found");
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Unable to retrieve usergroups, " + error?.response?.data);
+      }
+    };
+    fetchAllPlan();
   }, []);
 
   return (

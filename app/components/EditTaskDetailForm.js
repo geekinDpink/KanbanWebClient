@@ -105,7 +105,6 @@ export default function EditTaskDetailForm({
             );
             if (resTask.data.length > 0) {
               setSelTask(resTask.data[0]);
-              console.log("setSelTask");
             }
           } catch (error) {
             toast.error(`Unable to update edit task note`);
@@ -265,7 +264,7 @@ export default function EditTaskDetailForm({
           notes: selTask.Task_notes ?? "",
           addTaskNotes: "",
           taskId: selTask.Task_id ?? "",
-          plan: selTask.Task_plan ?? "",
+          plan: "",
           appAcronym: selTask.Task_app_Acronym ?? "",
           taskState: selTask.Task_state ?? "",
           creator: selTask.Task_creator ?? "",
@@ -379,8 +378,7 @@ export default function EditTaskDetailForm({
                         App_Acronym={appAcronym}
                         fieldName="plan"
                         defaultValue={{
-                          value: "",
-                          label: "project manager",
+                          value: selTask.Task_plan,
                         }}
                       />
                     );
