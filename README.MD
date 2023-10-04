@@ -1,6 +1,5 @@
 TODO:
 Kanban Task name, description
-Done to reject or change plan to other sprint, Else close
 Plan Appear as Label on note in kanban board e.g. sprint 1
 
 Done
@@ -29,6 +28,7 @@ Add dropdown for plan
 Default value for react select
 Unable to create app or plan without date
 Promote close modal
+Done to reject or change plan to other sprint, Else close
 
 Relook
 Lowercase and trim at backend - c8 and edit
