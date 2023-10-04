@@ -65,7 +65,6 @@ export default function KanbanBoardPage() {
             headers: { Authorization: `Basic ${token}` },
           }
         );
-        console.log("permit res", resPermit.data);
         resPermit.data.isCreate
           ? redDispatch({ type: "isCreate" })
           : redDispatch({ type: "notCreate" });
@@ -85,8 +84,6 @@ export default function KanbanBoardPage() {
         resPermit.data.isDone
           ? redDispatch({ type: "isDone" })
           : redDispatch({ type: "notDone" });
-
-        console.log("After update", redState);
       } catch (error) {
         toast("No task record found");
         // api call is validation process e.g. token, if fail refuse entry and logout
