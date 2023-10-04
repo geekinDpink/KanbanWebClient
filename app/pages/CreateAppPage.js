@@ -55,7 +55,7 @@ export default function CreateAppPage() {
       permitDoing,
       permitDone,
     } = values;
-    console.log("value after submit", values);
+    // console.log("value after submit", values);
 
     const params = {
       App_Acronym: acronym,
@@ -69,7 +69,7 @@ export default function CreateAppPage() {
       App_Permit_Doing: permitDoing,
       App_Permit_Done: permitDone,
     };
-    console.log("params", params);
+    // console.log("params", params);
     const token = localStorage.getItem("token");
 
     axios
