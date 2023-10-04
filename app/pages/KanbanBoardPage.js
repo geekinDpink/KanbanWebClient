@@ -82,7 +82,7 @@ export default function KanbanBoardPage() {
           ? redDispatch({ type: "isDoing" })
           : redDispatch({ type: "notDoing" });
 
-        resPermit.data.isDoing
+        resPermit.data.isDone
           ? redDispatch({ type: "isDone" })
           : redDispatch({ type: "notDone" });
 

@@ -18,8 +18,8 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
       .required("Required"),
     description: Yup.string(),
     rnumber: Yup.number().positive().integer().required("Required"),
-    startDate: Yup.date(),
-    endDate: Yup.date(),
+    // startDate: Yup.date(),
+    // endDate: Yup.date(),
   });
 
   // Fetch usergroups to populate as options
