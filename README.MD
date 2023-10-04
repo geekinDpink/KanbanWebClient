@@ -1,5 +1,4 @@
 TODO:
-Add dropdown for plan
 isPermit -> isDemote or isPromote for specifc state
 Kanban Task name, description
 After Create Task, update task
@@ -30,6 +29,8 @@ App Acronymn, Note gen
 Name, Desc validation to be not empty
 After Promote/Demote/Editing Note, note do not refresh
 Stop Work <- Start Work -> Submit Work + send email Mailtrap
+Add dropdown for plan
+Default value for react select
 
 Relook
 Lowercase and trim at backend - c8 and edit
