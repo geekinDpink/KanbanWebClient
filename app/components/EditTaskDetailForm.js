@@ -13,6 +13,7 @@ import moment from "moment";
 
 export default function EditTaskDetailForm({
   setTasks,
+  setShowEditModal,
   selectedTaskId,
   isPermitPlan,
   isPermitPromote,
@@ -90,27 +91,28 @@ export default function EditTaskDetailForm({
             );
             if (resAllTaskByAcroynm) {
               setTasks(resAllTaskByAcroynm.data);
+              setShowEditModal(false);
             }
           } catch (error) {
             toast.error(`Unable to refresh`);
           }
 
           // Refresh Edit Note Modal
-          try {
-            const params3 = { Task_id: taskId };
-            const resTask = await axios.post(
-              "http://localhost:8080/task/id",
-              params3,
-              {
-                headers: { Authorization: `Basic ${token}` },
-              }
-            );
-            if (resTask.data.length > 0) {
-              setSelTask(resTask.data[0]);
-            }
-          } catch (error) {
-            toast.error(`Unable to update edit task note`);
-          }
+          // try {
+          //   const params3 = { Task_id: taskId };
+          //   const resTask = await axios.post(
+          //     "http://localhost:8080/task/id",
+          //     params3,
+          //     {
+          //       headers: { Authorization: `Basic ${token}` },
+          //     }
+          //   );
+          //   if (resTask.data.length > 0) {
+          //     setSelTask(resTask.data[0]);
+          //   }
+          // } catch (error) {
+          //   toast.error(`Unable to update edit task note`);
+          // }
         }
       } catch (err) {
         console.log("err", err);
@@ -157,28 +159,29 @@ export default function EditTaskDetailForm({
             );
             if (resAllTaskByAcroynm) {
               setTasks(resAllTaskByAcroynm.data);
+              setShowEditModal(false);
             }
           } catch (error) {
             toast.error(`Unable to refresh`);
           }
 
           // Refresh Edit Note Modal
-          try {
-            const params3 = { Task_id: taskId };
-            const resTask = await axios.post(
-              "http://localhost:8080/task/id",
-              params3,
-              {
-                headers: { Authorization: `Basic ${token}` },
-              }
-            );
-            if (resTask.data.length > 0) {
-              setSelTask(resTask.data[0]);
-              console.log("setSelTask");
-            }
-          } catch (error) {
-            toast.error(`Unable to update edit task note`);
-          }
+          // try {
+          //   const params3 = { Task_id: taskId };
+          //   const resTask = await axios.post(
+          //     "http://localhost:8080/task/id",
+          //     params3,
+          //     {
+          //       headers: { Authorization: `Basic ${token}` },
+          //     }
+          //   );
+          //   if (resTask.data.length > 0) {
+          //     setSelTask(resTask.data[0]);
+          //     console.log("setSelTask");
+          //   }
+          // } catch (error) {
+          //   toast.error(`Unable to update edit task note`);
+          // }
         }
       } catch (err) {
         console.log("err", err);

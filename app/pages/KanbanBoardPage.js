@@ -321,6 +321,7 @@ export default function KanbanBoardPage() {
           <Modal.Body>
             <EditTaskDetailForm
               setTasks={setTasks}
+              setShowEditModal={setShowEditModal}
               selectedTaskId={selectedTaskId}
               isPermitPlan={isPermitPlan}
               isPermitPromote={isPermitPromote}
