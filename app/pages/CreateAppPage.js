@@ -65,7 +65,7 @@ export default function CreateAppPage() {
       App_EndDate: moment(endDate).format("YYYY-MM-DD"),
       App_Permit_Create: permitCreate,
       App_Permit_Open: permitOpen,
-      App_Permit_Todo: permitTodo,
+      App_Permit_ToDoList: permitTodo,
       App_Permit_Doing: permitDoing,
       App_Permit_Done: permitDone,
     };
