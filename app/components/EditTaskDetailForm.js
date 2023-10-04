@@ -54,16 +54,16 @@ export default function EditTaskDetailForm({
   const onPromoteHandler = (values) => {
     const { taskId, addTaskNotes } = values;
 
-    const params = {
-      // Task_notes: notes,
-      Task_id: taskId,
-      Add_Task_Notes: addTaskNotes,
-    };
-
+    // Promote State, Add Note and Refresh Board
     const token = localStorage.getItem("token");
 
     const promoteAndRefreshBoard = async () => {
       try {
+        const params = {
+          // Task_notes: notes,
+          Task_id: taskId,
+          Add_Task_Notes: addTaskNotes,
+        };
         const res = await axios.put(
           "http://localhost:8080/task/promote",
           params,
@@ -73,8 +73,10 @@ export default function EditTaskDetailForm({
         );
         if (res) {
           toast.success("Successfully Promoted");
-          const params2 = { Task_app_Acronym: appAcronym };
+
+          // Refresh Kanban Board
           try {
+            const params2 = { Task_app_Acronym: appAcronym };
             const resAllTaskByAcroynm = await axios.post(
               "http://localhost:8080/tasks/acronym",
               params2,
@@ -87,6 +89,24 @@ export default function EditTaskDetailForm({
             }
           } catch (error) {
             toast.error(`Unable to refresh`);
+          }
+
+          // Refresh Edit Note Modal
+          try {
+            const params3 = { Task_id: taskId };
+            const resTask = await axios.post(
+              "http://localhost:8080/task/id",
+              params3,
+              {
+                headers: { Authorization: `Basic ${token}` },
+              }
+            );
+            if (resTask.data.length > 0) {
+              setSelTask(resTask.data[0]);
+              console.log("setSelTask");
+            }
+          } catch (error) {
+            toast.error(`Unable to update edit task note`);
           }
         }
       } catch (err) {
@@ -110,6 +130,7 @@ export default function EditTaskDetailForm({
 
     const token = localStorage.getItem("token");
 
+    // After demoting state, refresh board and edit task modal concurrently
     const demoteAndRefreshBoard = async () => {
       try {
         const res = await axios.put(
@@ -121,8 +142,9 @@ export default function EditTaskDetailForm({
         );
         if (res) {
           toast.success("Task Demoted");
-          const params2 = { Task_app_Acronym: appAcronym };
+          // Refresh Kanban Board
           try {
+            const params2 = { Task_app_Acronym: appAcronym };
             const resAllTaskByAcroynm = await axios.post(
               "http://localhost:8080/tasks/acronym",
               params2,
@@ -135,6 +157,24 @@ export default function EditTaskDetailForm({
             }
           } catch (error) {
             toast.error(`Unable to refresh`);
+          }
+
+          // Refresh Edit Note Modal
+          try {
+            const params3 = { Task_id: taskId };
+            const resTask = await axios.post(
+              "http://localhost:8080/task/id",
+              params3,
+              {
+                headers: { Authorization: `Basic ${token}` },
+              }
+            );
+            if (resTask.data.length > 0) {
+              setSelTask(resTask.data[0]);
+              console.log("setSelTask");
+            }
+          } catch (error) {
+            toast.error(`Unable to update edit task note`);
           }
         }
       } catch (err) {
@@ -158,6 +198,7 @@ export default function EditTaskDetailForm({
 
     const token = localStorage.getItem("token");
 
+    // After adding note, refresh board and edit task modal concurrently
     const addNoteAndRefreshBoard = async () => {
       try {
         const res = await axios.post(
@@ -169,8 +210,9 @@ export default function EditTaskDetailForm({
         );
         if (res) {
           toast.success("Added new note");
-          const params2 = { Task_app_Acronym: appAcronym };
+          // Refresh Kanban Board Notes
           try {
+            const params2 = { Task_app_Acronym: appAcronym };
             const resAllTaskByAcroynm = await axios.post(
               "http://localhost:8080/tasks/acronym",
               params2,
@@ -183,6 +225,24 @@ export default function EditTaskDetailForm({
             }
           } catch (error) {
             toast.error(`Unable to refresh`);
+          }
+
+          // Refresh Edit Note Modal
+          try {
+            const params3 = { Task_id: taskId };
+            const resTask = await axios.post(
+              "http://localhost:8080/task/id",
+              params3,
+              {
+                headers: { Authorization: `Basic ${token}` },
+              }
+            );
+            if (resTask.data.length > 0) {
+              setSelTask(resTask.data[0]);
+              console.log("setSelTask");
+            }
+          } catch (error) {
+            toast.error(`Unable to update edit task note`);
           }
         }
       } catch (err) {
