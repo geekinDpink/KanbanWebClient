@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 
 export default function PlanDetailForm({ appAcronym }) {
   const [user, setUser] = useState();
-
   const PlanSchema = Yup.object().shape({
     planName: Yup.string().required("Required"),
     acronym: Yup.string().required("Required"),
@@ -29,6 +28,7 @@ export default function PlanDetailForm({ appAcronym }) {
         headers: { Authorization: `Basic ${token}` },
       });
       toast.success("Form Submitted");
+      resetForm();
     } catch (error) {
       toast.error(`Unable to submit`);
     }
