@@ -6,6 +6,7 @@ import axios from "axios";
 import { Formik, Field, Form, option } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 export default function PlanDetailForm({ appAcronym }) {
   const [user, setUser] = useState();
@@ -20,8 +21,10 @@ export default function PlanDetailForm({ appAcronym }) {
       const { planName, startDate, endDate, acronym } = values;
       const params = {
         Plan_MVP_name: planName,
-        Plan_startDate: startDate,
-        Plan_endDate: endDate,
+        Plan_startDate: startDate
+          ? moment(startDate).format("YYYY-MM-DD")
+          : null,
+        Plan_endDate: endDate ? moment(endDate).format("YYYY-MM-DD") : null,
         Plan_app_Acronym: acronym,
       };
       const res = await axios.post("http://localhost:8080/plan", params, {
@@ -56,7 +59,12 @@ export default function PlanDetailForm({ appAcronym }) {
                 <label htmlFor="acronym">App Acronym</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="acronym" name="acronym" style={{ width: "100%" }} />
+                <Field
+                  id="acronym"
+                  name="acronym"
+                  style={{ width: "100%" }}
+                  disabled
+                />
                 {touched.acronym && errors.acronym && (
                   <div className="formErrors">{errors.acronym}</div>
                 )}
@@ -64,7 +72,7 @@ export default function PlanDetailForm({ appAcronym }) {
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs sm={1} md={2}>
-                <label htmlFor="planName">Plan</label>
+                <label htmlFor="planName">Plan Name</label>
               </Col>
               <Col xs sm={5} md={4}>
                 <Field
@@ -72,8 +80,8 @@ export default function PlanDetailForm({ appAcronym }) {
                   name="planName"
                   style={{ width: "100%" }}
                 />
-                {touched.username && errors.username && (
-                  <div className="formErrors">{errors.username}</div>
+                {touched.planName && errors.planName && (
+                  <div className="formErrors">{errors.planName}</div>
                 )}
               </Col>
             </Row>
