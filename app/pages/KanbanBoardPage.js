@@ -122,6 +122,11 @@ export default function KanbanBoardPage() {
           <Col>
             <h1>Kanban Board</h1>
           </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h5>App Acronym: {appAcronym}</h5>
+          </Col>
           <Col>
             {redState.isCreate && (
               <Button
