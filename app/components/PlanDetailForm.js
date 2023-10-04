@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";import Container from "react-bootstrap/Container";
+import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
@@ -9,7 +10,6 @@ import { toast } from "react-toastify";
 export default function PlanDetailForm({ appAcronym }) {
   const [user, setUser] = useState();
 
-  // Password optional in edit user forms
   const PlanSchema = Yup.object().shape({
     planName: Yup.string().required("Required"),
     acronym: Yup.string().required("Required"),
