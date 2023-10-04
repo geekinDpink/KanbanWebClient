@@ -1,5 +1,5 @@
 TODO:
-isPermit -> isDemote or isPromote for specifc state
+
 Kanban Task name, description
 Done to reject or change plan to other sprint, Else close
 Plan Appear as Label on note in kanban board e.g. sprint 1
@@ -23,6 +23,7 @@ Fix Bug of create user without user group, view user group will have popup error
 Refactor return is admin or not
 App Acronymn, Note gen
 Name, Desc validation to be not empty
+isPermit -> isDemote or isPromote for specifc state
 After Promote/Demote/Editing Note, note do not refresh
 Stop Work <- Start Work -> Submit Work + send email Mailtrap
 Add dropdown for plan
