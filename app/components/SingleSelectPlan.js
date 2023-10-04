@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export default function SingleSelectPlan({
+  disabled,
   setFieldValue,
   values,
   fieldName,
@@ -84,6 +85,7 @@ export default function SingleSelectPlan({
 
   return (
     <Select
+      isDisabled={disabled || !values.changePlan}
       options={planOptions}
       value={getValue()}
       onChange={onChangeHandler}

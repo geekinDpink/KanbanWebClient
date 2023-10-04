@@ -1,5 +1,4 @@
 TODO:
-
 Kanban Task name, description
 Done to reject or change plan to other sprint, Else close
 Plan Appear as Label on note in kanban board e.g. sprint 1

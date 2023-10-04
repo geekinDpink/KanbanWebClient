@@ -275,6 +275,7 @@ export default function EditTaskDetailForm({
           creator: selTask.Task_creator ?? "",
           owner: selTask.Task_owner ?? "",
           createDate: selTask.Task_createDate ?? "",
+          changePlan: false,
         }}
         // validationSchema={AppSchema}
         enableReinitialize
@@ -374,11 +375,11 @@ export default function EditTaskDetailForm({
                 <Field
                   id="plan"
                   name="plan"
-                  disabled={!isPermitPlan}
                   style={{ width: "100%" }}
                   component={() => {
                     return (
                       <SingleSelectPlan
+                        disabled={!isPermitPlan}
                         setFieldValue={setFieldValue}
                         values={values}
                         App_Acronym={appAcronym}
@@ -394,6 +395,16 @@ export default function EditTaskDetailForm({
                   <div className="formErrors">{errors.plan}</div>
                 )}
               </Col>
+              {isPermitPlan && (
+                <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
+                  <Col xs sm={1} md={2}>
+                    <label>Change Plan</label>
+                  </Col>
+                  <Col xs sm={5} md={4}>
+                    <Field type="checkbox" name="changePlan" />
+                  </Col>
+                </Row>
+              )}
             </Row>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs sm={1} md={2}>
