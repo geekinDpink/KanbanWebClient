@@ -18,7 +18,7 @@ export default function PlanDetailForm({ appAcronym }) {
   const onSubmitHandler = async (values, resetForm) => {
     try {
       const token = localStorage.getItem("token");
-      const { planName, startDate, endDate, acronym } = values;
+      const { planName, startDate, endDate, acronym, labelColor } = values;
       const params = {
         Plan_MVP_name: planName,
         Plan_startDate: startDate
@@ -26,6 +26,7 @@ export default function PlanDetailForm({ appAcronym }) {
           : null,
         Plan_endDate: endDate ? moment(endDate).format("YYYY-MM-DD") : null,
         Plan_app_Acronym: acronym,
+        Plan_color: labelColor,
       };
       const res = await axios.post("http://localhost:8080/plan", params, {
         headers: { Authorization: `Basic ${token}` },
@@ -45,11 +46,13 @@ export default function PlanDetailForm({ appAcronym }) {
           startDate: "",
           endDate: "",
           acronym: appAcronym,
+          labelColor: "#000000",
         }}
         validationSchema={PlanSchema}
         enableReinitialize
         onSubmit={(values, { resetForm }) => {
           onSubmitHandler(values, resetForm);
+          console.log("submit values", values);
         }}
       >
         {({ errors, touched, setFieldValue, values }) => (
@@ -114,6 +117,22 @@ export default function PlanDetailForm({ appAcronym }) {
                 />
                 {touched.endDate && errors.endDate && (
                   <div className="formErrors">{errors.endDate}</div>
+                )}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="labelColor">Color</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="labelColor"
+                  name="labelColor"
+                  type="color"
+                  style={{ width: "100%" }}
+                />
+                {touched.labelColor && errors.labelColor && (
+                  <div className="formErrors">{errors.labelColor}</div>
                 )}
               </Col>
             </Row>
