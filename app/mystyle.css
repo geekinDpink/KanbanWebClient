@@ -25,3 +25,8 @@ td {
 .nav-link {
   color: white !important;
 }
+
+/*Use Custom Dialogclassname to access its properties*/
+.modal-90w {
+  max-width: 80% !important;
+}

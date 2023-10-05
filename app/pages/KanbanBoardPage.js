@@ -274,7 +274,7 @@ export default function KanbanBoardPage() {
             </div>
           </Col>
         </Row>
-        <Modal show={showCreatePlanModal}>
+        <Modal show={showCreatePlanModal} size="lg">
           <Modal.Header>
             <p>Create Plan</p>
             <Button
@@ -290,7 +290,7 @@ export default function KanbanBoardPage() {
             <PlanDetailForm appAcronym={appAcronym} />
           </Modal.Body>
         </Modal>
-        <Modal show={showCreateTaskModal}>
+        <Modal show={showCreateTaskModal} dialogClassName="modal-90w">
           <Modal.Header>
             <p>Create Task</p>
             <Button
@@ -306,7 +306,7 @@ export default function KanbanBoardPage() {
             <CreateTaskDetailForm setTasks={setTasks} appAcronym={appAcronym} />
           </Modal.Body>
         </Modal>
-        <Modal show={showEditModal}>
+        <Modal show={showEditModal} dialogClassName="modal-90w">
           <Modal.Header>
             <p>Edit Task</p>
             <Button

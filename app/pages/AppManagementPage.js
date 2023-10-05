@@ -108,6 +108,7 @@ export default function AppManagementPage() {
                             },
                           })
                         }
+                        style={{ marginTop: "3px", marginBottom: "5px" }}
                         variant="primary"
                       >
                         Edit
@@ -120,6 +121,7 @@ export default function AppManagementPage() {
                             },
                           })
                         }
+                        style={{ marginBottom: "5px" }}
                         variant="warning"
                       >
                         Kanban Board

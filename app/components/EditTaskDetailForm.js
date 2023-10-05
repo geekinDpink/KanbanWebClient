@@ -490,7 +490,7 @@ export default function EditTaskDetailForm({
 
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm={1} md={1}>
                 {isPermitDemote && (
                   <Button
                     style={{
@@ -499,21 +499,29 @@ export default function EditTaskDetailForm({
                     onClick={() => {
                       onDemoteHandler(values);
                     }}
+                    variant="danger"
                   >
                     Demote
                   </Button>
                 )}
+              </Col>
+              <Col xs sm={2} md={2}>
                 <Button
                   // type="submit"
                   style={{
                     width: "100%",
+                    borderColor: "black",
+                    borderWidth: "2px",
                   }}
                   onClick={() => {
                     onAddNoteHandler(values);
                   }}
+                  variant="light"
                 >
                   Add Note
                 </Button>
+              </Col>
+              <Col xs sm={1} md={1}>
                 {isPermitPromote && (
                   <Button
                     style={{
@@ -522,6 +530,7 @@ export default function EditTaskDetailForm({
                     onClick={() => {
                       onPromoteHandler(values);
                     }}
+                    variant="success"
                   >
                     Promote
                   </Button>
