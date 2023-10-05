@@ -9,9 +9,16 @@ export default function SingleSelectPlan({
   values,
   fieldName,
   App_Acronym,
+  mode,
   defaultValue,
 }) {
   const [planOptions, setPlanOptions] = useState();
+
+  let isChangePlan = false;
+
+  if (mode === "editTask") {
+    isChangePlan = values.changePlan ? false : true;
+  }
 
   ////////////////////////////////////////////////////////
   /* Triggered when you select an option. 
@@ -50,34 +57,38 @@ export default function SingleSelectPlan({
     const fetchAllPlan = async () => {
       const token = localStorage.getItem("token");
 
-      try {
-        const params = { Plan_app_Acronym: App_Acronym };
-        const resAllPlans = await axios.post(
-          "http://localhost:8080/plans",
-          params,
-          {
-            headers: { Authorization: `Basic ${token}` },
-          }
-        );
-        if (resAllPlans.data.length > 0) {
-          let planArr = [];
+      if (App_Acronym) {
+        try {
+          const params = { Plan_app_Acronym: App_Acronym };
+          const resAllPlans = await axios.post(
+            "http://localhost:8080/plans",
+            params,
+            {
+              headers: { Authorization: `Basic ${token}` },
+            }
+          );
+          if (resAllPlans.data.length > 0) {
+            let planArr = [];
 
-          resAllPlans.data.forEach((plan) => {
-            let planObj = {
-              value: plan.Plan_MVP_name,
-              label: plan.Plan_MVP_name,
-            };
-            planArr.push(planObj);
-          });
-          setPlanOptions(planArr);
-          values[fieldName] =
-            values[fieldName] === "" ? defaultValue.value : values[fieldName];
-        } else {
-          toast.error("No Plan found");
+            resAllPlans.data.forEach((plan) => {
+              let planObj = {
+                value: plan.Plan_MVP_name,
+                label: plan.Plan_MVP_name,
+              };
+              planArr.push(planObj);
+            });
+            setPlanOptions(planArr);
+            values[fieldName] =
+              values[fieldName] === "" ? defaultValue.value : values[fieldName];
+          } else {
+            toast.error("No Plan found");
+          }
+        } catch (error) {
+          console.log("error", error);
+          toast.error(
+            "Unable to retrieve usergroups, " + error?.response?.data
+          );
         }
-      } catch (error) {
-        console.log(error);
-        toast.error("Unable to retrieve usergroups, " + error?.response?.data);
       }
     };
     fetchAllPlan();
@@ -85,7 +96,7 @@ export default function SingleSelectPlan({
 
   return (
     <Select
-      isDisabled={disabled || !values.changePlan}
+      isDisabled={disabled || isChangePlan}
       options={planOptions}
       value={getValue()}
       onChange={onChangeHandler}

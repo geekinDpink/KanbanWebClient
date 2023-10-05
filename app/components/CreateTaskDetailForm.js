@@ -6,6 +6,7 @@ import SingleSelect from "./SingleSelect";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import SingleSelectPlan from "./SingleSelectPlan";
 import moment from "moment";
 
 export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
@@ -199,7 +200,26 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <label htmlFor="plan">Plan</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="plan" name="plan" style={{ width: "100%" }} />
+                <Field
+                  id="plan"
+                  name="plan"
+                  style={{ width: "100%" }}
+                  component={() => {
+                    return (
+                      <SingleSelectPlan
+                        disabled={false}
+                        setFieldValue={setFieldValue}
+                        values={values}
+                        App_Acronym={appAcronym}
+                        mode="createTask"
+                        fieldName="plan"
+                        defaultValue={{
+                          value: "",
+                        }}
+                      />
+                    );
+                  }}
+                />
                 {touched.plan && errors.plan && (
                   <div className="formErrors">{errors.plan}</div>
                 )}
