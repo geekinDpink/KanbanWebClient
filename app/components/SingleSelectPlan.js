@@ -65,7 +65,7 @@ export default function SingleSelectPlan({
         try {
           const params = { Plan_app_Acronym: App_Acronym };
           const resAllPlans = await axios.post(
-            "http://localhost:8080/plans",
+            "http://localhost:8080/plans/acronym",
             params,
             {
               headers: { Authorization: `Basic ${token}` },

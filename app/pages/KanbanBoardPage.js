@@ -16,6 +16,8 @@ export default function KanbanBoardPage() {
   const redState = useContext(StateContext);
 
   const [tasks, setTasks] = useState([]);
+  // Cannot be empty useState() as div style will backgroundColor: plans[task.Task_plan]
+  const [plans, setPlans] = useState({});
   const [showCreatePlanModal, setShowCreatePlanModal] = useState(false);
   const [showCreateTaskModal, setShowCreateTaskModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -98,6 +100,28 @@ export default function KanbanBoardPage() {
         // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(error);
       }
+
+      try {
+        const params = { Plan_app_Acronym: appAcronym };
+        const resPlan = await axios.post(
+          "http://localhost:8080/plans/acronym",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+
+        // resPlan.data, array of plan object, iterate through each object and
+        let planColorObj = {};
+        resPlan.data.forEach((plan) => {
+          planColorObj[plan.Plan_MVP_name] = plan.Plan_color;
+        });
+        setPlans(planColorObj);
+      } catch (error) {
+        toast("No plan record found");
+        // api call is validation process e.g. token, if fail refuse entry and logout
+        console.log(error);
+      }
     };
 
     if (token) {
@@ -150,25 +174,37 @@ export default function KanbanBoardPage() {
                 .map((task) => {
                   return (
                     <Card key={task.Task_id}>
-                      {task.Task_name}
-                      <Button
-                        onClick={() => {
-                          console.log("redState", redState);
-                          if (redState.isOpen) {
-                            setIsPermitPlan(true);
-                            setIsPermitPromote(true);
-                            setIsPermitDemote(false);
-                          } else {
-                            setIsPermitPlan(false);
-                            setIsPermitPromote(false);
-                            setIsPermitDemote(false);
-                          }
-                          setSelectedTaskId(task.Task_id);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
+                      <Card.Body>
+                        <Card.Title>Task: {task.Task_name}</Card.Title>
+                        <div
+                          style={{
+                            backgroundColor: plans[task.Task_plan] ?? "white",
+                          }}
+                        >
+                          Plan: {task.Task_plan}
+                        </div>
+                        <Card.Text>
+                          Description: {task.Task_description}
+                        </Card.Text>
+                        <Button
+                          onClick={() => {
+                            console.log("redState", redState);
+                            if (redState.isOpen) {
+                              setIsPermitPlan(true);
+                              setIsPermitPromote(true);
+                              setIsPermitDemote(false);
+                            } else {
+                              setIsPermitPlan(false);
+                              setIsPermitPromote(false);
+                              setIsPermitDemote(false);
+                            }
+                            setSelectedTaskId(task.Task_id);
+                            setShowEditModal(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                      </Card.Body>
                     </Card>
                   );
                 })}
@@ -182,25 +218,37 @@ export default function KanbanBoardPage() {
                 .map((task) => {
                   return (
                     <Card key={task.Task_id}>
-                      {task.Task_name}
-                      <Button
-                        onClick={() => {
-                          console.log("redState isTodoList", redState);
-                          if (redState.isTodolist) {
-                            setIsPermitPlan(false);
-                            setIsPermitPromote(true);
-                            setIsPermitDemote(false);
-                          } else {
-                            setIsPermitPlan(false);
-                            setIsPermitPromote(false);
-                            setIsPermitDemote(false);
-                          }
-                          setSelectedTaskId(task.Task_id);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
+                      <Card.Body>
+                        <Card.Title>Task: {task.Task_name}</Card.Title>
+                        <div
+                          style={{
+                            backgroundColor: plans[task.Task_plan] ?? "white",
+                          }}
+                        >
+                          Plan: {task.Task_plan}
+                        </div>
+                        <Card.Text>
+                          Description: {task.Task_description}
+                        </Card.Text>
+                        <Button
+                          onClick={() => {
+                            console.log("redState isTodoList", redState);
+                            if (redState.isTodolist) {
+                              setIsPermitPlan(false);
+                              setIsPermitPromote(true);
+                              setIsPermitDemote(false);
+                            } else {
+                              setIsPermitPlan(false);
+                              setIsPermitPromote(false);
+                              setIsPermitDemote(false);
+                            }
+                            setSelectedTaskId(task.Task_id);
+                            setShowEditModal(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                      </Card.Body>
                     </Card>
                   );
                 })}
@@ -214,24 +262,36 @@ export default function KanbanBoardPage() {
                 .map((task) => {
                   return (
                     <Card key={task.Task_id}>
-                      {task.Task_name}
-                      <Button
-                        onClick={() => {
-                          if (redState.isDoing) {
-                            setIsPermitPlan(false);
-                            setIsPermitPromote(true);
-                            setIsPermitDemote(true);
-                          } else {
-                            setIsPermitPlan(false);
-                            setIsPermitPromote(false);
-                            setIsPermitDemote(false);
-                          }
-                          setSelectedTaskId(task.Task_id);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
+                      <Card.Body>
+                        <Card.Title>Task: {task.Task_name}</Card.Title>
+                        <div
+                          style={{
+                            backgroundColor: plans[task.Task_plan] ?? "white",
+                          }}
+                        >
+                          Plan: {task.Task_plan}
+                        </div>
+                        <Card.Text>
+                          Description: {task.Task_description}
+                        </Card.Text>
+                        <Button
+                          onClick={() => {
+                            if (redState.isDoing) {
+                              setIsPermitPlan(false);
+                              setIsPermitPromote(true);
+                              setIsPermitDemote(true);
+                            } else {
+                              setIsPermitPlan(false);
+                              setIsPermitPromote(false);
+                              setIsPermitDemote(false);
+                            }
+                            setSelectedTaskId(task.Task_id);
+                            setShowEditModal(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                      </Card.Body>
                     </Card>
                   );
                 })}
@@ -245,24 +305,36 @@ export default function KanbanBoardPage() {
                 .map((task) => {
                   return (
                     <Card key={task.Task_id}>
-                      {task.Task_name}
-                      <Button
-                        onClick={() => {
-                          if (redState.isDone) {
-                            setIsPermitPlan(true);
-                            setIsPermitPromote(true);
-                            setIsPermitDemote(true);
-                          } else {
-                            setIsPermitPlan(false);
-                            setIsPermitPromote(false);
-                            setIsPermitDemote(false);
-                          }
-                          setSelectedTaskId(task.Task_id);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        Edit
-                      </Button>
+                      <Card.Body>
+                        <Card.Title>Task: {task.Task_name}</Card.Title>
+                        <div
+                          style={{
+                            backgroundColor: plans[task.Task_plan] ?? "white",
+                          }}
+                        >
+                          Plan: {task.Task_plan}
+                        </div>
+                        <Card.Text>
+                          Description: {task.Task_description}
+                        </Card.Text>
+                        <Button
+                          onClick={() => {
+                            if (redState.isDone) {
+                              setIsPermitPlan(true);
+                              setIsPermitPromote(true);
+                              setIsPermitDemote(true);
+                            } else {
+                              setIsPermitPlan(false);
+                              setIsPermitPromote(false);
+                              setIsPermitDemote(false);
+                            }
+                            setSelectedTaskId(task.Task_id);
+                            setShowEditModal(true);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                      </Card.Body>
                     </Card>
                   );
                 })}
@@ -274,7 +346,23 @@ export default function KanbanBoardPage() {
               {tasks
                 .filter((task) => task.Task_state === "closed")
                 .map((task) => {
-                  return <Card key={task.Task_id}>{task.Task_name}</Card>;
+                  return (
+                    <Card key={task.Task_id}>
+                      <Card.Body>
+                        <Card.Title>Task: {task.Task_name}</Card.Title>
+                        <div
+                          style={{
+                            backgroundColor: plans[task.Task_plan] ?? "white",
+                          }}
+                        >
+                          Plan: {task.Task_plan}
+                        </div>
+                        <Card.Text>
+                          Description: {task.Task_description}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  );
                 })}
             </div>
           </Col>

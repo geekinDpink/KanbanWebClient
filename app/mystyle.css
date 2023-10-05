@@ -30,3 +30,9 @@ td {
 .modal-90w {
   max-width: 80% !important;
 }
+
+.card {
+  /* --bs-card-height: 200px !important; */
+  height: 200px !important;
+  margin: 10px !important;
+}
