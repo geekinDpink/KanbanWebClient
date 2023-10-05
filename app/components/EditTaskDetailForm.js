@@ -287,7 +287,67 @@ export default function EditTaskDetailForm({
           <Form>
             <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs sm={1} md={2}>
-                <label htmlFor="name">Name</label>
+                <label htmlFor="appAcronym">App Acronym</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="appAcronym"
+                  name="appAcronym"
+                  style={{ width: "100%" }}
+                  disabled
+                />
+                {touched.appAcronym && errors.appAcronym && (
+                  <div className="formErrors">{errors.appAcronym}</div>
+                )}
+              </Col>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="taskState">Task State</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="taskState"
+                  name="taskState"
+                  style={{ width: "100%" }}
+                  disabled
+                />
+                {touched.taskState && errors.taskState && (
+                  <div className="formErrors">{errors.taskState}</div>
+                )}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="taskId">Task ID</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="taskId"
+                  name="taskId"
+                  style={{ width: "100%" }}
+                  disabled
+                />
+                {touched.taskId && errors.taskId && (
+                  <div className="formErrors">{errors.taskId}</div>
+                )}
+              </Col>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="owner">Owner</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="owner"
+                  name="owner"
+                  style={{ width: "100%" }}
+                  disabled
+                />
+                {touched.owner && errors.owner && (
+                  <div className="formErrors">{errors.owner}</div>
+                )}
+              </Col>
+            </Row>
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="name">Task Name</label>
               </Col>
               <Col xs sm={5} md={4}>
                 <Field
@@ -298,6 +358,20 @@ export default function EditTaskDetailForm({
                 />
                 {touched.name && errors.name && (
                   <div className="formErrors">{errors.name}</div>
+                )}
+              </Col>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="creator">Creator</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="creator"
+                  name="creator"
+                  style={{ width: "100%" }}
+                  disabled
+                />
+                {touched.creator && errors.creator && (
+                  <div className="formErrors">{errors.creator}</div>
                 )}
               </Col>
             </Row>
@@ -317,53 +391,19 @@ export default function EditTaskDetailForm({
                   <div className="formErrors">{errors.description}</div>
                 )}
               </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
               <Col xs sm={1} md={2}>
-                <label htmlFor="notes">Task Notes</label>
+                <label htmlFor="createDate">Create Date</label>
               </Col>
               <Col xs sm={5} md={4}>
                 <Field
-                  id="notes"
-                  name="notes"
+                  id="createDate"
+                  name="createDate"
+                  type="date"
                   disabled
                   style={{ width: "100%" }}
-                  component="textarea"
                 />
-                {touched.notes && errors.notes && (
-                  <div className="formErrors">{errors.notes}</div>
-                )}
-              </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="addTaskNotes">Add Task Notes</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="addTaskNotes"
-                  name="addTaskNotes"
-                  style={{ width: "100%" }}
-                  component="textarea"
-                />
-                {touched.addTaskNotes && errors.addTaskNotes && (
-                  <div className="formErrors">{errors.addTaskNotes}</div>
-                )}
-              </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="taskId">Task ID</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="taskId"
-                  name="taskId"
-                  style={{ width: "100%" }}
-                  disabled
-                />
-                {touched.taskId && errors.taskId && (
-                  <div className="formErrors">{errors.taskId}</div>
+                {touched.createDate && errors.createDate && (
+                  <div className="formErrors">{errors.createDate}</div>
                 )}
               </Col>
             </Row>
@@ -400,99 +440,49 @@ export default function EditTaskDetailForm({
                   <div className="formErrors">{errors.plan}</div>
                 )}
               </Col>
-            </Row>
-            {isPermitPlan && selTask.Task_state === "done" && (
-              <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-                <Col xs sm={1} md={2}>
+              <Col xs sm={1} md={2}>
+                {isPermitPlan && selTask.Task_state === "done" && (
                   <label>Change Plan</label>
-                </Col>
-                <Col xs sm={5} md={4}>
+                )}
+              </Col>
+              <Col xs sm={5} md={4}>
+                {isPermitPlan && selTask.Task_state === "done" && (
                   <Field type="checkbox" name="changePlan" />
-                </Col>
-              </Row>
-            )}
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="appAcronym">App Acronym</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="appAcronym"
-                  name="appAcronym"
-                  style={{ width: "100%" }}
-                  disabled
-                />
-                {touched.appAcronym && errors.appAcronym && (
-                  <div className="formErrors">{errors.appAcronym}</div>
-                )}
-              </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="taskState">Task State</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="taskState"
-                  name="taskState"
-                  style={{ width: "100%" }}
-                  disabled
-                />
-                {touched.taskState && errors.taskState && (
-                  <div className="formErrors">{errors.taskState}</div>
-                )}
-              </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="creator">Creator</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="creator"
-                  name="creator"
-                  style={{ width: "100%" }}
-                  disabled
-                />
-                {touched.creator && errors.creator && (
-                  <div className="formErrors">{errors.creator}</div>
-                )}
-              </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="owner">Owner</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="owner"
-                  name="owner"
-                  style={{ width: "100%" }}
-                  disabled
-                />
-                {touched.owner && errors.owner && (
-                  <div className="formErrors">{errors.owner}</div>
-                )}
-              </Col>
-            </Row>
-            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
-              <Col xs sm={1} md={2}>
-                <label htmlFor="createDate">Create Date</label>
-              </Col>
-              <Col xs sm={5} md={4}>
-                <Field
-                  id="createDate"
-                  name="createDate"
-                  type="date"
-                  disabled
-                  style={{ width: "100%" }}
-                />
-                {touched.createDate && errors.createDate && (
-                  <div className="formErrors">{errors.createDate}</div>
                 )}
               </Col>
             </Row>
 
+            <Row style={{ marginTop: "8px", marginBottom: "8px" }}>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="addTaskNotes">Add Task Notes</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="addTaskNotes"
+                  name="addTaskNotes"
+                  style={{ width: "100%", height: "300px" }}
+                  component="textarea"
+                />
+                {touched.addTaskNotes && errors.addTaskNotes && (
+                  <div className="formErrors">{errors.addTaskNotes}</div>
+                )}
+              </Col>
+              <Col xs sm={1} md={2}>
+                <label htmlFor="notes">Task Notes</label>
+              </Col>
+              <Col xs sm={5} md={4}>
+                <Field
+                  id="notes"
+                  name="notes"
+                  disabled
+                  style={{ width: "100%", height: "300px" }}
+                  component="textarea"
+                />
+                {touched.notes && errors.notes && (
+                  <div className="formErrors">{errors.notes}</div>
+                )}
+              </Col>
+            </Row>
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
               <Col xs sm={1} md={1}>
