@@ -116,23 +116,28 @@ export default function KanbanBoardPage() {
             <h1>Kanban Board</h1>
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row style={{ marginBottom: "10px" }}>
+          <Col xs sm md={2}>
             <h5>App Acronym: {appAcronym}</h5>
           </Col>
-          <Col>
+          <Col xs sm md={1}>
             {redState.isCreate && (
               <Button
                 onClick={() => setShowCreateTaskModal(true)}
                 variant="info"
+                style={{ fontSize: "15px", padding: "10px" }}
               >
-                Create Task
+                Add Task
               </Button>
             )}
           </Col>
-          <Col>
-            <Button onClick={() => setShowCreatePlanModal(true)} variant="info">
-              Create Plan
+          <Col xs sm md={1}>
+            <Button
+              onClick={() => setShowCreatePlanModal(true)}
+              variant="info"
+              style={{ fontSize: "15px", padding: "10px" }}
+            >
+              Add Plan
             </Button>
           </Col>
         </Row>
