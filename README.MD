@@ -38,6 +38,7 @@ Change Plan field to dropdown for Create and Edit Task
 Create Task and Edit Task (Open State) is enabled, Edit Task (Other state) is disabled
 Plan Appear as Label on note in kanban board e.g. sprint 1
 Add plan color
+Conditional Render Create/Edit App to PL and Create/Manage Plan to PM
 
 Relook
 Lowercase and trim at backend - c8 and edit
