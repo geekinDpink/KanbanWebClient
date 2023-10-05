@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import UserManagementPage from "./pages/UserManagementPage";
 import HomePage from "./pages/HomePage";
 import AppManagementPage from "./pages/AppManagementPage";
+import PlanManagementPage from "./pages/PlanManagementPage";
 import KanbanBoardPage from "./pages/KanbanBoardPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import CreateUserPage from "./pages/CreateUserPage";
@@ -184,6 +185,16 @@ export default function App() {
                 path="/edit_app"
                 element={
                   state.isLoggedIn ? <EditAppPage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/plan_management"
+                element={
+                  state.isLoggedIn ? (
+                    <PlanManagementPage />
+                  ) : (
+                    <Navigate to="/" />
+                  )
                 }
               />
             </Routes>

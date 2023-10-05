@@ -4,6 +4,7 @@ Bug of Select Plan field need double click and flicker
 Description: scroll
 Rearrange form
 Edit Plan
+View Closed
 Does not allow change of plan when promoting
 
 Done

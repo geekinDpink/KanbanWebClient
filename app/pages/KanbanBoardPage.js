@@ -6,7 +6,7 @@ import CreateTaskDetailForm from "../components/CreateTaskDetailForm";
 import EditTaskDetailForm from "../components/EditTaskDetailForm";
 import PlanDetailForm from "../components/PlanDetailForm";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import axios from "axios";
@@ -28,6 +28,7 @@ export default function KanbanBoardPage() {
 
   const appLocation = useLocation();
   const { App_Acronym: appAcronym } = appLocation.state;
+  const navigate = useNavigate();
 
   // Authentication and Authorisation (Admin) Check
   useEffect(() => {
@@ -162,6 +163,21 @@ export default function KanbanBoardPage() {
               style={{ fontSize: "15px", padding: "10px" }}
             >
               Add Plan
+            </Button>
+          </Col>
+          <Col xs sm md={1}>
+            <Button
+              onClick={() =>
+                navigate("/plan_management", {
+                  state: {
+                    App_Acronym: appAcronym,
+                  },
+                })
+              }
+              variant="info"
+              style={{ fontSize: "15px", padding: "10px" }}
+            >
+              Manage Plan
             </Button>
           </Col>
         </Row>
