@@ -20,11 +20,12 @@ export default function PlanManagementPage() {
 
   const [plans, setPlans] = useState([]);
 
-  // Authentication and Authorisation (Admin) Check
+  // Authentication and Authorisation (Admin) Check and Fetch Data on load
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     const authUserFetchData = async (token) => {
+      // Check if user is valid and is admin (for header link)
       try {
         const res = await axios.get("http://localhost:8080/user/auth", {
           headers: { Authorization: `Basic ${token}` },
@@ -35,31 +36,76 @@ export default function PlanManagementPage() {
         } else {
           redDispatch({ type: "notAdmin" });
         }
+
+        // Check app permit
+        try {
+          const params = { App_Acronym: appAcronym };
+          const resPermit = await axios.post(
+            "http://localhost:8080/user/permits",
+            params,
+            {
+              headers: { Authorization: `Basic ${token}` },
+            }
+          );
+          resPermit.data.isCreate
+            ? redDispatch({ type: "isCreate" })
+            : redDispatch({ type: "notCreate" });
+
+          resPermit.data.isOpen
+            ? redDispatch({ type: "isOpen" })
+            : redDispatch({ type: "notOpen" });
+
+          resPermit.data.isTodolist
+            ? redDispatch({ type: "isTodo" })
+            : redDispatch({ type: "notTodo" });
+
+          resPermit.data.isDoing
+            ? redDispatch({ type: "isDoing" })
+            : redDispatch({ type: "notDoing" });
+
+          resPermit.data.isDone
+            ? redDispatch({ type: "isDone" })
+            : redDispatch({ type: "notDone" });
+
+          resPermit.data.isPlan
+            ? redDispatch({ type: "isPlan" })
+            : redDispatch({ type: "notPlan" });
+
+          resPermit.data.isApp
+            ? redDispatch({ type: "isApp" })
+            : redDispatch({ type: "notApp" });
+        } catch (error) {
+          toast("No task record found");
+          console.log(error);
+        }
+
+        // Fetch Plans data
+        try {
+          const params2 = { Plan_app_Acronym: appAcronym };
+          const resPlan = await axios.post(
+            "http://localhost:8080/plans/acronym",
+            params2,
+            {
+              headers: { Authorization: `Basic ${token}` },
+            }
+          );
+          if (resPlan.data.length > 0) {
+            setPlans(resPlan.data);
+          } else {
+            toast.error("No Plan record found");
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error("Unable to retrieve plan record");
+          setPlans([]);
+        }
       } catch (err) {
-        // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(err);
         redDispatch({ type: "logout" });
-      }
-
-      try {
-        const params2 = { Plan_app_Acronym: appAcronym };
-        const resPlan = await axios.post(
-          "http://localhost:8080/plans/acronym",
-          params2,
-          {
-            headers: { Authorization: `Basic ${token}` },
-          }
-        );
-        setPlans(resPlan.data);
-      } catch (error) {
-        // api call is validation process e.g. token, if fail refuse entry and logout
-        console.log(error);
-        setPlans([]);
       }
     };
 
     if (token) {
-      // Get my user detail based on username in token
       authUserFetchData(token);
     } else {
       redDispatch({ type: "logout" });
