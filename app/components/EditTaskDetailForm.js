@@ -377,13 +377,17 @@ export default function EditTaskDetailForm({
                   name="plan"
                   style={{ width: "100%" }}
                   component={() => {
+                    let selectPlanMode = "editTask";
+                    if (selTask.Task_state === "done") {
+                      selectPlanMode = "editDoneTask";
+                    }
                     return (
                       <SingleSelectPlan
                         disabled={!isPermitPlan}
                         setFieldValue={setFieldValue}
                         values={values}
                         App_Acronym={appAcronym}
-                        mode="editTask"
+                        mode={selectPlanMode}
                         fieldName="plan"
                         defaultValue={{
                           value: selTask.Task_plan,
@@ -397,7 +401,7 @@ export default function EditTaskDetailForm({
                 )}
               </Col>
             </Row>
-            {isPermitPlan && (
+            {isPermitPlan && selTask.Task_state === "done" && (
               <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
                 <Col xs sm={1} md={2}>
                   <label>Change Plan</label>

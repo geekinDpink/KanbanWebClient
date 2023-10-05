@@ -14,9 +14,14 @@ export default function SingleSelectPlan({
 }) {
   const [planOptions, setPlanOptions] = useState();
 
+  ///////////////////////////////////////////////////////////
+  // 2 layers of filter for disable
+  // 1. Disabled param = isPermit, allow create task and edit task (open and edit state)
+  // 2. isChangePlan param is used by checkbox to enable or disable plan
+  ///////////////////////////////////////////////////////////
   let isChangePlan = false;
-
-  if (mode === "editTask") {
+  if (mode === "editDoneTask") {
+    console.log("values.changePlan", values.changePlan);
     isChangePlan = values.changePlan ? false : true;
   }
 
