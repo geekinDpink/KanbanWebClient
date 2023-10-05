@@ -8,8 +8,8 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function PlanDetailForm({ appAcronym }) {
-  const [user, setUser] = useState();
+export default function PlanDetailForm({ appAcronym, planMVPName }) {
+  const [selPlan, setSelPlan] = useState();
   const PlanSchema = Yup.object().shape({
     planName: Yup.string().required("Required"),
     acronym: Yup.string().required("Required"),
@@ -37,6 +37,37 @@ export default function PlanDetailForm({ appAcronym }) {
       toast.error(`Unable to submit`);
     }
   };
+
+  useEffect(() => {
+    // Get All Plans
+    const token = localStorage.getItem("token");
+
+    const getPlanByAcronymAndName = async () => {
+      try {
+        const params = {
+          Plan_app_Acronym: appAcronym,
+          Plan_MVP_name: planMVPName,
+        };
+        const res = await axios.put(
+          "http://localhost:8080/plan/acronym/name",
+          params,
+          {
+            headers: { Authorization: `Basic ${token}` },
+          }
+        );
+        if (res.data.length > 0) {
+          setSelPlan(res.data[0]);
+        }
+      } catch (err) {
+        console.log("err", err);
+        toast.error(`Unable to Promote`);
+      }
+    };
+
+    if (appAcronym && planMVPName) {
+      getPlanByAcronymAndName();
+    }
+  }, []);
 
   return (
     <>

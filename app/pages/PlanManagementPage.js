@@ -159,7 +159,8 @@ export default function PlanManagementPage() {
                         onClick={() =>
                           navigate("/edit_app", {
                             state: {
-                              App_Acronym: app.App_Acronym,
+                              App_Acronym: plan.Plan_app_Acronym,
+                              Plan_Name: plan.Plan_MVP_name,
                             },
                           })
                         }
