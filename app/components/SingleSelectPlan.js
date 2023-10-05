@@ -21,7 +21,6 @@ export default function SingleSelectPlan({
   ///////////////////////////////////////////////////////////
   let isChangePlan = false;
   if (mode === "editDoneTask") {
-    console.log("values.changePlan", values.changePlan);
     isChangePlan = values.changePlan ? false : true;
   }
 
