@@ -79,6 +79,14 @@ export default function KanbanBoardPage() {
         resPermit.data.isDone
           ? redDispatch({ type: "isDone" })
           : redDispatch({ type: "notDone" });
+
+        resPermit.data.isPlan
+          ? redDispatch({ type: "isPlan" })
+          : redDispatch({ type: "notPlan" });
+
+        resPermit.data.isApp
+          ? redDispatch({ type: "isApp" })
+          : redDispatch({ type: "notApp" });
       } catch (error) {
         toast("No task record found");
         // api call is validation process e.g. token, if fail refuse entry and logout

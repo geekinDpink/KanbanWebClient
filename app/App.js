@@ -35,6 +35,8 @@ export default function App() {
     isTodolist: false,
     isDoing: false,
     isDone: false,
+    isPlan: false,
+    isApp: false,
   };
 
   function myReducer(draft, action) {
@@ -83,6 +85,18 @@ export default function App() {
         return;
       case "notDone":
         draft.isDone = false;
+        return;
+      case "isPlan":
+        draft.isPlan = true;
+        return;
+      case "notPlan":
+        draft.isPlan = false;
+        return;
+      case "isApp":
+        draft.isApp = true;
+        return;
+      case "notApp":
+        draft.isApp = false;
         return;
       default:
         return draft;
@@ -190,7 +204,7 @@ export default function App() {
               <Route
                 path="/plan_management"
                 element={
-                  state.isLoggedIn ? (
+                  state.isLoggedIn && state.isPlan ? (
                     <PlanManagementPage />
                   ) : (
                     <Navigate to="/" />
