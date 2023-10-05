@@ -57,7 +57,7 @@ export default function EditTaskDetailForm({
 
   // Promote State, Add Note and Refresh Board
   const onPromoteHandler = (values) => {
-    const { taskId, addTaskNotes } = values;
+    const { taskId, addTaskNotes, plan } = values;
 
     // Promote State, Add Note and Refresh Board
     const token = localStorage.getItem("token");
@@ -68,6 +68,7 @@ export default function EditTaskDetailForm({
           // Task_notes: notes,
           Task_id: taskId,
           Add_Task_Notes: addTaskNotes,
+          Task_plan: plan,
         };
         const res = await axios.put(
           "http://localhost:8080/task/promote",
