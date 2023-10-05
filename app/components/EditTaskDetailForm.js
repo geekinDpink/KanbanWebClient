@@ -125,12 +125,13 @@ export default function EditTaskDetailForm({
 
   // Demote State, Add Note and Refresh Board
   const onDemoteHandler = (values) => {
-    const { taskId, addTaskNotes } = values;
+    const { taskId, addTaskNotes, plan } = values;
 
     const params = {
       // Task_notes: notes,
       Task_id: taskId,
       Add_Task_Notes: addTaskNotes,
+      Task_plan: plan,
     };
 
     const token = localStorage.getItem("token");
