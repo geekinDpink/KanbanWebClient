@@ -88,7 +88,7 @@ export default function KanbanBoardPage() {
           ? redDispatch({ type: "isApp" })
           : redDispatch({ type: "notApp" });
       } catch (error) {
-        toast("No task record found");
+        toast("Unable to retrieve user permits");
         // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(error);
       }
@@ -165,28 +165,32 @@ export default function KanbanBoardPage() {
             )}
           </Col>
           <Col xs sm md={1}>
-            <Button
-              onClick={() => setShowCreatePlanModal(true)}
-              variant="info"
-              style={{ fontSize: "15px", padding: "10px" }}
-            >
-              Add Plan
-            </Button>
+            {redState.isPlan && (
+              <Button
+                onClick={() => setShowCreatePlanModal(true)}
+                variant="info"
+                style={{ fontSize: "15px", padding: "10px" }}
+              >
+                Add Plan
+              </Button>
+            )}
           </Col>
           <Col xs sm md={1}>
-            <Button
-              onClick={() =>
-                navigate("/plan_management", {
-                  state: {
-                    App_Acronym: appAcronym,
-                  },
-                })
-              }
-              variant="info"
-              style={{ fontSize: "15px", padding: "10px" }}
-            >
-              Manage Plan
-            </Button>
+            {redState.isPlan && (
+              <Button
+                onClick={() =>
+                  navigate("/plan_management", {
+                    state: {
+                      App_Acronym: appAcronym,
+                    },
+                  })
+                }
+                variant="info"
+                style={{ fontSize: "15px", padding: "10px" }}
+              >
+                Manage Plan
+              </Button>
+            )}
           </Col>
         </Row>
         <Row>

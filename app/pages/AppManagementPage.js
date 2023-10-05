@@ -33,21 +33,66 @@ export default function AppManagementPage() {
         } else {
           redDispatch({ type: "notAdmin" });
         }
+
+        try {
+          const params = { App_Acronym: null };
+          const resPermit = await axios.post(
+            "http://localhost:8080/user/permits",
+            params,
+            {
+              headers: { Authorization: `Basic ${token}` },
+            }
+          );
+          resPermit.data.isCreate
+            ? redDispatch({ type: "isCreate" })
+            : redDispatch({ type: "notCreate" });
+
+          resPermit.data.isOpen
+            ? redDispatch({ type: "isOpen" })
+            : redDispatch({ type: "notOpen" });
+
+          resPermit.data.isTodolist
+            ? redDispatch({ type: "isTodo" })
+            : redDispatch({ type: "notTodo" });
+
+          resPermit.data.isDoing
+            ? redDispatch({ type: "isDoing" })
+            : redDispatch({ type: "notDoing" });
+
+          resPermit.data.isDone
+            ? redDispatch({ type: "isDone" })
+            : redDispatch({ type: "notDone" });
+
+          resPermit.data.isPlan
+            ? redDispatch({ type: "isPlan" })
+            : redDispatch({ type: "notPlan" });
+
+          resPermit.data.isApp
+            ? redDispatch({ type: "isApp" })
+            : redDispatch({ type: "notApp" });
+        } catch (error) {
+          toast("Unable to retrieve user permits");
+          console.log(error);
+        }
+
+        try {
+          const response = await axios.get("http://localhost:8080/apps", {
+            headers: { Authorization: `Basic ${token}` },
+          });
+          if (response.data.length > 0) {
+            setApplications(response.data);
+          } else {
+            toast("No app records found");
+          }
+        } catch (error) {
+          console.log(error);
+          toast("Unable to retrieve app records");
+          setApplications([]);
+        }
       } catch (err) {
         // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(err);
         redDispatch({ type: "logout" });
-      }
-
-      try {
-        const response = await axios.get("http://localhost:8080/apps", {
-          headers: { Authorization: `Basic ${token}` },
-        });
-        setApplications(response.data);
-      } catch (error) {
-        // api call is validation process e.g. token, if fail refuse entry and logout
-        console.log(error);
-        setApplications([]);
       }
     };
 
@@ -66,17 +111,19 @@ export default function AppManagementPage() {
           <h1>Application Management</h1>
         </Col>
         <Col xs sm md={2}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              marginBottom: "5px",
-            }}
-          >
-            <Button onClick={() => navigate("/create_app")} variant="info">
-              Create App
-            </Button>
-          </div>
+          {redState.isApp && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "5px",
+              }}
+            >
+              <Button onClick={() => navigate("/create_app")} variant="info">
+                Create App
+              </Button>
+            </div>
+          )}
         </Col>
       </Row>
       <Row>
@@ -100,19 +147,21 @@ export default function AppManagementPage() {
                     <td>{app.App_startDate}</td>
                     <td>{app.App_endDate}</td>
                     <td>
-                      <Button
-                        onClick={() =>
-                          navigate("/edit_app", {
-                            state: {
-                              App_Acronym: app.App_Acronym,
-                            },
-                          })
-                        }
-                        style={{ marginTop: "3px", marginBottom: "5px" }}
-                        variant="primary"
-                      >
-                        Edit
-                      </Button>
+                      {redState.isApp && (
+                        <Button
+                          onClick={() =>
+                            navigate("/edit_app", {
+                              state: {
+                                App_Acronym: app.App_Acronym,
+                              },
+                            })
+                          }
+                          style={{ marginTop: "3px", marginBottom: "5px" }}
+                          variant="primary"
+                        >
+                          Edit
+                        </Button>
+                      )}
                       <Button
                         onClick={() =>
                           navigate("/kanban_board", {
