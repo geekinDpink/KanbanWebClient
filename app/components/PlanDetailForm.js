@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
-import { Formik, Field, Form, option } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -28,11 +28,14 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
         Plan_app_Acronym: acronym,
         Plan_color: labelColor,
       };
-      const res = await axios.post("http://localhost:8080/plan", params, {
-        headers: { Authorization: `Basic ${token}` },
-      });
+      const res = await axios.put(
+        "http://localhost:8080/plan/acronym/name",
+        params,
+        {
+          headers: { Authorization: `Basic ${token}` },
+        }
+      );
       toast.success("Form Submitted");
-      resetForm();
     } catch (error) {
       toast.error(`Unable to submit`);
     }
@@ -43,9 +46,6 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
     const token = localStorage.getItem("token");
 
     const getPlanByAcronymAndName = async () => {
-      console.log("appAcronym", appAcronym);
-      console.log("planMVPName", planMVPName);
-
       try {
         const params = {
           Plan_app_Acronym: appAcronym,
@@ -78,8 +78,12 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
       <Formik
         initialValues={{
           planName: selPlan?.Plan_MVP_name ?? "",
-          startDate: selPlan?.Plan_startDate ?? "",
-          endDate: selPlan?.Plan_endDate ?? "",
+          startDate: selPlan?.Plan_startDate
+            ? moment(selPlan?.Plan_startDate).format("YYYY-MM-DD")
+            : "",
+          endDate: selPlan?.Plan_endDate
+            ? moment(selPlan?.Plan_endDate).format("YYYY-MM-DD")
+            : "",
           acronym: appAcronym,
           labelColor: selPlan?.Plan_color ?? "#000000",
         }}
@@ -180,7 +184,7 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
                     width: "100%",
                   }}
                 >
-                  Create
+                  Save
                 </button>
               </Col>
             </Row>
