@@ -232,7 +232,7 @@ export default function EditTaskDetailForm({
               setTasks(resAllTaskByAcroynm.data);
             }
           } catch (error) {
-            toast.error(`Unable to refresh`);
+            toast.error(`Unable to refresh board`);
           }
 
           // Refresh Edit Note Modal

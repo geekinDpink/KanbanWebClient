@@ -388,6 +388,17 @@ export default function KanbanBoardPage() {
                         <Card.Text>
                           Description: {task.Task_description}
                         </Card.Text>
+                        <Button
+                          onClick={() => {
+                            setIsPermitPlan(false);
+                            setIsPermitPromote(false);
+                            setIsPermitDemote(false);
+                            setSelectedTaskId(task.Task_id);
+                            setShowEditModal(true);
+                          }}
+                        >
+                          View
+                        </Button>
                       </Card.Body>
                     </Card>
                   );
