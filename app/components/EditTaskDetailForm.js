@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import SingleSelectPlan from "./SingleSelectPlan";
 import moment from "moment";
 
+// isPermit Promote also used to render Edit/View Task Btn and disable add notes field
 export default function EditTaskDetailForm({
   setTasks,
   setShowEditModal,
@@ -463,6 +464,7 @@ export default function EditTaskDetailForm({
                   name="addTaskNotes"
                   style={{ width: "100%", height: "300px" }}
                   component="textarea"
+                  disabled={!isPermitPromote}
                 />
                 {touched.addTaskNotes && errors.addTaskNotes && (
                   <div className="formErrors">{errors.addTaskNotes}</div>
