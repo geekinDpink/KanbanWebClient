@@ -230,7 +230,7 @@ export default function KanbanBoardPage() {
                             setShowEditModal(true);
                           }}
                         >
-                          Edit
+                          {redState.isOpen ? "Edit" : "View"}
                         </Button>
                       </Card.Body>
                     </Card>
@@ -274,7 +274,7 @@ export default function KanbanBoardPage() {
                             setShowEditModal(true);
                           }}
                         >
-                          Edit
+                          {redState.isTodolist ? "Edit" : "View"}
                         </Button>
                       </Card.Body>
                     </Card>
@@ -317,7 +317,7 @@ export default function KanbanBoardPage() {
                             setShowEditModal(true);
                           }}
                         >
-                          Edit
+                          {redState.isDoing ? "Edit" : "View"}
                         </Button>
                       </Card.Body>
                     </Card>
@@ -360,7 +360,7 @@ export default function KanbanBoardPage() {
                             setShowEditModal(true);
                           }}
                         >
-                          Edit
+                          {redState.isDone ? "Edit" : "View"}
                         </Button>
                       </Card.Body>
                     </Card>

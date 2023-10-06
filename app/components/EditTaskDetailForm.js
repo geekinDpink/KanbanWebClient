@@ -247,7 +247,6 @@ export default function EditTaskDetailForm({
             );
             if (resTask.data.length > 0) {
               setSelTask(resTask.data[0]);
-              console.log("setSelTask");
             }
           } catch (error) {
             toast.error(`Unable to update edit task note`);
@@ -503,20 +502,22 @@ export default function EditTaskDetailForm({
                 )}
               </Col>
               <Col xs sm={2} md={2}>
-                <Button
-                  // type="submit"
-                  style={{
-                    width: "100%",
-                    borderColor: "black",
-                    borderWidth: "2px",
-                  }}
-                  onClick={() => {
-                    onAddNoteHandler(values);
-                  }}
-                  variant="light"
-                >
-                  Add Note
-                </Button>
+                {isPermitPromote && (
+                  <Button
+                    // type="submit"
+                    style={{
+                      width: "100%",
+                      borderColor: "black",
+                      borderWidth: "2px",
+                    }}
+                    onClick={() => {
+                      onAddNoteHandler(values);
+                    }}
+                    variant="light"
+                  >
+                    Add Note
+                  </Button>
+                )}
               </Col>
               <Col xs sm={1} md={1}>
                 {isPermitPromote && (
