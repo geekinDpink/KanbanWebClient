@@ -2,7 +2,6 @@ TODO:
 Kanban Task name, description
 Bug of Select Plan field need double click and flicker
 Rearrange form
-Does not allow change of plan when promoting
 Add Task note cannot accept empty
 
 Done
@@ -43,6 +42,7 @@ View Closed
 Description change to text area
 Edit App - Disable RN , Description (Required)
 Add Note button change to Save
+Does not allow change of plan when promoting (Backend handle)
 
 ###########################
 Relook
