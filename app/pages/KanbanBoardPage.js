@@ -419,7 +419,7 @@ export default function KanbanBoardPage() {
             </Button>
           </Modal.Header>
           <Modal.Body>
-            <PlanDetailForm appAcronym={appAcronym} />
+            <PlanDetailForm appAcronym={appAcronym} mode="create" />
           </Modal.Body>
         </Modal>
         <Modal show={showCreateTaskModal} dialogClassName="modal-90w">

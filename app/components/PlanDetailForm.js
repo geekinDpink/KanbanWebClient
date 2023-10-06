@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function PlanDetailForm({ appAcronym, planMVPName }) {
+export default function PlanDetailForm({ appAcronym, planMVPName, mode }) {
   const [selPlan, setSelPlan] = useState();
   const PlanSchema = Yup.object().shape({
     planName: Yup.string().required("Required"),
@@ -28,13 +28,17 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
         Plan_app_Acronym: acronym,
         Plan_color: labelColor,
       };
-      const res = await axios.put(
-        "http://localhost:8080/plan/acronym/name",
-        params,
-        {
+
+      if (mode === "create") {
+        await axios.post("http://localhost:8080/plan", params, {
           headers: { Authorization: `Basic ${token}` },
-        }
-      );
+        });
+        resetForm();
+      } else {
+        await axios.put("http://localhost:8080/plan/acronym/name", params, {
+          headers: { Authorization: `Basic ${token}` },
+        });
+      }
       toast.success("Form Submitted");
     } catch (error) {
       toast.error(`Unable to submit`);

@@ -10,6 +10,7 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
+import moment from "moment";
 
 export default function PlanManagementPage() {
   const redDispatch = useContext(DispatchContext);
@@ -151,8 +152,16 @@ export default function PlanManagementPage() {
                   <tr key={plan.Plan_MVP_name}>
                     <td>{plan.Plan_MVP_name}</td>
                     <td>{plan.Plan_app_Acronym}</td>
-                    <td>{plan.Plan_startDate}</td>
-                    <td>{plan.Plan_endDate}</td>
+                    <td>
+                      {plan?.Plan_startDate
+                        ? moment(plan?.Plan_startDate).format("YYYY-MM-DD")
+                        : null}
+                    </td>
+                    <td>
+                      {plan?.Plan_startDate
+                        ? moment(plan?.Plan_endDate).format("YYYY-MM-DD")
+                        : null}
+                    </td>
                     <td style={{ backgroundColor: plan.Plan_color }}></td>
                     <td>
                       <Button

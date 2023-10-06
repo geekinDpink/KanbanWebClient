@@ -112,7 +112,11 @@ export default function EditPlanPage() {
           </Col>
         </Row>
         <Row>
-          <PlanDetailForm appAcronym={appAcronym} planMVPName={planMVPName} />
+          <PlanDetailForm
+            appAcronym={appAcronym}
+            planMVPName={planMVPName}
+            mode="edit"
+          />
         </Row>
       </Container>
     </>
