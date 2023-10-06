@@ -156,7 +156,8 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
                 <Field
                   id="description"
                   name="description"
-                  style={{ width: "100%" }}
+                  component="textarea"
+                  style={{ width: "100%", height: "50px" }}
                 />
                 {touched.description && errors.description && (
                   <div className="formErrors">{errors.description}</div>

@@ -386,8 +386,9 @@ export default function EditTaskDetailForm({
                 <Field
                   id="description"
                   name="description"
+                  component="textarea"
                   disabled
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", height: "80px" }}
                 />
                 {touched.description && errors.description && (
                   <div className="formErrors">{errors.description}</div>
