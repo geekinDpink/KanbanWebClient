@@ -146,7 +146,7 @@ export default function PlanManagementPage() {
               </tr>
             </thead>
             <tbody>
-              {plans.length > 0 ? (
+              {plans instanceof Array && plans.length > 0 ? (
                 plans.map((plan) => (
                   <tr key={plan.Plan_MVP_name}>
                     <td>{plan.Plan_MVP_name}</td>

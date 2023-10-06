@@ -3,6 +3,7 @@ Kanban Task name, description
 Bug of Select Plan field need double click and flicker
 Rearrange form
 Add Task note cannot accept empty
+Get All Plans - no results - multiple toast in Create Plan
 
 Done
 Clear Form
@@ -43,6 +44,7 @@ Description change to text area
 Edit App - Disable RN , Description (Required)
 Add Note button change to Save
 Does not allow change of plan when promoting (Backend handle)
+View Plan unable to render if plan is empty cause plan.map
 
 ###########################
 Relook
