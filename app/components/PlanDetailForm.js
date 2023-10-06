@@ -43,12 +43,15 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
     const token = localStorage.getItem("token");
 
     const getPlanByAcronymAndName = async () => {
+      console.log("appAcronym", appAcronym);
+      console.log("planMVPName", planMVPName);
+
       try {
         const params = {
           Plan_app_Acronym: appAcronym,
           Plan_MVP_name: planMVPName,
         };
-        const res = await axios.put(
+        const res = await axios.post(
           "http://localhost:8080/plan/acronym/name",
           params,
           {
@@ -57,6 +60,7 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
         );
         if (res.data.length > 0) {
           setSelPlan(res.data[0]);
+          console.log("Plan data", res.data[0]);
         }
       } catch (err) {
         console.log("err", err);
@@ -73,11 +77,11 @@ export default function PlanDetailForm({ appAcronym, planMVPName }) {
     <>
       <Formik
         initialValues={{
-          planName: "",
-          startDate: "",
-          endDate: "",
+          planName: selPlan?.Plan_MVP_name ?? "",
+          startDate: selPlan?.Plan_startDate ?? "",
+          endDate: selPlan?.Plan_endDate ?? "",
           acronym: appAcronym,
-          labelColor: "#000000",
+          labelColor: selPlan?.Plan_color ?? "#000000",
         }}
         validationSchema={PlanSchema}
         enableReinitialize

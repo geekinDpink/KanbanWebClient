@@ -14,6 +14,7 @@ import CreateUserPage from "./pages/CreateUserPage";
 import EditUserPage from "./pages/EditUserPage";
 import CreateAppPage from "./pages/CreateAppPage";
 import EditAppPage from "./pages/EditAppPage";
+import EditPlanPage from "./pages/EditPlanPage";
 import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
 import { useImmerReducer } from "use-immer";
@@ -206,6 +207,16 @@ export default function App() {
                 element={
                   state.isLoggedIn && state.isPlan ? (
                     <PlanManagementPage />
+                  ) : (
+                    <Navigate to="/" />
+                  )
+                }
+              />
+              <Route
+                path="/edit_plan"
+                element={
+                  state.isLoggedIn && state.isPlan ? (
+                    <EditPlanPage />
                   ) : (
                     <Navigate to="/" />
                   )
