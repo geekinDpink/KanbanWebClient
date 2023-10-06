@@ -186,9 +186,9 @@ export default function KanbanBoardPage() {
                   })
                 }
                 variant="info"
-                style={{ fontSize: "15px", padding: "10px" }}
+                style={{ fontSize: "15px", padding: "10px 9px" }}
               >
-                Manage Plan
+                View Plan
               </Button>
             )}
           </Col>

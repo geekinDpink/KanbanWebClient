@@ -488,8 +488,8 @@ export default function EditTaskDetailForm({
               </Col>
             </Row>
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
-              <Col xs sm={1} md={2}></Col>
-              <Col xs sm={1} md={1}>
+              <Col xs sm md={2} lg={3}></Col>
+              <Col xs sm md={1} lg={2}>
                 {isPermitDemote && (
                   <Button
                     style={{
@@ -504,7 +504,7 @@ export default function EditTaskDetailForm({
                   </Button>
                 )}
               </Col>
-              <Col xs sm={2} md={2}>
+              <Col xs sm md={1} lg={2}>
                 {isPermitPromote && (
                   <Button
                     // type="submit"
@@ -518,11 +518,11 @@ export default function EditTaskDetailForm({
                     }}
                     variant="light"
                   >
-                    Add Note
+                    Save
                   </Button>
                 )}
               </Col>
-              <Col xs sm={1} md={1}>
+              <Col xs sm md={1} lg={2}>
                 {isPermitPromote && (
                   <Button
                     style={{

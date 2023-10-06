@@ -4,7 +4,6 @@ Bug of Select Plan field need double click and flicker
 Rearrange form
 Does not allow change of plan when promoting
 Add Task note cannot accept empty
-Add Note button change to Save
 
 Done
 Clear Form
@@ -43,6 +42,7 @@ Only permitted user grp can add note, Conditional Render Add Notes and Edit/View
 View Closed
 Description change to text area
 Edit App - Disable RN , Description (Required)
+Add Note button change to Save
 
 ###########################
 Relook
