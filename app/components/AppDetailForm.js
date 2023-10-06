@@ -12,11 +12,8 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
   const [app, setApp] = useState();
 
   const AppSchema = Yup.object().shape({
-    acronym: Yup.string()
-      .min(3, "Min 3 chars")
-      .max(50, "Max 50 chars")
-      .required("Required"),
-    description: Yup.string(),
+    acronym: Yup.string().required("Required"),
+    description: Yup.string().required("Required"),
     rnumber: Yup.number().positive().integer().required("Required"),
     // startDate: Yup.date(),
     // endDate: Yup.date(),
@@ -116,7 +113,12 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                 <label htmlFor="rnumber">RNumber</label>
               </Col>
               <Col xs sm={5} md={4}>
-                <Field id="rnumber" name="rnumber" style={{ width: "100%" }} />
+                <Field
+                  id="rnumber"
+                  name="rnumber"
+                  style={{ width: "100%" }}
+                  disabled={mode !== "create"}
+                />
                 {touched.rnumber && errors.rnumber && (
                   <div className="formErrors">{errors.rnumber}</div>
                 )}

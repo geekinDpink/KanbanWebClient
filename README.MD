@@ -1,11 +1,10 @@
 TODO:
 Kanban Task name, description
 Bug of Select Plan field need double click and flicker
-Description: scroll
 Rearrange form
-Edit Plan
-View Closed
 Does not allow change of plan when promoting
+Add Task note cannot accept empty
+Add Note button change to Save
 
 Done
 Clear Form
@@ -38,9 +37,14 @@ Change Plan field to dropdown for Create and Edit Task
 Create Task and Edit Task (Open State) is enabled, Edit Task (Other state) is disabled
 Plan Appear as Label on note in kanban board e.g. sprint 1
 Add plan color
+Edit Plan
 Conditional Render Create/Edit App to PL and Create/Manage Plan to PM
 Only permitted user grp can add note, Conditional Render Add Notes and Edit/View Task based on isPermit and disable text area
+View Closed
+Description change to text area
+Edit App - Disable RN , Description (Required)
 
+###########################
 Relook
 Lowercase and trim at backend - c8 and edit
 Workflow bug of editing own usergroup after removing ownself as admin
