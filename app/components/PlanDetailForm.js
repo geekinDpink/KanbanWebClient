@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
+import React, { useState, useEffect } from "react";import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
@@ -21,6 +20,7 @@ export default function PlanDetailForm({ appAcronym, planMVPName, mode }) {
       const { planName, startDate, endDate, acronym, labelColor } = values;
       const params = {
         Plan_MVP_name: planName,
+        // if date is "", moment will return "invalid date" string
         Plan_startDate: startDate
           ? moment(startDate).format("YYYY-MM-DD")
           : null,

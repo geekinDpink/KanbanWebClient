@@ -61,6 +61,7 @@ export default function CreateAppPage() {
       App_Acronym: acronym,
       App_Description: description,
       App_Rnumber: rnumber,
+      // if date is "", moment will return "invalid date" string
       App_StartDate: startDate ? moment(startDate).format("YYYY-MM-DD") : null,
       App_EndDate: endDate ? moment(endDate).format("YYYY-MM-DD") : null,
       App_Permit_Create: permitCreate,

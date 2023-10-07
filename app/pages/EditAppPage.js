@@ -66,8 +66,9 @@ export default function EditAppPage() {
       App_Acronym: acronym,
       App_Description: description,
       App_Rnumber: rnumber,
-      App_StartDate: moment(startDate).format("YYYY-MM-DD"),
-      App_EndDate: moment(endDate).format("YYYY-MM-DD"),
+      // if date is "", moment will return "invalid date" string
+      App_StartDate: startDate ? moment(startDate).format("YYYY-MM-DD") : null,
+      App_EndDate: endDate ? moment(endDate).format("YYYY-MM-DD") : null,
       App_Permit_Create: permitCreate,
       App_Permit_Open: permitOpen,
       App_Permit_ToDoList: permitTodo,
