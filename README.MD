@@ -1,5 +1,4 @@
-TODO:Kanban Task name, description
-No Plan toast appear when create task
+TODO:Kanban Task name, descriptionNo Plan toast appear when create task
 Bug of Select Plan field need double click and flicker
 Rearrange form
 Add Task note cannot accept empty
@@ -45,6 +44,7 @@ Edit App - Disable RN , Description (Required)
 Add Note button change to Save
 Does not allow change of plan when promoting (Backend handle)
 View Plan unable to render if plan is empty cause plan.map
+Add View App Page
 
 ###########################
 Relook
