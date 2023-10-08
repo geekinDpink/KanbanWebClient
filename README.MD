@@ -1,5 +1,5 @@
-TODO:
-Kanban Task name, description
+TODO:Kanban Task name, description
+No Plan toast appear when create task
 Bug of Select Plan field need double click and flicker
 Rearrange form
 Add Task note cannot accept empty

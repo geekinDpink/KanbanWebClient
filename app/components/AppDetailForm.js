@@ -56,6 +56,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
         initialValues={{
           acronym: app?.App_Acronym ?? "",
           description: app?.App_Description ?? "",
+          // Rvc warning to use empty string or undefined(uncontrol component), hence not int
           rnumber: app?.App_Rnumber ?? "",
           startDate: app?.App_startDate
             ? moment(app.App_startDate).format("YYYY-MM-DD")

@@ -65,7 +65,7 @@ export default function EditAppPage() {
     const params = {
       App_Acronym: acronym,
       App_Description: description,
-      App_Rnumber: rnumber,
+      App_Rnumber: parseInt(rnumber),
       // if date is "", moment will return "invalid date" string
       App_StartDate: startDate ? moment(startDate).format("YYYY-MM-DD") : null,
       App_EndDate: endDate ? moment(endDate).format("YYYY-MM-DD") : null,
