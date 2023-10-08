@@ -107,7 +107,7 @@ export default function EditTaskDetailForm({
         }
       } catch (err) {
         console.log("err", err);
-        toast.error(`Unable to Promote`);
+        toast.error(`Unable to Promote, ${err.response?.data}`);
       }
     };
 
