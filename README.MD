@@ -45,6 +45,7 @@ Add Note button change to Save
 Does not allow change of plan when promoting (Backend handle)
 View Plan unable to render if plan is empty cause plan.map
 Add View App Page
+Shrink Create Task Modal
 
 ###########################
 Relook
@@ -54,3 +55,4 @@ Align Request param app_permit_ToDoList with SQL app_permit_toDoList
 
 Optional
 Validation frontend for alphanumeric and symbols for password
+Standardise params for Edit App, start and end date, both capital in Sql db

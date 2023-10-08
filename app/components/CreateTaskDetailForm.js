@@ -140,7 +140,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="name">Name</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field id="name" name="name" style={{ width: "100%" }} />
                 {touched.name && errors.name && (
                   <div className="formErrors">{errors.name}</div>
@@ -152,7 +152,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="description">Description</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="description"
                   name="description"
@@ -168,7 +168,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="notes">Add Task Notes</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="notes"
                   name="notes"
@@ -184,7 +184,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="taskId">Task ID</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="taskId"
                   name="taskId"
@@ -200,7 +200,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="plan">Plan</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="plan"
                   name="plan"
@@ -230,7 +230,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="appAcronym">App Acronym</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="appAcronym"
                   name="appAcronym"
@@ -246,7 +246,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="taskState">Task State</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="taskState"
                   name="taskState"
@@ -262,7 +262,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="creator">Creator</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="creator"
                   name="creator"
@@ -278,7 +278,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="owner">Owner</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="owner"
                   name="owner"
@@ -294,7 +294,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
               <Col xs sm={1} md={2}>
                 <label htmlFor="createDate">Create Date</label>
               </Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <Field
                   id="createDate"
                   name="createDate"
@@ -310,7 +310,7 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
 
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
-              <Col xs sm={5} md={4}>
+              <Col xs sm md={5}>
                 <button
                   type="submit"
                   style={{
