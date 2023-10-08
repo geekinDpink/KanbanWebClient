@@ -14,7 +14,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
   const AppSchema = Yup.object().shape({
     acronym: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
-    rnumber: Yup.number().positive().integer().required("Required"),
+    rnumber: Yup.number().min(0).integer().required("Required"),
     // startDate: Yup.date(),
     // endDate: Yup.date(),
   });
