@@ -24,17 +24,6 @@ export default function EditTaskDetailForm({
   const appLocation = useLocation();
   const { App_Acronym: appAcronym } = appLocation.state;
 
-  const AppSchema = Yup.object().shape({
-    acronym: Yup.string()
-      .min(3, "Min 3 chars")
-      .max(50, "Max 50 chars")
-      .required("Required"),
-    description: Yup.string(),
-    rnumber: Yup.number().positive().integer().required("Required"),
-    startDate: Yup.date(),
-    endDate: Yup.date(),
-  });
-
   // On load, populate selected Task details on modal by saving to selTask state for loading to initial form values
   useEffect(() => {
     const params = {
@@ -279,7 +268,7 @@ export default function EditTaskDetailForm({
           createDate: selTask.Task_createDate ?? "",
           changePlan: false,
         }}
-        // validationSchema={AppSchema}
+        // validationSchema={TaskSchema}
         enableReinitialize
         // onSubmit={(values, { resetForm }) => {
         //   onSubmitHandler(values, resetForm);
