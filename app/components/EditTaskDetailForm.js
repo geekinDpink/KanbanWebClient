@@ -186,12 +186,13 @@ export default function EditTaskDetailForm({
 
   // Add Note
   const onAddNoteHandler = (values) => {
-    const { taskId, addTaskNotes } = values;
+    const { taskId, addTaskNotes, plan } = values;
 
     const params = {
       // Task_notes: notes,
       Task_id: taskId,
       Add_Task_Notes: addTaskNotes,
+      Task_plan: plan,
     };
 
     const token = localStorage.getItem("token");
@@ -434,7 +435,7 @@ export default function EditTaskDetailForm({
               </Col>
               <Col xs sm={1} md={2}>
                 {isPermitPlan && selTask.Task_state === "done" && (
-                  <label>Change Plan</label>
+                  <label>Change Plan (Demote)</label>
                 )}
               </Col>
               <Col xs sm={5} md={4}>
