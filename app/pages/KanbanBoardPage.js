@@ -202,20 +202,32 @@ export default function KanbanBoardPage() {
                 .filter((task) => task.Task_state === "open")
                 .map((task) => {
                   return (
-                    <Card key={task.Task_id}>
-                      <Card.Body>
-                        <Card.Title>Task: {task.Task_name}</Card.Title>
-                        <div
+                    <Card
+                      key={task.Task_id}
+                      style={{
+                        borderStyle: "solid",
+                        borderColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "2px",
+                      }}
+                    >
+                      <Card.Body style={{ margin: "0px", padding: "0px" }}>
+                        <Card.Title style={{ marginLeft: "5px" }}>
+                          Task: {task.Task_name}
+                        </Card.Title>
+                        <Card.Text
                           style={{
-                            backgroundColor: plans[task.Task_plan] ?? "white",
+                            height: "40%",
+                            maxHeight: "40%",
+                            overflowY: "auto",
+                            margin: "5px",
+                            padding: "0px",
                           }}
                         >
-                          Plan: {task.Task_plan}
-                        </div>
-                        <Card.Text>
-                          Description: {task.Task_description}
+                          <div>Plan: {task.Task_plan}</div>
+                          <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
+                          style={{ marginLeft: "35%" }}
                           onClick={() => {
                             console.log("redState", redState);
                             if (redState.isOpen) {
@@ -246,20 +258,32 @@ export default function KanbanBoardPage() {
                 .filter((task) => task.Task_state === "todolist")
                 .map((task) => {
                   return (
-                    <Card key={task.Task_id}>
-                      <Card.Body>
-                        <Card.Title>Task: {task.Task_name}</Card.Title>
-                        <div
+                    <Card
+                      key={task.Task_id}
+                      style={{
+                        borderStyle: "solid",
+                        borderColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "2px",
+                      }}
+                    >
+                      <Card.Body style={{ margin: "0px", padding: "0px" }}>
+                        <Card.Title style={{ marginLeft: "5px" }}>
+                          Task: {task.Task_name}
+                        </Card.Title>
+                        <Card.Text
                           style={{
-                            backgroundColor: plans[task.Task_plan] ?? "white",
+                            height: "40%",
+                            maxHeight: "40%",
+                            overflowY: "auto",
+                            margin: "5px",
+                            padding: "0px",
                           }}
                         >
-                          Plan: {task.Task_plan}
-                        </div>
-                        <Card.Text>
-                          Description: {task.Task_description}
+                          <div>Plan: {task.Task_plan}</div>
+                          <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
+                          style={{ marginLeft: "35%" }}
                           onClick={() => {
                             console.log("redState isTodoList", redState);
                             if (redState.isTodolist) {
@@ -290,20 +314,32 @@ export default function KanbanBoardPage() {
                 .filter((task) => task.Task_state === "doing")
                 .map((task) => {
                   return (
-                    <Card key={task.Task_id}>
-                      <Card.Body>
-                        <Card.Title>Task: {task.Task_name}</Card.Title>
-                        <div
+                    <Card
+                      key={task.Task_id}
+                      style={{
+                        borderStyle: "solid",
+                        borderColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "2px",
+                      }}
+                    >
+                      <Card.Body style={{ margin: "0px", padding: "0px" }}>
+                        <Card.Title style={{ marginLeft: "5px" }}>
+                          Task: {task.Task_name}
+                        </Card.Title>
+                        <Card.Text
                           style={{
-                            backgroundColor: plans[task.Task_plan] ?? "white",
+                            height: "40%",
+                            maxHeight: "40%",
+                            overflowY: "auto",
+                            margin: "5px",
+                            padding: "0px",
                           }}
                         >
-                          Plan: {task.Task_plan}
-                        </div>
-                        <Card.Text>
-                          Description: {task.Task_description}
+                          <div>Plan: {task.Task_plan}</div>
+                          <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
+                          style={{ marginLeft: "35%" }}
                           onClick={() => {
                             if (redState.isDoing) {
                               setIsPermitPlan(false);
@@ -333,20 +369,32 @@ export default function KanbanBoardPage() {
                 .filter((task) => task.Task_state === "done")
                 .map((task) => {
                   return (
-                    <Card key={task.Task_id}>
-                      <Card.Body>
-                        <Card.Title>Task: {task.Task_name}</Card.Title>
-                        <div
+                    <Card
+                      key={task.Task_id}
+                      style={{
+                        borderStyle: "solid",
+                        borderColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "2px",
+                      }}
+                    >
+                      <Card.Body style={{ margin: "0px", padding: "0px" }}>
+                        <Card.Title style={{ marginLeft: "5px" }}>
+                          Task: {task.Task_name}
+                        </Card.Title>
+                        <Card.Text
                           style={{
-                            backgroundColor: plans[task.Task_plan] ?? "white",
+                            height: "40%",
+                            maxHeight: "40%",
+                            overflowY: "auto",
+                            margin: "5px",
+                            padding: "0px",
                           }}
                         >
-                          Plan: {task.Task_plan}
-                        </div>
-                        <Card.Text>
-                          Description: {task.Task_description}
+                          <div>Plan: {task.Task_plan}</div>
+                          <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
+                          style={{ marginLeft: "35%" }}
                           onClick={() => {
                             if (redState.isDone) {
                               setIsPermitPlan(true);
@@ -376,20 +424,32 @@ export default function KanbanBoardPage() {
                 .filter((task) => task.Task_state === "closed")
                 .map((task) => {
                   return (
-                    <Card key={task.Task_id}>
-                      <Card.Body>
-                        <Card.Title>Task: {task.Task_name}</Card.Title>
-                        <div
+                    <Card
+                      key={task.Task_id}
+                      style={{
+                        borderStyle: "solid",
+                        borderColor: plans[task.Task_plan] ?? "white",
+                        borderWidth: "2px",
+                      }}
+                    >
+                      <Card.Body style={{ margin: "0px", padding: "0px" }}>
+                        <Card.Title style={{ marginLeft: "5px" }}>
+                          Task: {task.Task_name}
+                        </Card.Title>
+                        <Card.Text
                           style={{
-                            backgroundColor: plans[task.Task_plan] ?? "white",
+                            height: "40%",
+                            maxHeight: "40%",
+                            overflowY: "auto",
+                            margin: "5px",
+                            padding: "0px",
                           }}
                         >
-                          Plan: {task.Task_plan}
-                        </div>
-                        <Card.Text>
-                          Description: {task.Task_description}
+                          <div>Plan: {task.Task_plan}</div>
+                          <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
+                          style={{ marginLeft: "35%" }}
                           onClick={() => {
                             setIsPermitPlan(false);
                             setIsPermitPromote(false);
