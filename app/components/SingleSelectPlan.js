@@ -85,13 +85,14 @@ export default function SingleSelectPlan({
             values[fieldName] =
               values[fieldName] === "" ? defaultValue.value : values[fieldName];
           } else {
-            toast.error("No Plan found");
+            // toast.error("No Plan found");
+            console.log("No Plan found");
           }
         } catch (error) {
-          console.log("error", error);
-          toast.error(
-            "Unable to retrieve usergroups, " + error?.response?.data
-          );
+          console.log("Unable to retrieve plan", error);
+          // toast.error(
+          //   "Unable to retrieve plan, " + error?.response?.data
+          // );
         }
       }
     };

@@ -68,8 +68,8 @@ export default function SingleSelect({
         //   values[fieldName] === "" ? defaultValue.value : values[fieldName];
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Unable to retrieve usergroups, " + err?.response?.data);
+        console.log("Unable to retrieve usergroups", err);
+        // toast.error("Unable to retrieve usergroups, " + err?.response?.data);
       });
   }, []);
 

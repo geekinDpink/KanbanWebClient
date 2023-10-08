@@ -88,7 +88,7 @@ export default function KanbanBoardPage() {
           ? redDispatch({ type: "isApp" })
           : redDispatch({ type: "notApp" });
       } catch (error) {
-        toast("Unable to retrieve user permits");
+        // toast("Unable to retrieve user permits");
         // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(error);
       }
@@ -102,12 +102,12 @@ export default function KanbanBoardPage() {
             headers: { Authorization: `Basic ${token}` },
           }
         );
-        console.log("task res", response);
+        // console.log("task res", response);
         setTasks(response.data);
       } catch (error) {
-        toast("No task record found");
+        // toast("No task record found");
         // api call is validation process e.g. token, if fail refuse entry and logout
-        console.log(error);
+        console.log("No task record found", error);
       }
 
       try {
@@ -127,7 +127,8 @@ export default function KanbanBoardPage() {
         });
         setPlans(planColorObj);
       } catch (error) {
-        toast("No plan record found");
+        console.log("No plan record found");
+        // toast("No plan record found");
         // api call is validation process e.g. token, if fail refuse entry and logout
         console.log(error);
       }

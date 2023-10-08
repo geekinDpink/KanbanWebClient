@@ -71,7 +71,7 @@ export default function AppManagementPage() {
             ? redDispatch({ type: "isApp" })
             : redDispatch({ type: "notApp" });
         } catch (error) {
-          toast("Unable to retrieve user permits");
+          // toast("Unable to retrieve user permits");
           console.log(error);
         }
 
@@ -82,7 +82,8 @@ export default function AppManagementPage() {
           if (response.data.length > 0) {
             setApplications(response.data);
           } else {
-            toast("No app records found");
+            console.log("No app records found");
+            // toast("No app records found");
           }
         } catch (error) {
           console.log(error);

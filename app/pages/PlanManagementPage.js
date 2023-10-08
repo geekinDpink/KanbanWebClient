@@ -93,11 +93,12 @@ export default function PlanManagementPage() {
           if (resPlan.data.length > 0) {
             setPlans(resPlan.data);
           } else {
-            toast.error("No Plan record found");
+            console.log("No Plan record found");
+            // toast.error("No Plan record found");
           }
         } catch (error) {
-          console.log(error);
-          toast.error("Unable to retrieve plan record");
+          console.log("Unable to retrieve plan record", error);
+          // toast.error("Unable to retrieve plan record");
           setPlans([]);
         }
       } catch (err) {
