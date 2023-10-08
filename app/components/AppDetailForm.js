@@ -102,6 +102,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                 <Field
                   id="description"
                   name="description"
+                  disabled={mode === "view"}
                   style={{ width: "100%" }}
                 />
                 {touched.description && errors.description && (
@@ -134,6 +135,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                   id="startDate"
                   name="startDate"
                   type="date"
+                  disabled={mode === "view"}
                   style={{ width: "100%" }}
                 />
                 {touched.startDate && errors.startDate && (
@@ -149,6 +151,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                 <Field
                   id="endDate"
                   name="endDate"
+                  disabled={mode === "view"}
                   style={{ width: "100%" }}
                   type="date"
                 />
@@ -174,6 +177,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                       <SingleSelect
                         setFieldValue={setFieldValue}
                         values={values}
+                        isDisabled={mode === "view"}
                         fieldName="permitCreate"
                         defaultValue={{
                           value: "project lead",
@@ -204,6 +208,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitOpen"
+                        isDisabled={mode === "view"}
                         defaultValue={{
                           value: "project manager",
                           label: "project manager",
@@ -233,6 +238,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitTodo"
+                        isDisabled={mode === "view"}
                         defaultValue={{
                           value: "developer",
                           label: "developer",
@@ -262,6 +268,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitDoing"
+                        isDisabled={mode === "view"}
                         defaultValue={{
                           value: "developer",
                           label: "developer",
@@ -291,6 +298,7 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                         setFieldValue={setFieldValue}
                         values={values}
                         fieldName="permitDone"
+                        isDisabled={mode === "view"}
                         defaultValue={{
                           value: "project lead",
                           label: "project lead",
@@ -307,14 +315,16 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
             <Row style={{ marginTop: "5px", marginBottom: "5px" }}>
               <Col xs sm={1} md={2}></Col>
               <Col xs sm={5} md={4}>
-                <button
-                  type="submit"
-                  style={{
-                    width: "100%",
-                  }}
-                >
-                  {mode === "create" ? "Create" : "Save"}
-                </button>
+                {mode !== "view" && (
+                  <button
+                    type="submit"
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    {mode === "create" ? "Create" : "Save"}
+                  </button>
+                )}
               </Col>
             </Row>
           </Form>

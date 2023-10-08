@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState } from "react";import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Container from "react-bootstrap/Container";
 
@@ -14,6 +13,7 @@ import CreateUserPage from "./pages/CreateUserPage";
 import EditUserPage from "./pages/EditUserPage";
 import CreateAppPage from "./pages/CreateAppPage";
 import EditAppPage from "./pages/EditAppPage";
+import ViewAppPage from "./pages/ViewAppPage";
 import EditPlanPage from "./pages/EditPlanPage";
 import DispatchContext from "../Context/DispatchContext";
 import StateContext from "../Context/StateContext";
@@ -200,6 +200,12 @@ export default function App() {
                 path="/edit_app"
                 element={
                   state.isLoggedIn ? <EditAppPage /> : <Navigate to="/" />
+                }
+              />
+              <Route
+                path="/view_app"
+                element={
+                  state.isLoggedIn ? <ViewAppPage /> : <Navigate to="/" />
                 }
               />
               <Route

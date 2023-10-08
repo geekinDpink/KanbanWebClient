@@ -8,6 +8,7 @@ export default function SingleSelect({
   values,
   fieldName,
   defaultValue,
+  isDisabled,
 }) {
   const [useroptions, setUserOptions] = useState();
 
@@ -77,6 +78,7 @@ export default function SingleSelect({
       options={useroptions}
       value={getValue()}
       onChange={onChangeHandler}
+      isDisabled={isDisabled}
       // defaultValue={defaultValue}
     />
   );

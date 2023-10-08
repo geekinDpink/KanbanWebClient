@@ -147,7 +147,7 @@ export default function AppManagementPage() {
                     <td>{app.App_startDate}</td>
                     <td>{app.App_endDate}</td>
                     <td>
-                      {redState.isApp && (
+                      {redState.isApp ? (
                         <Button
                           onClick={() =>
                             navigate("/edit_app", {
@@ -160,6 +160,20 @@ export default function AppManagementPage() {
                           variant="primary"
                         >
                           Edit
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() =>
+                            navigate("/view_app", {
+                              state: {
+                                App_Acronym: app.App_Acronym,
+                              },
+                            })
+                          }
+                          style={{ marginTop: "3px", marginBottom: "5px" }}
+                          variant="primary"
+                        >
+                          View
                         </Button>
                       )}
                       <Button
