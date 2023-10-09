@@ -128,7 +128,7 @@ export default function PlanManagementPage() {
               marginBottom: "5px",
             }}
           >
-            <Button onClick={() => navigate(-1)} variant="info">
+            <Button onClick={() => navigate(-1)} variant="secondary">
               Back
             </Button>
           </div>
