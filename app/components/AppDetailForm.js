@@ -102,8 +102,9 @@ export default function AppDetailForm({ onSubmitHandler, appAcronym, mode }) {
                 <Field
                   id="description"
                   name="description"
+                  component="textarea"
                   disabled={mode === "view"}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", height: "200px" }}
                 />
                 {touched.description && errors.description && (
                   <div className="formErrors">{errors.description}</div>
