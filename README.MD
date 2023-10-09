@@ -47,6 +47,7 @@ Add View App Page
 Shrink Create Task Modal
 Get All Plans - no results - multiple toast in Create Plan
 Fix Card UI where text overflow - add scroll and fixed height
+Fix Bug create new plan -> change plan of open task -> no color at card border because plan state in board not update
 
 ###########################
 Relook

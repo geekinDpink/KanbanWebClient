@@ -525,7 +525,11 @@ export default function KanbanBoardPage() {
             </Button>
           </Modal.Header>
           <Modal.Body>
-            <PlanDetailForm appAcronym={appAcronym} mode="create" />
+            <PlanDetailForm
+              appAcronym={appAcronym}
+              mode="create"
+              setPlans={setPlans}
+            />
           </Modal.Body>
         </Modal>
         <Modal show={showCreateTaskModal} size="lg">

@@ -8,7 +8,13 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import moment from "moment";
 
-export default function PlanDetailForm({ appAcronym, planMVPName, mode }) {
+// Create, Edit or View Plan
+export default function PlanDetailForm({
+  appAcronym,
+  planMVPName,
+  mode,
+  setPlans,
+}) {
   const [selPlan, setSelPlan] = useState();
   const PlanSchema = Yup.object().shape({
     planName: Yup.string().required("Required"),
@@ -30,12 +36,33 @@ export default function PlanDetailForm({ appAcronym, planMVPName, mode }) {
         Plan_color: labelColor,
       };
 
+      // Create Plan and refresh kanban board
       if (mode === "create") {
         await axios.post("http://localhost:8080/plan", params, {
           headers: { Authorization: `Basic ${token}` },
         });
         resetForm();
+        try {
+          const params2 = { Plan_app_Acronym: appAcronym };
+          const resPlan = await axios.post(
+            "http://localhost:8080/plans/acronym",
+            params2,
+            {
+              headers: { Authorization: `Basic ${token}` },
+            }
+          );
+
+          // resPlan.data is an array of plan object. To iterate through each object and store plan name: color
+          let planColorObj = {};
+          resPlan.data.forEach((plan) => {
+            planColorObj[plan.Plan_MVP_name] = plan.Plan_color;
+          });
+          setPlans(planColorObj);
+        } catch (err) {
+          console.log("No plan record found", err);
+        }
       } else {
+        // Update Plan
         await axios.put("http://localhost:8080/plan/acronym/name", params, {
           headers: { Authorization: `Basic ${token}` },
         });
