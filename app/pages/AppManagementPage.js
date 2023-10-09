@@ -144,7 +144,17 @@ export default function AppManagementPage() {
                 applications.map((app) => (
                   <tr key={app.App_Acronym}>
                     <td>{app.App_Acronym}</td>
-                    <td>{app.App_Description}</td>
+                    <td>
+                      <div
+                        style={{
+                          height: "120px",
+                          maxHeight: "120px",
+                          overflowY: "auto",
+                        }}
+                      >
+                        {app.App_Description}
+                      </div>
+                    </td>
                     <td>{app.App_startDate}</td>
                     <td>{app.App_endDate}</td>
                     <td>
