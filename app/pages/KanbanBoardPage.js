@@ -195,7 +195,7 @@ export default function KanbanBoardPage() {
           </Col>
         </Row>
         <Row>
-          <Col xs={2}>
+          <Col xs sm md lg={2}>
             <h3>Open</h3>
             <div>
               {tasks
@@ -211,7 +211,14 @@ export default function KanbanBoardPage() {
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
-                        <Card.Title style={{ marginLeft: "5px" }}>
+                        <Card.Title
+                          style={{
+                            marginLeft: "5px",
+                            height: "25px",
+                            maxHeight: "25px",
+                            overflowY: "auto",
+                          }}
+                        >
                           Task: {task.Task_name}
                         </Card.Title>
                         <Card.Text
@@ -251,7 +258,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs={2}>
+          <Col xs sm md lg={2}>
             <h3>To Do</h3>
             <div>
               {tasks
@@ -267,7 +274,14 @@ export default function KanbanBoardPage() {
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
-                        <Card.Title style={{ marginLeft: "5px" }}>
+                        <Card.Title
+                          style={{
+                            marginLeft: "5px",
+                            height: "25px",
+                            maxHeight: "25px",
+                            overflowY: "auto",
+                          }}
+                        >
                           Task: {task.Task_name}
                         </Card.Title>
                         <Card.Text
@@ -307,7 +321,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs={2}>
+          <Col xs sm md lg={2}>
             <h3>Doing</h3>
             <div>
               {tasks
@@ -323,7 +337,14 @@ export default function KanbanBoardPage() {
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
-                        <Card.Title style={{ marginLeft: "5px" }}>
+                        <Card.Title
+                          style={{
+                            marginLeft: "5px",
+                            height: "25px",
+                            maxHeight: "25px",
+                            overflowY: "auto",
+                          }}
+                        >
                           Task: {task.Task_name}
                         </Card.Title>
                         <Card.Text
@@ -362,7 +383,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs={2}>
+          <Col xs sm md lg={2}>
             <h3>Done</h3>
             <div>
               {tasks
@@ -378,7 +399,14 @@ export default function KanbanBoardPage() {
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
-                        <Card.Title style={{ marginLeft: "5px" }}>
+                        <Card.Title
+                          style={{
+                            marginLeft: "5px",
+                            height: "25px",
+                            maxHeight: "25px",
+                            overflowY: "auto",
+                          }}
+                        >
                           Task: {task.Task_name}
                         </Card.Title>
                         <Card.Text
@@ -417,7 +445,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs={2}>
+          <Col xs sm md lg={2}>
             <h3>Closed</h3>
             <div>
               {tasks
@@ -433,7 +461,14 @@ export default function KanbanBoardPage() {
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
-                        <Card.Title style={{ marginLeft: "5px" }}>
+                        <Card.Title
+                          style={{
+                            marginLeft: "5px",
+                            height: "25px",
+                            maxHeight: "25px",
+                            overflowY: "auto",
+                          }}
+                        >
                           Task: {task.Task_name}
                         </Card.Title>
                         <Card.Text

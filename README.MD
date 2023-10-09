@@ -2,7 +2,6 @@ TODO:Kanban Task name, descriptionNo Plan toast appear when create task
 Bug of Select Plan field need double click and flicker
 Rearrange form
 Add Task note cannot accept empty
-Get All Plans - no results - multiple toast in Create Plan
 
 Done
 Clear Form
@@ -46,6 +45,8 @@ Does not allow change of plan when promoting (Backend handle)
 View Plan unable to render if plan is empty cause plan.map
 Add View App Page
 Shrink Create Task Modal
+Get All Plans - no results - multiple toast in Create Plan
+Fix Card UI where text overflow - add scroll and fixed height
 
 ###########################
 Relook
