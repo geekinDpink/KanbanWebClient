@@ -1,4 +1,5 @@
-import React, { useState } from "react";import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Container from "react-bootstrap/Container";
 
@@ -119,7 +120,7 @@ export default function App() {
         <BrowserRouter>
           <Header />
           <ToastContainer
-            autoClose={1500}
+            autoClose={1000}
             transition={Slide}
             hideProgressBar
             position="top-center"

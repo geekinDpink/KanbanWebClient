@@ -216,8 +216,8 @@ export default function KanbanBoardPage() {
                         </Card.Title>
                         <Card.Text
                           style={{
-                            height: "40%",
-                            maxHeight: "40%",
+                            height: "100px",
+                            maxHeight: "100px",
                             overflowY: "auto",
                             margin: "5px",
                             padding: "0px",
@@ -227,7 +227,7 @@ export default function KanbanBoardPage() {
                           <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
-                          style={{ marginLeft: "35%" }}
+                          style={{ marginLeft: "35%", height: "35px" }}
                           onClick={() => {
                             console.log("redState", redState);
                             if (redState.isOpen) {
@@ -272,8 +272,8 @@ export default function KanbanBoardPage() {
                         </Card.Title>
                         <Card.Text
                           style={{
-                            height: "40%",
-                            maxHeight: "40%",
+                            height: "100px",
+                            maxHeight: "100px",
                             overflowY: "auto",
                             margin: "5px",
                             padding: "0px",
@@ -283,7 +283,7 @@ export default function KanbanBoardPage() {
                           <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
-                          style={{ marginLeft: "35%" }}
+                          style={{ marginLeft: "35%", height: "35px" }}
                           onClick={() => {
                             console.log("redState isTodoList", redState);
                             if (redState.isTodolist) {
@@ -328,8 +328,8 @@ export default function KanbanBoardPage() {
                         </Card.Title>
                         <Card.Text
                           style={{
-                            height: "40%",
-                            maxHeight: "40%",
+                            height: "100px",
+                            maxHeight: "100px",
                             overflowY: "auto",
                             margin: "5px",
                             padding: "0px",
@@ -339,7 +339,7 @@ export default function KanbanBoardPage() {
                           <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
-                          style={{ marginLeft: "35%" }}
+                          style={{ marginLeft: "35%", height: "35px" }}
                           onClick={() => {
                             if (redState.isDoing) {
                               setIsPermitPlan(false);
@@ -383,8 +383,8 @@ export default function KanbanBoardPage() {
                         </Card.Title>
                         <Card.Text
                           style={{
-                            height: "40%",
-                            maxHeight: "40%",
+                            height: "100px",
+                            maxHeight: "100px",
                             overflowY: "auto",
                             margin: "5px",
                             padding: "0px",
@@ -394,7 +394,7 @@ export default function KanbanBoardPage() {
                           <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
-                          style={{ marginLeft: "35%" }}
+                          style={{ marginLeft: "35%", height: "35px" }}
                           onClick={() => {
                             if (redState.isDone) {
                               setIsPermitPlan(true);
@@ -438,8 +438,8 @@ export default function KanbanBoardPage() {
                         </Card.Title>
                         <Card.Text
                           style={{
-                            height: "40%",
-                            maxHeight: "40%",
+                            height: "100px",
+                            maxHeight: "100px",
                             overflowY: "auto",
                             margin: "5px",
                             padding: "0px",
@@ -449,7 +449,7 @@ export default function KanbanBoardPage() {
                           <div>Description: {task.Task_description}</div>
                         </Card.Text>
                         <Button
-                          style={{ marginLeft: "35%" }}
+                          style={{ marginLeft: "35%", height: "35px" }}
                           onClick={() => {
                             setIsPermitPlan(false);
                             setIsPermitPromote(false);
