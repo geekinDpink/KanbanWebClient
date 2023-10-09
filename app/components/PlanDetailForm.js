@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";import Container from "react-bootstrap/Container";
+import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axios from "axios";
@@ -124,6 +125,7 @@ export default function PlanDetailForm({ appAcronym, planMVPName, mode }) {
                 <Field
                   id="planName"
                   name="planName"
+                  disabled={mode === "edit"}
                   style={{ width: "100%" }}
                 />
                 {touched.planName && errors.planName && (
