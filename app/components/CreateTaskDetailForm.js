@@ -103,6 +103,21 @@ export default function CreateTaskDetailForm({ setTasks, appAcronym }) {
           );
           if (resAllTaskByAcroynm) {
             setTasks(resAllTaskByAcroynm.data);
+            // to retrieve running number to generate task id
+            try {
+              const token = localStorage.getItem("token");
+              const paramsAppAcron = { App_Acronym: appAcronym };
+              const response = await axios.post(
+                "http://localhost:8080/app/acronym",
+                paramsAppAcron,
+                {
+                  headers: { Authorization: `Basic ${token}` },
+                }
+              );
+              setAppRn(response.data[0].App_Rnumber);
+            } catch (error) {
+              console.log(error);
+            }
           }
           resetForm();
         }
