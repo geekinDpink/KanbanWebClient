@@ -206,8 +206,10 @@ export default function KanbanBoardPage() {
                       key={task.Task_id}
                       style={{
                         borderStyle: "solid",
-                        borderColor: plans[task.Task_plan] ?? "black",
-                        borderWidth: "2px",
+                        borderColor: "black",
+                        borderLeftColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "1px",
+                        borderLeftWidth: plans[task.Task_plan] ? "8px" : "1px",
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
@@ -269,8 +271,10 @@ export default function KanbanBoardPage() {
                       key={task.Task_id}
                       style={{
                         borderStyle: "solid",
-                        borderColor: plans[task.Task_plan] ?? "black",
-                        borderWidth: "2px",
+                        borderColor: "black",
+                        borderLeftColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "1px",
+                        borderLeftWidth: plans[task.Task_plan] ? "8px" : "1px",
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
@@ -332,8 +336,10 @@ export default function KanbanBoardPage() {
                       key={task.Task_id}
                       style={{
                         borderStyle: "solid",
-                        borderColor: plans[task.Task_plan] ?? "black",
-                        borderWidth: "2px",
+                        borderColor: "black",
+                        borderLeftColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "1px",
+                        borderLeftWidth: plans[task.Task_plan] ? "8px" : "1px",
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
@@ -394,8 +400,10 @@ export default function KanbanBoardPage() {
                       key={task.Task_id}
                       style={{
                         borderStyle: "solid",
-                        borderColor: plans[task.Task_plan] ?? "black",
-                        borderWidth: "2px",
+                        borderColor: "black",
+                        borderLeftColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "1px",
+                        borderLeftWidth: plans[task.Task_plan] ? "8px" : "1px",
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
@@ -456,8 +464,10 @@ export default function KanbanBoardPage() {
                       key={task.Task_id}
                       style={{
                         borderStyle: "solid",
-                        borderColor: plans[task.Task_plan] ?? "white",
-                        borderWidth: "2px",
+                        borderColor: "black",
+                        borderLeftColor: plans[task.Task_plan] ?? "black",
+                        borderWidth: "1px",
+                        borderLeftWidth: plans[task.Task_plan] ? "8px" : "1px",
                       }}
                     >
                       <Card.Body style={{ margin: "0px", padding: "0px" }}>
