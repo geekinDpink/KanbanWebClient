@@ -154,7 +154,9 @@ export default function KanbanBoardPage() {
           <Col xs sm md={2}>
             <h5>App Acronym: {appAcronym}</h5>
           </Col>
-          <Col xs sm md={1}>
+          <Col
+            style={{ marginLeft: "1px", marginRight: "1px", maxWidth: "100px" }}
+          >
             {redState.isCreate && (
               <Button
                 onClick={() => setShowCreateTaskModal(true)}
@@ -165,7 +167,9 @@ export default function KanbanBoardPage() {
               </Button>
             )}
           </Col>
-          <Col xs sm md={1}>
+          <Col
+            style={{ marginLeft: "1px", marginRight: "1px", maxWidth: "100px" }}
+          >
             {redState.isPlan && (
               <Button
                 onClick={() => setShowCreatePlanModal(true)}
@@ -176,7 +180,9 @@ export default function KanbanBoardPage() {
               </Button>
             )}
           </Col>
-          <Col xs sm md={1}>
+          <Col
+            style={{ marginLeft: "1px", marginRight: "1px", maxWidth: "100px" }}
+          >
             {redState.isPlan && (
               <Button
                 onClick={() =>
@@ -195,7 +201,7 @@ export default function KanbanBoardPage() {
           </Col>
         </Row>
         <Row>
-          <Col xs sm md lg={2}>
+          <Col style={{ flex: "0 0 auto", width: "20%" }}>
             <h3>Open</h3>
             <div>
               {tasks
@@ -260,7 +266,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs sm md lg={2}>
+          <Col style={{ flex: "0 0 auto", width: "20%" }}>
             <h3>To Do</h3>
             <div>
               {tasks
@@ -325,7 +331,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs sm md lg={2}>
+          <Col style={{ flex: "0 0 auto", width: "20%" }}>
             <h3>Doing</h3>
             <div>
               {tasks
@@ -389,7 +395,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs sm md lg={2}>
+          <Col style={{ flex: "0 0 auto", width: "20%" }}>
             <h3>Done</h3>
             <div>
               {tasks
@@ -453,7 +459,7 @@ export default function KanbanBoardPage() {
                 })}
             </div>
           </Col>
-          <Col xs sm md lg={2}>
+          <Col style={{ flex: "0 0 auto", width: "20%" }}>
             <h3>Closed</h3>
             <div>
               {tasks

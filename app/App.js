@@ -127,6 +127,7 @@ export default function App() {
           />
           <Container
             style={{
+              maxWidth: "2000px",
               marginTop: "20px",
               marginLeft: "auto",
               marginRight: "auto",

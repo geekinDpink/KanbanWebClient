@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import DispatchContext from "../../Context/DispatchContext";
 import StateContext from "../../Context/StateContext";
 import axios from "axios";
+import { Container } from "react-bootstrap";
 
 export default function HomePage() {
   const redDispatch = useContext(DispatchContext);
@@ -40,9 +41,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <Container>
       <h1>Welcome to Task Management System</h1>
       <p>To start, please login via the top right hand corner.</p>
-    </>
+    </Container>
   );
 }

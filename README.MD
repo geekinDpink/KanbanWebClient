@@ -1,3 +1,6 @@
+Main App Container
+Container in page - fluid to centralise
+
 TODO:Kanban Task name, descriptionNo Plan toast appear when create task
 Bug of Select Plan field need double click and flicker
 Rearrange form

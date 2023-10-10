@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
@@ -62,7 +63,7 @@ export default function UserManagementPage() {
   }, []);
 
   return (
-    <>
+    <Container>
       <Row>
         <Col xs sm md={6}>
           <h3>User Management</h3>
@@ -128,6 +129,6 @@ export default function UserManagementPage() {
           </Table>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 }
