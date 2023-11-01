@@ -1,10 +1,13 @@
 # Web Client for Kanban Board Task Management System
 
 ## About this project
-Developed with React and bundle with webpack. It is the frontend for KanbanWebServer project.
-System is designed with the Model View Controller (MVC) architecture.
+Serve as a task management system for software development team using the kanban method. It is the frontend for KanbanWebServer project.
 
-## Persona
+## Brief Overview of Tech Stack
+Developed with React and bundle with webpack. System is designed with the Model View Controller (MVC) architecture and is serving as the model layer.
+The styling library used is React Bootstrap.To handle user authorisation/access to specific features/page, reducer and context is used to have a centralized state to track type of user and user groups.
+
+## Type of Users
 1. Admin - Able to create and assign user group to user and access user management dashboard (Home Page). 
 2. User - Able to view kanban board (Home Page)
 
