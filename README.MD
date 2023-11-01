@@ -1,63 +1,26 @@
-Main App Container
-Container in page - fluid to centralise
+# Web Client for Kanban Board Task Management System
 
-TODO:Kanban Task name, descriptionNo Plan toast appear when create task
-Bug of Select Plan field need double click and flicker
-Rearrange form
-Add Task note cannot accept empty
+## About this project
+Developed with React and bundle with webpack. It is the frontend for KanbanWebServer project.
+System is designed with the Model View Controller (MVC) architecture.
 
-Done
-Clear Form
-Pass username from myprofile to edit userdetail page using reducer
-Username disabled
-Email, User group Optional Create - Form and DB
-Edit - Password not churn, email and password optional, usergroup optional
-Error and Success Msg for Edit and Create
-Password Update If not null
-Admin disable User/ Update Active
-Change includes admin check to others
-Creatable Fire Twice, use onCreate attribute
-assign admin from another browser but user management tab doesn't come back
-user cannot edit or create user group
-Change Include Admin regex as it accept substring
-Creatable no options error
-Fix Bug of create user without user group, view user group will have popup error
-Refactor return is admin or not
-App Acronymn, Note gen
-Name, Desc validation to be not empty
-isPermit -> isDemote or isPromote for specifc state
-After Promote/Demote/Editing Note, note do not refresh
-Stop Work <- Start Work -> Submit Work + send email Mailtrap
-Add dropdown for plan
-Default value for react select
-Unable to create app or plan without date
-Promote close modal
-Done to reject or change plan to other sprint, Else close
-Change Plan field to dropdown for Create and Edit Task
-Create Task and Edit Task (Open State) is enabled, Edit Task (Other state) is disabled
-Plan Appear as Label on note in kanban board e.g. sprint 1
-Add plan color
-Edit Plan
-Conditional Render Create/Edit App to PL and Create/Manage Plan to PM
-Only permitted user grp can add note, Conditional Render Add Notes and Edit/View Task based on isPermit and disable text area
-View Closed
-Description change to text area
-Edit App - Disable RN , Description (Required)
-Add Note button change to Save
-Does not allow change of plan when promoting (Backend handle)
-View Plan unable to render if plan is empty cause plan.map
-Add View App Page
-Shrink Create Task Modal
-Get All Plans - no results - multiple toast in Create Plan
-Fix Card UI where text overflow - add scroll and fixed height
-Fix Bug create new plan -> change plan of open task -> no color at card border because plan state in board not update
+## Persona
+1. Admin - Able to create and assign user group to user and access user management dashboard (Home Page). 
+2. User - Able to view kanban board (Home Page)
 
-###########################
-Relook
-Lowercase and trim at backend - c8 and edit
-Workflow bug of editing own usergroup after removing ownself as admin
-Align Request param app_permit_ToDoList with SQL app_permit_toDoList
+## User Group
+Admin is able to create new user group e.g. DevOps. However, there are default user groups
+1. Project Manager (PM)
+2. Project Lead (PL)
+3. Developer (Dev)
 
-Optional
-Validation frontend for alphanumeric and symbols for password
-Standardise params for Edit App, start and end date, both capital in Sql db
+## Kanban Board Functionality
+Task Management System that allows the creation and management of tasks by promoting and demoting the task state.
+Task states range from Open -> Doing -> Done -> Closed
+
+### Workflow
+- PM: Creation of App (New board)
+- PM: Assign user group to its respective state (for promotion and demotion of task state)
+- PL: Create Task
+- Task State Owner: Promote and Demote (certain) task states
+- All: Add notes
