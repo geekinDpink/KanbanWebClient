@@ -4,7 +4,7 @@
 Serve as a task management system for software development team using the kanban method. It is the frontend for KanbanWebServer project.
 
 ## Brief Overview of Tech Stack
-Developed with React and bundle with webpack. System is designed with the Model View Controller (MVC) architecture and is serving as the model layer.
+Developed with React and bundle with webpack. System is designed with the Model View Controller (MVC) architecture in mind, where there is unidirectional flow of data. This frontend is serving as the view layer, though retrospectively speaking React component do also act like Controllers.
 The styling library used is React Bootstrap.To handle user authorisation/access to specific features/page, reducer and context is used to have a centralized state to track type of user and user groups.
 
 ## Type of Users
