@@ -24,6 +24,15 @@ Admin is able to create new user group e.g. DevOps. However, there are default u
 Task Management System that allows the creation and management of tasks by promoting and demoting the task state.
 Task states range from Open -> Doing -> Done -> Closed
 
+``` mermaid
+flowchart LR
+    PL((New Task))--> |Default State|SO(Open)
+    SO --> ST(Todo)
+    ST --> SD(Doing)
+    SD --> SD2(Done)
+    SD2 --> SC(Closed)
+```
+
 ### Workflow
 - PM: Creation of App (New board)
 - PM: Assign user group to its respective state (for promotion and demotion of task state)
