@@ -1,7 +1,7 @@
 # Web Client for Kanban Board Task Management System
 
 ## About this project
-This project is the frontend for [kanbanwebservices](https://github.com/geekinDpink/KanbanWebServer) and is part of the Kanban Board/Task Management system which adopts a N-tier architeture with the following logical layers:
+This project is the frontend for [kanbanwebserver](https://github.com/geekinDpink/KanbanWebServer) and is part of the Kanban Board/Task Management system which adopts a N-tier architeture with the following logical layers:
 - Presentation layer: Kanban Frontend (Display interface to user)
 - Application/Business Logic Layer: Kanban WebServer (Implement Core functionality)
 - Database Layer: Interact with database and handle data
