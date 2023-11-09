@@ -1,7 +1,10 @@
 # Web Client for Kanban Board Task Management System
 
 ## About this project
-Serve as a task management system for software development team using the kanban method. It is the frontend for KanbanWebServer project.
+This project is the frontend for [kanbanwebservices](https://github.com/geekinDpink/KanbanWebServer) and is part of the Kanban Board/Task Management system which adopts a N-tier architeture with the following logical layers:
+- Presentation layer: Kanban Frontend (Display interface to user)
+- Application/Business Logic Layer: Kanban WebServer (Implement Core functionality)
+- Database Layer: Interact with database and handle data
 
 ## Brief Overview of Tech Stack
 Developed with React and bundle with webpack. System is designed with the Model View Controller (MVC) architecture and is serving as the model layer.

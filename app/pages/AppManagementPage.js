@@ -87,7 +87,7 @@ export default function AppManagementPage() {
           }
         } catch (error) {
           console.log(error);
-          toast("Unable to retrieve app records");
+          //  toast("Unable to retrieve app records");
           setApplications([]);
         }
       } catch (err) {

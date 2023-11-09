@@ -69,7 +69,7 @@ export default function CreatableMultiSelect({ setFieldValue, values }) {
     } catch (error) {
       console.log(error);
       toast.error(
-        "Unable to create new usergroup222, " + error?.response?.data
+        "Unable to create new usergroup, " + error?.response?.data
       );
     }
   };
